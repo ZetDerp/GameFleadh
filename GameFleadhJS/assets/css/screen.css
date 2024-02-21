@@ -1,0 +1,6 @@
+canvas{
+	display: inline; 
+	outline: 6px solid black;
+	margin: auto; 
+	background-color: lime; /* Make a Greenscreen for the Background of the Game */
+}
