@@ -64,6 +64,10 @@ const MAX_TILES = 105;
 const TILE_SIZE = 90;
 const offsetTile = 100;
 const offsetTileBG = 5;
+// Input
+let playerInput = "";
+// Burning Tiles
+let pastTiles = [];
 
 // 					Other Functions
 // Add 98 Tiles

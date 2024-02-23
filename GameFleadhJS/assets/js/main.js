@@ -3,7 +3,9 @@ console.log("main.js Running");
 // Game Update 
 function update()
 {
-	
+	// Update the Tile the Player walks Over
+	if (playerInput == "Up" || playerInput == "Down" || playerInput == "Left" || playerInput == "Right")
+		updateCurrentTile();
 }
 
 // Game Draw
@@ -33,9 +35,13 @@ function draw()
 		makeLevelLayout(); // Edit basic level to make current level
 	
 	// Draw Player
-	yPos = playerBomb.playerPosition % 15;
+	yPos = 1;
+	while (playerBomb.playerPosition >= 15 * yPos)
+		yPos++;
+	yPos--;
+	yPos
 	xPos = playerBomb.playerPosition - 15 * yPos;
-	drawFrame(playerBomb.playerSpritesheet, 0, 0, TILE_SIZE, TILE_SIZE, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+	drawFrame(playerBomb.playerSpritesheet, 0, 0, TILE_SIZE, TILE_SIZE, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE); 
 }
 
 function gameLoop()
@@ -53,8 +59,58 @@ window.addEventListener("keyup", input);
 //window.addEventListener("mouseup", input);
 //window.addEventListener("mousemove", input);
 
+function updateCurrentTile()
+{
+	// Check Current Tile
+	// Undo Input 
+	if (gameTiles[playerBomb.playerPosition].tileLocked == true)
+	{
+		switch(playerInput) // Inverse Direction
+		{
+		case "Up":
+			playerBomb.playerPosition += 15;
+			break;
+		case "Down":
+			playerBomb.playerPosition -= 15;
+			break;
+		case "Left":
+			playerBomb.playerPosition++;
+			break;
+		case "Right":
+			playerBomb.playerPosition--;
+			break;
+		}
+	}
+	// Lose Life
+	else if (gameTiles[playerBomb.playerPosition].tileDestroyed == true)
+	{
+		playerBomb.playerCurrentHP--;
+		levelLoaded = false; // Re-load Level / Restart
+	}
+	// Walked Over
+	else if (gameTiles[playerBomb.playerPosition].tileWalkedOver == false && gameTiles[playerBomb.playerPosition].tileWin == false
+				&& gameTiles[playerBomb.playerPosition].tileSafeSpace == false)
+	{
+		gameTiles[playerBomb.playerPosition].tileWalkedOver = true;
+		gameTiles[playerBomb.playerPosition].tileColour = "Red";
+	}
+	playerInput = ""; // Reset Input
+}
+
 function makeLevelLayout()
 {
+	// Set Everything to False
+	for (let i = 0; i < MAX_TILES; i++)
+	{
+		gameTiles[i].tileColour = "Blue";
+		gameTiles[i].tileWalkedOver = false;
+		gameTiles[i].tileSafeSpace = false;
+		gameTiles[i].tileDestroyed = false;
+		gameTiles[i].tileWin = false;
+		gameTiles[i].tileLocked = false;
+		gameTiles[i].tilePower = false;
+	}
+	
 	switch (currentLevel)
 	{
 	case levels.Level1: // Level 1
@@ -115,6 +171,7 @@ function makeLevelLayout()
 			}
 		}
 	}
+	levelLoaded = true;
 }
 
 function drawFrame(ssImage, ssPosX, ssPosY, ssWidth, ssHeight, canvasX, canvasY, canvasWidth, canvasHeight) {
