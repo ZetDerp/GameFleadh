@@ -25,7 +25,13 @@ function GameObjectPlayer()
 // Create Bouncing Ball (Enemy)
 function GameObjectBall()
 {
-	
+	// Positions
+	this.ballXPos = 10;
+	this.ballYPos = gameCanvas.height / 2 - 10;
+	// Collision
+	this.ballCollision = false;
+	// Direction
+	this.ballDirection = "None";
 }
 
 // Tiles
@@ -52,6 +58,14 @@ let playerBomb = new GameObjectPlayer();
 let gameBalls = [];
 let gameTiles = [];
 
+// Game States
+const gameStates = { MainMenu: "MainMenu", Gameplay: "Gameplay", GameOver: "GameOver", LevelWin: "LevelWin" };
+let currentGameStatus = gameStates.MainMenu;
+
+// Ball Directions
+const ballDirections = { UpLeft: "UpLeft", UpRight: "UpRight", DownRight: "DownRight", DownLeft: "DownLeft" };
+let applyDirection = "None";
+
 // Set Levels
 const levels = { Level1: "1", Level2: "2" };
 let currentLevel = levels.Level1;
@@ -68,6 +82,17 @@ const offsetTileBG = 5;
 let playerInput = "";
 // Burning Tiles
 let pastTiles = [];
+let firstMove = true;
+let tileScore = 0;
+let tileQuota = 70;
+// Text
+let textXOffset = 10;
+let textYOffset = 50;
+// Enemy Related
+const TIME_FOR_SPAWN = 300;
+let ballSpawnTimer = 0;
+let textSpawnBall = 5;
+const BALL_RADIUS = 25;
 
 // 					Other Functions
 // Add 98 Tiles
