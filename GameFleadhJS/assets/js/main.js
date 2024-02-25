@@ -203,13 +203,18 @@ function draw()
 		xPos = playerBomb.playerPosition - 15 * yPos;
 		drawFrame(playerBomb.playerSpritesheet, 0, 0, TILE_SIZE, TILE_SIZE, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE); 
 
-
+		// Boxes for UI
+		ctx.fillStyle = "gray";
+		ctx.roundRect(-50,-50,550,130,50);
+		ctx.roundRect(580,-50,340,130,50);
+		ctx.roundRect(1150,-50,700,130,50);
+		ctx.fill();
+		
 		// Text
 		ctx.fillStyle = "White";
 		ctx.fillText("Lives Remaining: " + playerBomb.playerCurrentHP, 10, 50);
 		ctx.fillText("Points: " + tileScore + "/" + tileQuota, textXOffset + 600, textYOffset);
-		ctx.fillText("Enemy Timer: " + textSpawnBall, textXOffset + 1100, textYOffset);
-
+		ctx.fillText("Enemy Timer: " + textSpawnBall, textXOffset + 1200, textYOffset);
 
 		// Debug
 		if (enableDebug)
@@ -224,7 +229,6 @@ function draw()
 			ctx.fillStyle = "green";
 			ctx.fill();
 		}
-		
 		
 		break;
 	case gameStates.GameOver:
@@ -342,7 +346,36 @@ function unlockTiles()
 
 function ballCollisionCheck(i)
 {
+	let collisionTrigger = false;
 	
+	let yPosCollision = 1;
+	while (playerBomb.playerPosition >= 15 * yPosCollision)
+		yPosCollision++;
+	yPosCollision--;
+	let xPosCollision = playerBomb.playerPosition - 15 * yPosCollision;
+	
+	// Get Points
+	let playerPointX = offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * xPosCollision);
+	let playerPointY = offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * yPosCollision);
+	let ballPointX = gameBalls[i].ballXPos + BALL_RADIUS;
+	let ballPointY = gameBalls[i].ballYPos + BALL_RADIUS;
+	
+	// Get Opp and Adj
+	let oppX = playerPointX - ballPointX;
+	if (oppX < 0)
+		oppX = oppX * -1;
+	let adjY = playerPointY - ballPointY;
+	if (adjY < 0)
+		adjY = adjY * -1;
+	
+	// Get Hyp
+	let hyp = oppX * oppX + adjY * adjY;
+	hyp = Math.sqrt(hyp);
+	
+	if (playerBomb.playerRadius + BALL_RADIUS >= hyp)
+		collisionTrigger = true;
+
+	return collisionTrigger;
 }
 
 function makeLevelLayout()
