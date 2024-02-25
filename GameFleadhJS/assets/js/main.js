@@ -8,6 +8,12 @@ function update()
 	case gameStates.MainMenu:
 		break;
 	case gameStates.Gameplay:
+	
+		// Debug
+		if (enableDebug)
+		{
+		}
+	
 		// Update the Tile the Player walks Over
 		if (playerInput == "Up" || playerInput == "Down" || playerInput == "Left" || playerInput == "Right")
 			updateCurrentTile();
@@ -39,6 +45,10 @@ function update()
 				break;
 			}
 			gameBalls[gameBalls.length-1].ballDirection = newDir;
+			
+			// Give Collision to Next Ball
+			if (gameBalls.length >= 2)
+				gameBalls[gameBalls.length-2].ballCollision = true;
 			
 			// Reset Timer and Text
 			ballSpawnTimer = 0;
@@ -75,6 +85,58 @@ function update()
 					gameBalls[i].ballYPos++;
 					break;
 				}
+				
+				// OOB Check for Canvas
+				if (gameBalls[i].ballXPos <= BALL_RADIUS || gameBalls[i].ballXPos >= gameCanvas.width - BALL_RADIUS
+					|| gameBalls[i].ballYPos <= BALL_RADIUS || gameBalls[i].ballYPos >= gameCanvas.height - BALL_RADIUS)
+				{
+					// Check if Top / Bottom / Left / Right
+					if (gameBalls[i].ballYPos <= BALL_RADIUS) // Top
+					{
+						// Change Direction
+						if (gameBalls[i].ballDirection == ballDirections.UpRight)
+							gameBalls[i].ballDirection = ballDirections.DownRight; // Down Right
+						else
+							gameBalls[i].ballDirection = ballDirections.DownLeft; // Down Left
+					}
+					else if (gameBalls[i].ballYPos >= gameCanvas.height - BALL_RADIUS) // Bottom
+					{
+						// Change Direction
+						if (gameBalls[i].ballDirection == ballDirections.DownRight)
+							gameBalls[i].ballDirection = ballDirections.UpRight; // Up Right
+						else
+							gameBalls[i].ballDirection = ballDirections.UpLeft; // Up Left
+					}
+					else if (gameBalls[i].ballXPos <= BALL_RADIUS) // Left
+					{
+						// Change Direction
+						if (gameBalls[i].ballDirection == ballDirections.UpLeft)
+							gameBalls[i].ballDirection = ballDirections.UpRight; // Up Right
+						else
+							gameBalls[i].ballDirection = ballDirections.DownRight; // Down Right
+					}
+					else // Right
+					{
+						// Change Direction
+						if (gameBalls[i].ballDirection == ballDirections.DownRight)
+							gameBalls[i].ballDirection = ballDirections.DownLeft; // Down Left
+						else
+							gameBalls[i].ballDirection = ballDirections.UpLeft; // Up Left
+					}
+				}
+			}
+		}
+		
+		// Player Collision with Ball
+		if (gameBalls.length >= 2)
+		{
+			for (let i = 0; i < gameBalls.length - 1; i++)
+			{
+				if (ballCollisionCheck(i))
+				{
+					console.log("ball hit");
+					break;
+				}
 			}
 		}
 		
@@ -88,6 +150,7 @@ function update()
 function draw()
 {
 	ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height); // Clear Canvas
+	
 	
 	switch (currentGameStatus)
 	{
@@ -123,7 +186,10 @@ function draw()
 			{
 				ctx.beginPath();
 				ctx.arc(gameBalls[i].ballXPos, gameBalls[i].ballYPos, BALL_RADIUS, 0, 2 * Math.PI);
-				ctx.fillStyle = "pink";
+				if (gameBalls[i].ballCollision == false)
+					ctx.fillStyle = "pink";
+				else
+					ctx.fillStyle = "orange";
 				ctx.fill();
 			}
 		}
@@ -133,7 +199,7 @@ function draw()
 		while (playerBomb.playerPosition >= 15 * yPos)
 			yPos++;
 		yPos--;
-		yPos
+		//yPos
 		xPos = playerBomb.playerPosition - 15 * yPos;
 		drawFrame(playerBomb.playerSpritesheet, 0, 0, TILE_SIZE, TILE_SIZE, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE); 
 
@@ -143,8 +209,23 @@ function draw()
 		ctx.fillText("Lives Remaining: " + playerBomb.playerCurrentHP, 10, 50);
 		ctx.fillText("Points: " + tileScore + "/" + tileQuota, textXOffset + 600, textYOffset);
 		ctx.fillText("Enemy Timer: " + textSpawnBall, textXOffset + 1100, textYOffset);
-		//console.log("Timer: " + ballSpawnTimer%60);
 
+
+		// Debug
+		if (enableDebug)
+		{
+			// Player Hitbox
+			yPos = 1;
+				while (playerBomb.playerPosition >= 15 * yPos)
+				yPos++;
+			yPos--;
+			xPos = playerBomb.playerPosition - 15 * yPos;
+			ctx.arc(offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * xPos), offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * yPos), playerBomb.playerRadius, 0, 2 * Math.PI);
+			ctx.fillStyle = "green";
+			ctx.fill();
+		}
+		
+		
 		break;
 	case gameStates.GameOver:
 		break;
@@ -196,8 +277,11 @@ function updateCurrentTile()
 		playerBomb.playerCurrentHP--;
 		firstMove = false;
 		levelLoaded = false; // Re-load Level / Restart
+		/*
 		for (let i = 0; i < gameBalls.length + 1; i++)
 			gameBalls.pop();
+		*/
+		gameBalls.length = 0;
 		// Reset Timer and Text
 		ballSpawnTimer = 0;
 		textSpawnBall = 5;
@@ -254,6 +338,11 @@ function unlockTiles()
 			gameTiles[i].tileColour = "Blue";
 		}
 	}
+}
+
+function ballCollisionCheck(i)
+{
+	
 }
 
 function makeLevelLayout()

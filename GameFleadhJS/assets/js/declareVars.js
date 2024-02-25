@@ -20,6 +20,10 @@ function GameObjectPlayer()
 	this.playerMultiplier = 1;
 	// Position / Location
 	this.playerPosition = 0; // Set at Level Load
+	
+	// Invis Circle
+	this.playerPoint = 0;
+	this.playerRadius = 45;
 }
 
 // Create Bouncing Ball (Enemy)
