@@ -17,11 +17,14 @@ function update()
 		// Update the Tile the Player walks Over
 		if (playerInput == "Up" || playerInput == "Down" || playerInput == "Left" || playerInput == "Right")
 			updateCurrentTile();
-		if (tileScore == tileQuota)
+		if (tileScore == tileQuota && quotaTrigger == false)
+		{
 			unlockTiles();
+			quotaTrigger = true;
+		}
 		
 		// Timer for Balls
-		if (ballSpawnTimer >= TIME_FOR_SPAWN)
+		if (ballSpawnTimer >= enemySpawnTimer + (enemySpawnIncrease * multiIncrease))
 		{
 			// Spawn New Ball
 			gameBalls[gameBalls.length] = new GameObjectBall();
@@ -52,7 +55,7 @@ function update()
 			
 			// Reset Timer and Text
 			ballSpawnTimer = 0;
-			textSpawnBall = 5;
+			textSpawnBall = 5 + (textSpawnIncrease * multiIncrease);
 		}
 		else
 		{
@@ -152,13 +155,13 @@ function draw()
 	ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height); // Clear Canvas
 	
 	
-	switch (currentGameStatus)
+	if (currentGameStatus == gameStates.MainMenu)
 	{
-	case gameStates.MainMenu:
-		break;
-	case gameStates.Gameplay:
-	
-			// Draw Basic Tile Arena
+		
+	}
+	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin)
+	{
+				// Draw Basic Tile Arena
 		ctx.fillStyle = "black";
 		ctx.fillRect(offsetTile, offsetTile, gameCanvas.width - offsetTile * 2 + 30, gameCanvas.height - offsetTile * 2 - 30); // Black Background
 		// Coloured Spaces
@@ -230,11 +233,16 @@ function draw()
 			ctx.fill();
 		}
 		
-		break;
-	case gameStates.GameOver:
-		break;
-	case gameStates.LevelWin:
-		break;
+		// Display Win Message Over Game
+		if (currentGameStatus == gameStates.LevelWin)
+		{
+			ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+			ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+		}
+	}
+	else if (currentGameStatus == gameStates.GameOver)
+	{
+		
 	}
 }
 
@@ -281,10 +289,6 @@ function updateCurrentTile()
 		playerBomb.playerCurrentHP--;
 		firstMove = false;
 		levelLoaded = false; // Re-load Level / Restart
-		/*
-		for (let i = 0; i < gameBalls.length + 1; i++)
-			gameBalls.pop();
-		*/
 		gameBalls.length = 0;
 		// Reset Timer and Text
 		ballSpawnTimer = 0;
@@ -292,6 +296,7 @@ function updateCurrentTile()
 		for (let i = 2; i > -1; i--)
 			pastTiles[i] = undefined;
 		tileScore = 0; // Reset Score
+		quotaTrigger = false;
 	}
 	// Walked Over
 	else if (gameTiles[playerBomb.playerPosition].tileWalkedOver == false && gameTiles[playerBomb.playerPosition].tileWin == false
@@ -302,7 +307,7 @@ function updateCurrentTile()
 		// Check if Array size Has Old Moves
 		if (firstMove != true)
 		{
-			for (let i = 2; i > -1 ; i--)
+			for (let i = playerBomb.playerSnakeSize; i > -1 ; i--)
 			{
 				pastTiles[i+1] = pastTiles[i];
 			}
@@ -314,6 +319,29 @@ function updateCurrentTile()
 			firstMove = false;
 		}
 		tileScore++; // Increase Score
+		
+		// Check if Walked Over Tile contains a Power Up
+		if (gameTiles[playerBomb.playerPosition].tilePower == true)
+		{
+			let randPower = Math.floor(Math.random() * POWER_UP_AMOUNT);
+			// Use Power Up
+			switch (randPower) 
+			{
+			case 0: // Add Points
+				powerAddPoints();
+				break;
+			case 1: // Add Life
+				powerAddLife();
+				break;
+			case 2: // Increase Spawn Timer
+				powerIncreaseEnemySpawnTimer();
+				break;
+			case 3: // Increase Player Path
+				powerIncreaseSnakeSize();
+				break;
+			}
+			gameTiles[playerBomb.playerPosition].tilePower = false; // Disable Power Up Tile
+		}
 	}
 	// Wining Tile
 	else if (gameTiles[playerBomb.playerPosition].tileWin == true)
@@ -323,7 +351,7 @@ function updateCurrentTile()
 	}
 	
 	// Turn Walked Over into Destroyed
-	if (pastTiles[3] != undefined)
+	if (pastTiles[playerBomb.playerSnakeSize+1] != undefined)
 	{
 		let i = pastTiles.pop();
 		gameTiles[i].tileDestroyed = true;
@@ -381,6 +409,9 @@ function ballCollisionCheck(i)
 function makeLevelLayout()
 {
 	// Set Everything to False
+	multiIncrease = 0;
+	quotaTrigger = false;
+	playerBomb.playerSnakeSize = 2;
 	for (let i = 0; i < MAX_TILES; i++)
 	{
 		gameTiles[i].tileColour = "Blue";
@@ -414,6 +445,8 @@ function makeLevelLayout()
 		gameTiles[39].tileLocked = true;
 		gameTiles[54].tileLocked = true;
 		gameTiles[69].tileLocked = true;
+		// Power Up Tiles
+		gameTiles[50].tilePower = true;
 		break;
 	case levels.Level2:
 		break;
@@ -432,6 +465,8 @@ function makeLevelLayout()
 			remake = 3;
 		else if (gameTiles[i].tileLocked == true)
 			remake = 4;
+		else if (gameTiles[i].tilePower == true)
+			remake = 5;
 		// Check if need to Remade
 		if (remake != 0)
 		{
@@ -449,6 +484,8 @@ function makeLevelLayout()
 			case 4:
 				gameTiles[i].tileColour = "Brown";
 				break;
+			case 5:
+				gameTiles[i].tileColour = "lime";
 			}
 		}
 	}
@@ -457,4 +494,27 @@ function makeLevelLayout()
 
 function drawFrame(ssImage, ssPosX, ssPosY, ssWidth, ssHeight, canvasX, canvasY, canvasWidth, canvasHeight) {
 	ctx.drawImage(ssImage, ssPosX, ssPosY, ssWidth, ssHeight, canvasX, canvasY, canvasWidth, canvasHeight);
+}
+
+// =========================================== Power Up Functions ======================================================
+
+function powerAddPoints()
+{
+	tileScore+=5;
+}
+
+function powerAddLife()
+{
+	playerBomb.playerCurrentHP++;
+}
+
+function powerIncreaseEnemySpawnTimer()
+{
+	multiIncrease++;
+	textSpawnBall+= (textSpawnIncrease * multiIncrease);
+}
+
+function powerIncreaseSnakeSize()
+{
+	playerBomb.playerSnakeSize++;
 }

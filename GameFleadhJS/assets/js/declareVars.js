@@ -21,6 +21,9 @@ function GameObjectPlayer()
 	// Position / Location
 	this.playerPosition = 0; // Set at Level Load
 	
+	// Path Size
+	this.playerSnakeSize = 2;
+	
 	// Invis Circle
 	this.playerPoint = 0;
 	this.playerRadius = 45;
@@ -89,14 +92,20 @@ let pastTiles = [];
 let firstMove = true;
 let tileScore = 0;
 let tileQuota = 70;
+let quotaTrigger = false;
 // Text
 let textXOffset = 10;
 let textYOffset = 50;
 // Enemy Related
-const TIME_FOR_SPAWN = 300;
+let multiIncrease = 0;
+let enemySpawnIncrease = 180;
+let textSpawnIncrease = 3;
+let enemySpawnTimer = 300;
 let ballSpawnTimer = 0;
 let textSpawnBall = 5;
 const BALL_RADIUS = 25;
+// Power Ups
+const POWER_UP_AMOUNT = 4;
 
 // 					Other Functions
 // Add 98 Tiles
