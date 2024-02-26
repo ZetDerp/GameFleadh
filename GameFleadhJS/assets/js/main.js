@@ -138,6 +138,7 @@ function update()
 				if (ballCollisionCheck(i))
 				{
 					console.log("ball hit");
+					currentGameStatus = gameStates.GameOver; // Change Game State to GameOver
 					break;
 				}
 			}
@@ -159,9 +160,9 @@ function draw()
 	{
 		
 	}
-	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin)
+	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
-				// Draw Basic Tile Arena
+			// Draw Basic Tile Arena
 		ctx.fillStyle = "black";
 		ctx.fillRect(offsetTile, offsetTile, gameCanvas.width - offsetTile * 2 + 30, gameCanvas.height - offsetTile * 2 - 30); // Black Background
 		// Coloured Spaces
@@ -188,11 +189,11 @@ function draw()
 			for (let i = 0; i < gameBalls.length; i++)
 			{
 				ctx.beginPath();
-				ctx.arc(gameBalls[i].ballXPos, gameBalls[i].ballYPos, BALL_RADIUS, 0, 2 * Math.PI);
 				if (gameBalls[i].ballCollision == false)
 					ctx.fillStyle = "pink";
 				else
 					ctx.fillStyle = "orange";
+				ctx.arc(gameBalls[i].ballXPos, gameBalls[i].ballYPos, BALL_RADIUS, 0, 2 * Math.PI);
 				ctx.fill();
 			}
 		}
@@ -233,16 +234,33 @@ function draw()
 			ctx.fill();
 		}
 		
-		// Display Win Message Over Game
-		if (currentGameStatus == gameStates.LevelWin)
+		// Overlay Extra Information
+		if (currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 		{
-			ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
-			ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+			ctx.fillStyle = "rgba(1, 0, 0, 0.7)";
+			// Display Win Message Over Game
+			if (transitionBoxWidth < gameCanvas.width - 20)
+			{
+				transitionBoxWidth+=transitionSpeed;
+				if (transitionBoxWidth > gameCanvas.width - 20)
+					transitionBoxWidth = gameCanvas.width - 20;
+			}
+			else if (transitionBoxWidth == gameCanvas.width - 20 && transitionBoxHeight < gameCanvas.height - 60)
+			{
+				transitionBoxY-=transitionSpeed;
+				transitionBoxHeight+=transitionSpeed*2;
+			}
+			ctx.fillRect(10, transitionBoxY, transitionBoxWidth, transitionBoxHeight); // Draw Box (10)
+			if (currentGameStatus == gameStates.LevelWin)
+			{
+				ctx.fillText("Win Screen", 0, 100);
+			}
+			// Display Game Over Message
+			else 
+			{
+				ctx.fillText("Game Over Screen", 0, 100);
+			}
 		}
-	}
-	else if (currentGameStatus == gameStates.GameOver)
-	{
-		
 	}
 }
 
@@ -286,17 +304,7 @@ function updateCurrentTile()
 	// Lose Life
 	else if (gameTiles[playerBomb.playerPosition].tileDestroyed == true)
 	{
-		playerBomb.playerCurrentHP--;
-		firstMove = false;
-		levelLoaded = false; // Re-load Level / Restart
-		gameBalls.length = 0;
-		// Reset Timer and Text
-		ballSpawnTimer = 0;
-		textSpawnBall = 5;
-		for (let i = 2; i > -1; i--)
-			pastTiles[i] = undefined;
-		tileScore = 0; // Reset Score
-		quotaTrigger = false;
+		currentGameStatus = gameStates.GameOver;
 	}
 	// Walked Over
 	else if (gameTiles[playerBomb.playerPosition].tileWalkedOver == false && gameTiles[playerBomb.playerPosition].tileWin == false
@@ -494,6 +502,20 @@ function makeLevelLayout()
 
 function drawFrame(ssImage, ssPosX, ssPosY, ssWidth, ssHeight, canvasX, canvasY, canvasWidth, canvasHeight) {
 	ctx.drawImage(ssImage, ssPosX, ssPosY, ssWidth, ssHeight, canvasX, canvasY, canvasWidth, canvasHeight);
+}
+
+function restartLevel()
+{
+	playerBomb.playerCurrentHP--;
+	firstMove = false;
+	levelLoaded = false; // Re-load Level / Restart
+	gameBalls.length = 0;
+	// Reset Timer and Text
+	ballSpawnTimer = 0;
+	textSpawnBall = 5;
+	for (let i = playerBomb.playerSnakeSize; i > -1; i--)
+		pastTiles[i] = undefined;
+	tileScore = 0; // Reset Score
 }
 
 // =========================================== Power Up Functions ======================================================

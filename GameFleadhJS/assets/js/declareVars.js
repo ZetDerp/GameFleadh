@@ -106,6 +106,11 @@ let textSpawnBall = 5;
 const BALL_RADIUS = 25;
 // Power Ups
 const POWER_UP_AMOUNT = 4;
+// Level Transition
+const transitionSpeed = 30;
+let transitionBoxWidth = 0;
+let transitionBoxHeight = 10;
+let transitionBoxY = gameCanvas.height/2-5;
 
 // 					Other Functions
 // Add 98 Tiles

@@ -8,26 +8,43 @@ function input(event)
 	// Keyboard Input
 	if (event.code == "KeyP")
 		enableDebug = !enableDebug; // Enable / Disable Debug
-	if (currentGameStatus == gameStates.MainMenu || currentGameStatus == gameStates.LevelWin)
+	if (currentGameStatus == gameStates.MainMenu || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
 		// Start Game
 		if (event.code == "Space")
-		{
-			if (currentGameStatus == gameStates.LevelWin)
+		{	
+			if (currentGameStatus == gameStates.MainMenu || currentGameStatus == gameStates.LevelWin)
 			{
-				switch (currentLevel)
+				if (currentGameStatus == gameStates.LevelWin)
 				{
-				case levels.Level1:
-					currentLevel = levels.Level2;
-					break;
-				case levels.Level2:
-					currentLevel = levels.Level3;
-					break;
-				case levels.Level3:
-					break;
+					switch (currentLevel)
+					{
+					case levels.Level1:
+						currentLevel = levels.Level2;
+						break;
+					case levels.Level2:
+						currentLevel = levels.Level3;
+						break;
+					case levels.Level3:
+						break;
+					}
+				transitionBoxWidth = 0;
+				transitionBoxHeight = 10;
+				transitionBoxY = gameCanvas.height/2-5;
 				}
+				currentGameStatus = gameStates.Gameplay;
 			}
-			currentGameStatus = gameStates.Gameplay;
+			else
+			{
+				if (playerBomb.playerCurrentHP - 1 <= 0)
+					currentGameStatus = gameStates.MainMenu;
+				else
+					currentGameStatus = gameStates.Gameplay;
+				transitionBoxWidth = 0;
+				transitionBoxHeight = 10;
+				transitionBoxY = gameCanvas.height/2-5;
+				restartLevel();
+			}
 		}
 	}
 	else if (currentGameStatus == gameStates.Gameplay)
@@ -69,6 +86,9 @@ function input(event)
 				playerInput = "Right";
 			}
 		}
+		// Restart Key
+		if (event.code == "KeyR")
+			restartLevel();
 	}
 	else if (currentGameStatus == gameStates.GameOver)
 	{
