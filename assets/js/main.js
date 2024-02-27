@@ -426,7 +426,7 @@ function unlockTiles()
 	}
 }
 
-function ballCollisionCheck(i)
+function ballCollisionCheck(i) // Very Janky ATM
 {
 	let collisionTrigger = false;
 	
@@ -477,9 +477,7 @@ function makeLevelLayout()
 		gameTiles[i].tilePower = false;
 	}
 	
-	switch (currentLevel)
-	{
-	case levels.Level1: // Level 1
+	/*
 		// Set Player Position
 		playerBomb.playerPosition = 48;
 		// Safe Tiles
@@ -503,8 +501,96 @@ function makeLevelLayout()
 		gameTiles[50].tilePower = true;
 		// Trap Tiles
 		gameTiles[46].tileTrap = true;
+	*/
+	
+	switch (currentLevel)
+	{
+	case levels.Level1: // Level 1
+	
+		tileQuota = 6; // Set Level Quota (6)
+	
+		// Set Player Position
+		playerBomb.playerPosition = 63;
+		// Safe Tiles
+		gameTiles[63].tileSafeSpace = true;
+		// Win Tiles
+		gameTiles[71].tileWin = true;
+		// Disable Tiles
+		for (let i = 0; i < MAX_TILES; i++)
+		{
+			if (i < 63 || i > 71)
+				gameTiles[i].tileDestroyed = true;
+		}
+		// Locked Tiles
+		gameTiles[70].tileLocked = true;
+		// No Power Ups
+		// No Trap Tiles
+		
 		break;
-	case levels.Level2:
+	case levels.Level2: // Level 2
+	
+		// Set Level Quota ()
+		
+		// Set Player Position
+		// Safe Tiles
+		// Win Tiles
+		// Disable Tiles
+		// Locked Tiles
+		// Power Up Tiles
+		// Trap Tiles
+	
+		break;
+	case levels.Level3: // Level 3
+	
+		// Set Level Quota ()
+		
+		// Set Player Position
+		// Safe Tiles
+		// Win Tiles
+		// Disable Tiles
+		// Locked Tiles
+		// Power Up Tiles
+		// Trap Tiles
+		
+		break;
+	case levels.Level4: // Level 4
+	
+		// Set Level Quota ()
+		
+		// Set Player Position
+		// Safe Tiles
+		// Win Tiles
+		// Disable Tiles
+		// Locked Tiles
+		// Power Up Tiles
+		// Trap Tiles
+		
+		break;
+	case levels.Level5: // Level 5
+	
+		// Set Level Quota ()
+		
+		// Set Player Position
+		// Safe Tiles
+		// Win Tiles
+		// Disable Tiles
+		// Locked Tiles
+		// Power Up Tiles
+		// Trap Tiles
+		
+		break;
+	case levels.Level6: // Level 6
+	
+		// Set Level Quota ()
+		
+		// Set Player Position
+		// Safe Tiles
+		// Win Tiles
+		// Disable Tiles
+		// Locked Tiles
+		// Power Up Tiles
+		// Trap Tiles
+		
 		break;
 	}
 	// Recheck Tiles

@@ -76,7 +76,7 @@ const ballDirections = { UpLeft: "UpLeft", UpRight: "UpRight", DownRight: "DownR
 let applyDirection = "None";
 
 // Set Levels
-const levels = { Level1: "1", Level2: "2", Level3: "3", Level4: "4", Level5: "5" };
+const levels = { Level1: "1", Level2: "2", Level3: "3", Level4: "4", Level5: "5", Level6: "6" };
 let currentLevel = levels.Level1;
 let levelLoaded = false;
 
@@ -93,7 +93,7 @@ let playerInput = "";
 let pastTiles = [];
 let firstMove = true;
 let tileScore = 0;
-let tileQuota = 70;
+let tileQuota = 0;
 let quotaTrigger = false;
 // Text
 let textXOffset = 10;

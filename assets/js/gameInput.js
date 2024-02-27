@@ -26,6 +26,7 @@ function input(event)
 						currentLevel = levels.Level3;
 						break;
 					case levels.Level3:
+						currentLevel = levels.Level4;
 						break;
 					}
 				transitionBoxWidth = 0;
