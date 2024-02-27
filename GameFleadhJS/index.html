@@ -2,11 +2,27 @@
 
 <html>
 	<head>
-		<title></title>
+		<title>Astro Hopper</title>
+		<script>navigator.serviceWorker.register("service-worker.js")</script> 
 		<link href="assets/css/screen.css" rel="stylesheet" text="text/css">
+		<link rel="canonical" href="https://codepo8.github.io/github-page-pwa/" />
+		<link rel="manifest" href="/GameFleadh/manifest.webmanifest8">
 	</head>
 	<body>
 		<canvas id="gameCanvas" width="1600" height="900"></canvas>
+		
+		<script>
+		if (navigator.service-worker)
+		{
+			navigator.service-worker.register
+			('/GameFleadh/sw.js',
+			{scope: '/GameFleadh/'}
+			)
+		}
+		
+		</script>
+		
+		
 	</body>
 	<script src="assets/js/declareVars.js"></script>
 	<script src="assets/js/gameInput.js"></script>
