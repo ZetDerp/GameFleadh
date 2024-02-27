@@ -1,4 +1,18 @@
-canvas{
+body
+{
+    min-height: 100vh;
+    font-family: 'GameOverRegular'; 
+	background-repeat: no-repeat;	
+	background: rgb(12,25,93);
+	background: radial-gradient(circle, rgba(12,25,93,1) 0%, rgba(89,27,39,1) 100%);
+}
+section.wrapper
+{
+    text-align: center;
+}
+
+canvas
+{
 	display: inline; 
 	outline: 6px solid black;
 	margin: auto; 

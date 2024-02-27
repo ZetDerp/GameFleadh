@@ -3,7 +3,7 @@
      "short_name": "AstroHopper",
      "lang": "en-GB",
      "display": "standalone",
-     "orientation": "landscape",
+     "orientation": "any",
      "background_color": "black",
      "theme_color": "gray",
 	 "start_url": "index.html",
