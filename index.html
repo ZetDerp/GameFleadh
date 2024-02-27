@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <html>
 	<head>
+		<meta charset="utf-8">
 		<title>Astro Hopper</title>
+		<link rel="manifest" href="manifest.json">
+		<link rel="stylesheet" href="assets/css/screen.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="theme-color" content="white"/>
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="apple-mobile-web-app-title" content="Astro-Hopper">
+	    <meta name="msapplication-TileColor" content="#FFFFFF">
+			
 		<script>navigator.serviceWorker.register("service-worker.js")</script> 
 		<link href="assets/css/screen.css" rel="stylesheet" text="text/css">
-		<link rel="canonical" href="https://codepo8.github.io/github-page-pwa/" />
-		<link rel="manifest" href="manifest.json">
+		
 	</head>
 	<body>
 		<canvas id="gameCanvas" width="1600" height="900"></canvas>
@@ -19,8 +28,9 @@
 			{scope: '/GameFleadh/'}
 			)
 		}
-		
 		</script>
+		
+		<script src="main.js"></script>
 		
 		
 	</body>
