@@ -162,7 +162,7 @@ function draw()
 	}
 	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
-			// Draw Basic Tile Arena
+		// Draw Basic Tile Arena
 		ctx.fillStyle = "black";
 		ctx.fillRect(offsetTile, offsetTile, gameCanvas.width - offsetTile * 2 + 30, gameCanvas.height - offsetTile * 2 - 30); // Black Background
 		// Coloured Spaces
@@ -261,6 +261,33 @@ function draw()
 				ctx.fillText("Game Over Screen", 0, 100);
 			}
 		}
+		
+		// Power Up Message
+		if (displayPowerUpMessage == true)
+		{
+			ctx.fillStyle = "purple";
+			
+			if (getMessagePosition == true)
+			{
+				messageYPos = 1;
+				while (playerBomb.playerPosition >= 15 * messageYPos)
+					messageYPos++;
+				messageYPos--;
+				messageXPos = playerBomb.playerPosition - 15 * messageYPos;
+				powerUpMessageTimer = 0;
+				getMessagePosition = false;
+			}
+			
+			ctx.fillText(powerUpMessage, offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * messageXPos), offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * messageYPos));
+			
+			powerUpMessageTimer++;
+			if (powerUpMessageTimer >= powerUpMessageExpire)
+			{
+				displayPowerUpMessage = false;
+				getMessagePosition = true;
+				powerUpMessageTimer = 0;
+			}
+		}
 	}
 }
 
@@ -348,7 +375,26 @@ function updateCurrentTile()
 				powerIncreaseSnakeSize();
 				break;
 			}
+			// Power Up Message
+			displayPowerUpMessage = true;
+			getMessagePosition = true;
 			gameTiles[playerBomb.playerPosition].tilePower = false; // Disable Power Up Tile
+		}
+		// Check if Walked Over Tile contains a Trap
+		else if (gameTiles[playerBomb.playerPosition].tileTrap == true)
+		{
+			let randPower = Math.floor(Math.random() * TRAP_AMOUNT);
+			// Use Trap
+			switch (randPower)
+			{
+			case 0: // Lose Points
+				trapLosePoints();
+				break;
+			}
+			// Power Up Message
+			displayPowerUpMessage = true;
+			getMessagePosition = true;
+			gameTiles[playerBomb.playerPosition].tileTrap = false; // Disable Trap Tile
 		}
 	}
 	// Wining Tile
@@ -455,6 +501,8 @@ function makeLevelLayout()
 		gameTiles[69].tileLocked = true;
 		// Power Up Tiles
 		gameTiles[50].tilePower = true;
+		// Trap Tiles
+		gameTiles[46].tileTrap = true;
 		break;
 	case levels.Level2:
 		break;
@@ -475,6 +523,8 @@ function makeLevelLayout()
 			remake = 4;
 		else if (gameTiles[i].tilePower == true)
 			remake = 5;
+		else if (gameTiles[i].tileTrap == true)
+			remake = 6;
 		// Check if need to Remade
 		if (remake != 0)
 		{
@@ -494,6 +544,10 @@ function makeLevelLayout()
 				break;
 			case 5:
 				gameTiles[i].tileColour = "lime";
+				break;
+			case 6:
+				gameTiles[i].tileColour = "orange";
+				break;
 			}
 		}
 	}
@@ -518,25 +572,35 @@ function restartLevel()
 	tileScore = 0; // Reset Score
 }
 
-// =========================================== Power Up Functions ======================================================
+// =========================================== Power Up / Trap Functions ======================================================
 
 function powerAddPoints()
 {
 	tileScore+=5;
+	powerUpMessage = "+5 Points!"
 }
 
 function powerAddLife()
 {
 	playerBomb.playerCurrentHP++;
+	powerUpMessage = "Extra Life!";
 }
 
 function powerIncreaseEnemySpawnTimer()
 {
 	multiIncrease++;
 	textSpawnBall+= (textSpawnIncrease * multiIncrease);
+	powerUpMessage = "Longer Enemy Spawn!";
 }
 
 function powerIncreaseSnakeSize()
 {
 	playerBomb.playerSnakeSize++;
+	powerUpMessage = "Extra Snake Tile!";
+}
+
+function trapLosePoints()
+{
+	tileScore-=3;
+	powerUpMessage = "-3 Points."
 }

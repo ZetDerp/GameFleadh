@@ -56,8 +56,10 @@ function GameObjectTile()
 	this.tileWin = false;
 	// Locked Tile
 	this.tileLocked = false;
-	// Hiden Power-up
+	// Hidden Power-up
 	this.tilePower = false;
+	// Hidden Trap Tiles
+	this.tileTrap = false;
 }
 
 // 					Make Objects
@@ -74,7 +76,7 @@ const ballDirections = { UpLeft: "UpLeft", UpRight: "UpRight", DownRight: "DownR
 let applyDirection = "None";
 
 // Set Levels
-const levels = { Level1: "1", Level2: "2" };
+const levels = { Level1: "1", Level2: "2", Level3: "3", Level4: "4", Level5: "5" };
 let currentLevel = levels.Level1;
 let levelLoaded = false;
 
@@ -104,8 +106,16 @@ let enemySpawnTimer = 300;
 let ballSpawnTimer = 0;
 let textSpawnBall = 5;
 const BALL_RADIUS = 25;
-// Power Ups
+// Power Ups / Traps
 const POWER_UP_AMOUNT = 4;
+const TRAP_AMOUNT = 1;
+let powerUpMessage = "Example Message";
+let displayPowerUpMessage = false;
+let powerUpMessageTimer = 0;
+let powerUpMessageExpire = 180;
+let getMessagePosition = true;
+let messageXPos = 0;
+let messageYPos = 0;
 // Level Transition
 const transitionSpeed = 30;
 let transitionBoxWidth = 0;
