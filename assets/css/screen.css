@@ -2,9 +2,10 @@ body
 {
     min-height: 100vh;
     font-family: 'GameOverRegular'; 
-	background-repeat: no-repeat;	
+	background-repeat: repeat;	
 	background: rgb(12,25,93);
-	background: radial-gradient(circle, rgba(12,25,93,1) 0%, rgba(89,27,39,1) 100%);
+	background: radial-gradient(circle, rgba(12,25,93,0.5) 0%, rgba(89,27,39,0.5) 100%);
+	
 }
 section.wrapper
 {
@@ -16,5 +17,5 @@ canvas
 	display: inline; 
 	outline: 6px solid black;
 	margin: auto; 
-	background-color: lime; /* Make a Greenscreen for the Background of the Game */
+	background-color: rgb(33, 25, 52); /* Make a Greenscreen for the Background of the Game */
 }

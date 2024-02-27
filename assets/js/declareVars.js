@@ -7,6 +7,7 @@ let ctx = gameCanvas.getContext("2d");
 ctx.fillStyle = "black";
 ctx.font = "bold 50px Arial"; // Set Font
 
+
 // Create Player (Bomb)
 function GameObjectPlayer()
 {
@@ -130,4 +131,7 @@ for (let i = 0; i < MAX_TILES; i++)
 }
 
 // Images
-playerBomb.playerSpritesheet.src = "assets/img/playerPlaceholder.png"
+playerBomb.playerSpritesheet.src = "assets/img/playerPlaceholder.png"// this class describes the properties of a single particle.
+
+
+
