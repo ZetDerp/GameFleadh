@@ -32,6 +32,7 @@ function input(event)
 				transitionBoxWidth = 0;
 				transitionBoxHeight = 10;
 				transitionBoxY = gameCanvas.height/2-5;
+				levelLoaded = false;
 				}
 				currentGameStatus = gameStates.Gameplay;
 			}

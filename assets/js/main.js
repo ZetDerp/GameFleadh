@@ -17,7 +17,7 @@ function update()
 		// Update the Tile the Player walks Over
 		if (playerInput == "Up" || playerInput == "Down" || playerInput == "Left" || playerInput == "Right")
 			updateCurrentTile();
-		if (tileScore == tileQuota && quotaTrigger == false)
+		if (tileScore >= tileQuota && quotaTrigger == false)
 		{
 			unlockTiles();
 			quotaTrigger = true;
@@ -462,10 +462,15 @@ function ballCollisionCheck(i) // Very Janky ATM
 
 function makeLevelLayout()
 {
-	// Set Everything to False
+	// Set Everything to False / Default
 	multiIncrease = 0;
 	quotaTrigger = false;
+	pastTiles.length = 0;
+	tileScore = 0;
 	playerBomb.playerSnakeSize = 2;
+	ballSpawnTimer = 0;
+	enemySpawnTimer = 300;
+	gameBalls.length = 0;
 	for (let i = 0; i < MAX_TILES; i++)
 	{
 		gameTiles[i].tileColour = "Blue";
@@ -477,6 +482,7 @@ function makeLevelLayout()
 		gameTiles[i].tilePower = false;
 	}
 	
+	// Example Level
 	/*
 		// Set Player Position
 		playerBomb.playerPosition = 48;
@@ -529,28 +535,71 @@ function makeLevelLayout()
 		break;
 	case levels.Level2: // Level 2
 	
-		// Set Level Quota ()
+		tileQuota = 12; // Set Level Quota (12)
 		
 		// Set Player Position
+		playerBomb.playerPosition = 46;
 		// Safe Tiles
+		gameTiles[5].tileSafeSpace = true;
+		gameTiles[10].tileSafeSpace = true;
+		gameTiles[95].tileSafeSpace = true;
+		gameTiles[100].tileSafeSpace = true;
+		for (let i = 30; i < 75; i++)
+		{
+			if (i < 33 || (i >= 42 && i <= 44) || (i >= 45 && i <= 47) 
+				|| (i >= 60 && i <= 62) || (i >= 72 && i <= 74) || i == 57 || i == 59)
+				gameTiles[i].tileSafeSpace = true;
+		}
 		// Win Tiles
+		gameTiles[58].tileWin = true;
 		// Disable Tiles
+		for (let i = 0; i < MAX_TILES; i++)
+		{
+			if (i < 5 || (i >= 11 && i <= 19) || (i >= 21 && i <= 24) || (i >= 26 && i <= 29) || i == 33 || i == 34
+				|| (i >= 36 && i <= 39) || i == 41 || (i >= 51 && i <= 54) || i == 63 || i == 64 || (i >= 66 && i <= 69) || i == 71 || (i >= 75 && i <= 79)
+				|| (i >= 81 && i <= 84) || (i >= 86 && i <= 94) || i > 100)
+				gameTiles[i].tileDestroyed = true;
+		}
 		// Locked Tiles
+		gameTiles[56].tileLocked = true;
 		// Power Up Tiles
-		// Trap Tiles
+		gameTiles[50].tilePower = true;
+		gameTiles[55].tilePower = true;
+		// No Trap Tiles
 	
 		break;
-	case levels.Level3: // Level 3
+	case levels.Level3: // Level 3 (NOT COMPLETED)
 	
-		// Set Level Quota ()
+		tileQuota = 999; // Set Level Quota ()
 		
 		// Set Player Position
+		playerBomb.playerPosition = 67;
 		// Safe Tiles
+		gameTiles[15].tileSafeSpace = true;
+		gameTiles[29].tileSafeSpace = true;
+		gameTiles[52].tileSafeSpace = true;
+		gameTiles[90].tileSafeSpace = true;
+		gameTiles[104].tileSafeSpace = true;
+		for (let i = 66; i < 69; i++)
+			gameTiles[i].tileSafeSpace = true;
 		// Win Tiles
+		gameTiles[97].tileWin = true;
 		// Disable Tiles
+		// HAVE TO COMPLETE
 		// Locked Tiles
+		for (let i = 81; i < 84; i++)
+			gameTiles[i].tileLocked = true;
+		gameTiles[96].tileLocked = true;
+		gameTiles[98].tileLocked = true;
 		// Power Up Tiles
+		gameTiles[50].tilePower = true;
+		gameTiles[54].tilePower = true;
 		// Trap Tiles
+		gameTiles[22].tileTrap = true;
+		gameTiles[45].tileTrap = true;
+		gameTiles[59].tileTrap = true;
+		gameTiles[60].tileTrap = true;
+		gameTiles[74].tileTrap = true;
 		
 		break;
 	case levels.Level4: // Level 4
@@ -662,7 +711,7 @@ function restartLevel()
 
 function powerAddPoints()
 {
-	tileScore+=5;
+	tileScore+=4; // Have to add 4 since the player always gets +1
 	powerUpMessage = "+5 Points!"
 }
 
@@ -687,6 +736,6 @@ function powerIncreaseSnakeSize()
 
 function trapLosePoints()
 {
-	tileScore-=3;
-	powerUpMessage = "-3 Points."
+	tileScore-=4; // Have to deduct 4 since the player always gains +1
+	powerUpMessage = "-3 Points.";
 }
