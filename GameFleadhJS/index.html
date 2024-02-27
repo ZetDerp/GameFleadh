@@ -6,7 +6,7 @@
 		<script>navigator.serviceWorker.register("service-worker.js")</script> 
 		<link href="assets/css/screen.css" rel="stylesheet" text="text/css">
 		<link rel="canonical" href="https://codepo8.github.io/github-page-pwa/" />
-		<link rel="manifest" href="/GameFleadh/GameFleadhJS/manifest.json">
+		<link rel="manifest" href="GameFleadhJS/manifest.json">
 	</head>
 	<body>
 		<canvas id="gameCanvas" width="1600" height="900"></canvas>
@@ -15,8 +15,8 @@
 		if (navigator.service-worker)
 		{
 			navigator.service-worker.register
-			('/GameFleadh/GameFleadhJS/sw.js',
-			{scope: '/GameFleadh/GameFleadhJS/'}
+			('/GameFleadhJS/sw.js',
+			{scope: '/GameFleadh/'}
 			)
 		}
 		
