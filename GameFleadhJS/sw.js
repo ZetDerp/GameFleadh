@@ -1,4 +1,4 @@
-var GHPATH = '/GameFleadh';
+var GHPATH = '/GameFleadh/GameFleadhJS/';
 var APP_PREFIX = 'astro';
 var VERSION = 'version_002';
 var URLS = [    
