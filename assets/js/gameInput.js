@@ -28,13 +28,27 @@ function input(event)
 					case levels.Level3:
 						currentLevel = levels.Level4;
 						break;
+					case levels.Level4:
+						currentLevel = levels.Level5;
+						break;
+					case levels.Level5:
+						currentLevel = levels.Level6;
+						break;
+					case levels.Level6:
+						currentLevel = levels.Level1;
+						currentGameStatus = gameStates.MainMenu;
+						returnMainMenu = true;
+						break;
 					}
 				transitionBoxWidth = 0;
 				transitionBoxHeight = 10;
 				transitionBoxY = gameCanvas.height/2-5;
 				levelLoaded = false;
 				}
-				currentGameStatus = gameStates.Gameplay;
+				if (returnMainMenu == false)
+					currentGameStatus = gameStates.Gameplay;
+				else
+					returnMainMenu = false;
 			}
 			else
 			{
