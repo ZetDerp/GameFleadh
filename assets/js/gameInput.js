@@ -11,7 +11,7 @@ function input(event)
 	if (currentGameStatus == gameStates.MainMenu || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
 		// Start Game
-		if (event.code == "W")
+		if (event.code == "Space")
 		{	
 			if (currentGameStatus == gameStates.MainMenu || currentGameStatus == gameStates.LevelWin)
 			{

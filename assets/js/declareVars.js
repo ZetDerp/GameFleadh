@@ -117,6 +117,7 @@ let powerUpMessageExpire = 180;
 let getMessagePosition = true;
 let messageXPos = 0;
 let messageYPos = 0;
+let extraSpace = 0;
 // Level Transition
 const transitionSpeed = 30;
 let transitionBoxWidth = 0;

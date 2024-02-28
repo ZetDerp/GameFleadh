@@ -234,6 +234,34 @@ function draw()
 			ctx.fill();
 		}
 		
+		// Power Up Message
+		if (displayPowerUpMessage == true)
+		{
+			ctx.fillStyle = "purple";
+			
+			if (getMessagePosition == true)
+			{
+				messageYPos = 1;
+				while (playerBomb.playerPosition >= 15 * messageYPos)
+					messageYPos++;
+				messageYPos--;
+				messageXPos = playerBomb.playerPosition - 15 * messageYPos - 2;
+				powerUpMessageTimer = 0;
+				if (messageXPos != -2 || messageXPos != 13 || messageXPos != 28 || messageXPos != 43 || messageXPos != 58 || messageXPos != 73 || messageXPos != 88)
+					extraSpace = 50;
+				getMessagePosition = false;
+			}
+			ctx.fillText(powerUpMessage, offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * messageXPos), offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * messageYPos) + extraSpace);
+			
+			powerUpMessageTimer++;
+			if (powerUpMessageTimer >= powerUpMessageExpire)
+			{
+				displayPowerUpMessage = false;
+				getMessagePosition = true;
+				powerUpMessageTimer = 0;
+			}
+		}
+		
 		// Overlay Extra Information
 		if (currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 		{
@@ -259,33 +287,6 @@ function draw()
 			else 
 			{
 				ctx.fillText("Game Over Screen", 0, 100);
-			}
-		}
-		
-		// Power Up Message
-		if (displayPowerUpMessage == true)
-		{
-			ctx.fillStyle = "purple";
-			
-			if (getMessagePosition == true)
-			{
-				messageYPos = 1;
-				while (playerBomb.playerPosition >= 15 * messageYPos)
-					messageYPos++;
-				messageYPos--;
-				messageXPos = playerBomb.playerPosition - 15 * messageYPos;
-				powerUpMessageTimer = 0;
-				getMessagePosition = false;
-			}
-			
-			ctx.fillText(powerUpMessage, offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * messageXPos), offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * messageYPos));
-			
-			powerUpMessageTimer++;
-			if (powerUpMessageTimer >= powerUpMessageExpire)
-			{
-				displayPowerUpMessage = false;
-				getMessagePosition = true;
-				powerUpMessageTimer = 0;
 			}
 		}
 	}
@@ -570,7 +571,7 @@ function makeLevelLayout()
 		break;
 	case levels.Level3: // Level 3 (NOT COMPLETED)
 	
-		tileQuota = 999; // Set Level Quota ()
+		tileQuota = 20; // Set Level Quota (20)
 		
 		// Set Player Position
 		playerBomb.playerPosition = 67;
@@ -585,7 +586,12 @@ function makeLevelLayout()
 		// Win Tiles
 		gameTiles[97].tileWin = true;
 		// Disable Tiles
-		// HAVE TO COMPLETE
+		for (let i = 0; i < MAX_TILES; i++)
+		{
+			if (i < 6 || (i >= 9 && i <=14) || (i >= 31 && i <= 43) || (i >= 47 && i <= 49) || (i >= 55 && i <= 57) || (i >= 62 && i <= 64) || (i >= 70 && i <= 72)
+				|| (i >= 76 && i <= 79) || (i >= 85 && i <= 88))
+				gameTiles[i].tileDestroyed = true;
+		}
 		// Locked Tiles
 		for (let i = 81; i < 84; i++)
 			gameTiles[i].tileLocked = true;
@@ -601,18 +607,44 @@ function makeLevelLayout()
 		gameTiles[60].tileTrap = true;
 		gameTiles[74].tileTrap = true;
 		
+		
 		break;
 	case levels.Level4: // Level 4
 	
-		// Set Level Quota ()
+		tileQuota = 30; // Set Level Quota (30)
 		
 		// Set Player Position
+		playerBomb.playerPosition = 91;
 		// Safe Tiles
+		for (let i = 43; i < 93; i++)
+		{
+			if (i == 43 || (i >= 75 && i <= 77) || (i >= 90 && i <= 92))
+				gameTiles[i].tileSafeSpace = true;
+		}
 		// Win Tiles
+		gameTiles[13].tileWin = true;
 		// Disable Tiles
+		for (let i = 0; i < MAX_TILES; i++)
+		{
+			if (i < 6 || (i >= 7 && i <= 11) || (i >= 15 && i <= 18) || i == 22 || i == 26 || i == 32 || i == 33 || i == 35 || i == 37 || i == 39 || i == 41 || i == 42 || i == 44 || (i >= 46 && i <= 48)
+				|| i == 50 || i == 52 || i == 54 || i == 56 || i == 57 || i == 59 || i == 65 || i == 69 || i == 71 || i == 72 || i == 74 || i == 78 || (i >= 80 && i <= 82) || i == 84 || i == 86 || i == 87
+				|| i == 89 || i == 93 || i == 99)
+				gameTiles[i].tileDestroyed = true;
+		}
 		// Locked Tiles
+		for (let i = 27; i < 30; i++)
+			gameTiles[i].tileLocked = true;
 		// Power Up Tiles
+		gameTiles[6].tilePower = true;
+		gameTiles[31].tilePower = true;
+		gameTiles[98].tilePower = true;
+		gameTiles[104].tilePower = true;
 		// Trap Tiles
+		for (let i = 67; i < 98; i++)
+		{
+			if (i == 67 || i == 79 || (i >= 94 && i <= 97))
+				gameTiles[i].tileTrap = true;
+		}
 		
 		break;
 	case levels.Level5: // Level 5

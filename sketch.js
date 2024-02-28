@@ -63,7 +63,7 @@ function setup()
   canvas.style('z-index', '-1'); // Game's Canvas is at 0 we assume
 
   // Canvas Inputs
-  canvas.removeEventListener("keyup", input);
+  // canvas.removeEventListener("keyup", input);
   // canvas.removeEventListener("keydown", input);
   // canvas.removeEventListener("mousedown", input);
   // canvas.removeEventListener("mouseup", input);
