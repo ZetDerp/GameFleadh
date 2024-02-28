@@ -48,7 +48,8 @@ let particles = [];
 // Resize function incase page is changed
 // Might be needed for when it's a PWA
 
-function windowResized() {
+function windowResized()
+ {
   //console.log('resized');
   resizeCanvas(windowWidth, windowHeight);
 }
@@ -62,11 +63,13 @@ function setup()
   canvas.style('z-index', '-1'); // Game's Canvas is at 0 we assume
 
   //let createCanvas = document.getElementById("gameCanvas");
-  for(let i = 0; i<width/5; i++)
+  for(let i = 0; i<width/4; i++)
   {
     particles.push(new Particle());
   }
 }
+
+
 
 function draw() 
 {
@@ -77,4 +80,12 @@ function draw()
     particles[i].moveParticle();
   }
 }
+
+  // Canvas Inputs
+  window.removeEventListener("keyup", input);
+  // canvas.removeEventListener("keydown", input);
+  // canvas.removeEventListener("mousedown", input);
+  // canvas.removeEventListener("mouseup", input);
+  // canvas.removeEventListener("mousemove", input);
+  // canvas.removeEventListener("click", input);
 

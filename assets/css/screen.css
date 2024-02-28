@@ -15,7 +15,7 @@ section.wrapper
 canvas
 {
 	display: inline; 
-	outline: 6px solid black;
+	outline: 20px dashed rgb(109, 109, 109);
 	margin: auto; 
-	background-color: rgb(33, 25, 52); /* Make a Greenscreen for the Background of the Game */
+	background-color: rgba(33, 27, 47, 0.0); /* Make a Greenscreen for the Background of the Game */
 }
