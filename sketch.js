@@ -62,6 +62,14 @@ function setup()
   canvas.position(0,0);
   canvas.style('z-index', '-1'); // Game's Canvas is at 0 we assume
 
+  // Canvas Inputs
+  canvas.removeEventListener("keyup", input);
+  // canvas.removeEventListener("keydown", input);
+  // canvas.removeEventListener("mousedown", input);
+  // canvas.removeEventListener("mouseup", input);
+  // canvas.removeEventListener("mousemove", input);
+  // canvas.removeEventListener("click", input);
+
   //let createCanvas = document.getElementById("gameCanvas");
   for(let i = 0; i<width/4; i++)
   {
@@ -81,11 +89,5 @@ function draw()
   }
 }
 
-  // Canvas Inputs
-  window.removeEventListener("keyup", input);
-  // canvas.removeEventListener("keydown", input);
-  // canvas.removeEventListener("mousedown", input);
-  // canvas.removeEventListener("mouseup", input);
-  // canvas.removeEventListener("mousemove", input);
-  // canvas.removeEventListener("click", input);
+
 
