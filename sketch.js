@@ -45,10 +45,23 @@ class Particle
 // an array to add multiple particles
 let particles = [];
 
+// Resize function incase page is changed
+// Might be needed for when it's a PWA
+
+function windowResized() {
+  //console.log('resized');
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+var canvas;
 function setup()
 {
-  //createCanvas(1600, 900);
-  let createCanvas = document.getElementById("gameCanvas");
+  //canvas = createCanvas(1600, 900); // Cover only gameCanvas BG
+  canvas = createCanvas(windowWidth, windowHeight); // Cover entire page
+  canvas.position(0,0);
+  canvas.style('z-index', '-1'); // Game's Canvas is at 0 we assume
+
+  //let createCanvas = document.getElementById("gameCanvas");
   for(let i = 0; i<width/5; i++)
   {
     particles.push(new Particle());
