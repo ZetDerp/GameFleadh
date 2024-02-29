@@ -132,7 +132,7 @@ for (let i = 0; i < MAX_TILES; i++)
 }
 
 // Images
-playerBomb.playerSpritesheet.src = "assets/img/playerPlaceholder.png"// this class describes the properties of a single particle.
+playerBomb.playerSpritesheet.src = "assets/img/playerPlaceholder.png";
 
 
 
