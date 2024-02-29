@@ -199,8 +199,8 @@ function draw()
 	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
 		// Draw Basic Tile Arena
-		ctx.fillStyle = "black";
-		ctx.fillRect(offsetTile, offsetTile, gameCanvas.width - offsetTile * 2 + 30, gameCanvas.height - offsetTile * 2 - 30); // Black Background
+		//ctx.fillStyle = "black";
+		//ctx.fillRect(offsetTile, offsetTile, gameCanvas.width - offsetTile * 2 + 30, gameCanvas.height - offsetTile * 2 - 30); // Black Background
 		// Coloured Spaces
 		if (levelLoaded == false)
 			makeLevelLayout(); // Edit basic level to make current level
@@ -217,9 +217,9 @@ function draw()
 						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
 				break;
 			case "Black":
-				drawFrame(blackTileSprite, 0, 0, 90, 90, 
+				/*drawFrame(blackTileSprite, 0, 0, 90, 90, 
 						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
-				break;
+				*/break;
 			case "Gray":
 				drawFrame(safeTileSprite, 0, 0, 90, 90, 
 						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
