@@ -162,23 +162,47 @@ function update()
 		}
 		
 		// Update Animated Sprites
-		if (globeAnimation >= 15)
+		if (globeAnimation >= 15) // Globe
 		{
 			globeSSXPos+=90;
-			if (globeSSXPos >= 3*90)
+			enemySSXPos+=50;
+			if (globeSSXPos >= 270)
 			{
 				globeSSXPos = 0;
 				globeSSYPos+=90;
+				
+				enemySSXPos = 0;
+				enemySSYPos+=50;
 			}
-			if (globeSSYPos >= 2*90)
+			if (globeSSYPos >= 180)
 			{
 				globeSSXPos = 0;
 				globeSSYPos = 0;
+				
+				enemySSXPos = 0;
+				enemySSYPos = 0;
 			}
 			globeAnimation = 0;
 		}
 		else
 			globeAnimation++;
+		if (rocketAnimation >= 15) // Rocket
+		{
+			rocketSSXPos+=90;
+			if (rocketSSXPos >= 360)
+			{
+				rocketSSXPos = 0;
+				rocketSSYPos+=90;
+			}
+			if (rocketSSYPos >= 2*90)
+			{
+				rocketSSXPos = 0;
+				rocketSSYPos = 0;
+			}
+			rocketAnimation = 0;
+		}
+		else
+			rocketAnimation++;
 		
 		break;
 	case gameStates.GameOver:
@@ -199,8 +223,6 @@ function draw()
 	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
 		// Draw Basic Tile Arena
-		ctx.fillStyle = "black";
-		ctx.fillRect(offsetTile, offsetTile, gameCanvas.width - offsetTile * 2 + 30, gameCanvas.height - offsetTile * 2 - 30); // Black Background
 		// Coloured Spaces
 		if (levelLoaded == false)
 			makeLevelLayout(); // Edit basic level to make current level
@@ -217,8 +239,6 @@ function draw()
 						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
 				break;
 			case "Black":
-				drawFrame(blackTileSprite, 0, 0, 90, 90, 
-						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
 				break;
 			case "Gray":
 				drawFrame(safeTileSprite, 0, 0, 90, 90, 
@@ -240,6 +260,16 @@ function draw()
 				drawFrame(trapTileSprite, 0, 0, 90, 90, 
 						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
 				break;
+			case "Red":
+				drawFrame(snakeTileSprite, 0, 0, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				if (snakeTileCount == 0 & pastTiles.length != 1)
+				{
+					drawFrame(spaceshipSpritesheet, rocketSSXPos, rocketSSYPos, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				}
+				snakeTileCount++;
+				break;
 			default:
 				// Basic Tile
 				ctx.fillRect(offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
@@ -252,6 +282,7 @@ function draw()
 				yPos++;
 			}
 		}
+		snakeTileCount = 0;
 		
 		// Draw Balls 
 		if (gameBalls.length > 0)
@@ -263,7 +294,9 @@ function draw()
 					ctx.fillStyle = "pink";
 				else
 					ctx.fillStyle = "orange";
-				ctx.arc(gameBalls[i].ballXPos, gameBalls[i].ballYPos, BALL_RADIUS, 0, 2 * Math.PI);
+				//ctx.arc(gameBalls[i].ballXPos + BALL_RADIUS, gameBalls[i].ballYPos + BALL_RADIUS, BALL_RADIUS, 0, 2 * Math.PI);
+				drawFrame(enemySpritesheet, enemySSXPos, enemySSYPos, 50, 50, 
+						gameBalls[i].ballXPos + BALL_RADIUS - 25, gameBalls[i].ballYPos + BALL_RADIUS - 25, 50, 50);
 				ctx.fill();
 			}
 		}
