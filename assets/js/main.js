@@ -241,9 +241,6 @@ function draw()
 						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
 				break;
 			case "Black":
-				/*drawFrame(blackTileSprite, 0, 0, 90, 90, 
-						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
-				*/
 				break;
 			case "Gray":
 				drawFrame(safeTileSprite, 0, 0, 90, 90, 
