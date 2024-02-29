@@ -481,6 +481,7 @@ function makeLevelLayout()
 		gameTiles[i].tileWin = false;
 		gameTiles[i].tileLocked = false;
 		gameTiles[i].tilePower = false;
+		gameTiles[i].tileTrap = false;
 	}
 	
 	// Example Level
@@ -611,7 +612,7 @@ function makeLevelLayout()
 		break;
 	case levels.Level4: // Level 4
 	
-		tileQuota = 30; // Set Level Quota (30)
+		tileQuota = 20; // Set Level Quota (20)
 		
 		// Set Player Position
 		playerBomb.playerPosition = 91;
@@ -636,7 +637,7 @@ function makeLevelLayout()
 			gameTiles[i].tileLocked = true;
 		// Power Up Tiles
 		gameTiles[6].tilePower = true;
-		gameTiles[31].tilePower = true;
+		gameTiles[30].tilePower = true;
 		gameTiles[98].tilePower = true;
 		gameTiles[104].tilePower = true;
 		// Trap Tiles
@@ -649,28 +650,63 @@ function makeLevelLayout()
 		break;
 	case levels.Level5: // Level 5
 	
-		// Set Level Quota ()
+		tileQuota = 10; // Set Level Quota (10)
 		
 		// Set Player Position
+		playerBomb.playerPosition = 82;
 		// Safe Tiles
+		for (let i = 81; i < 98; i++)
+		{
+			if (i <= 83 || i == 97)
+				gameTiles[i].tileSafeSpace = true;
+		}
 		// Win Tiles
-		// Disable Tiles
+		gameTiles[52].tileWin = true;
+		// No Disabled Tiles
 		// Locked Tiles
-		// Power Up Tiles
-		// Trap Tiles
+		for (let i = 36; i < 69; i++)
+		{
+			if (i <= 38 || i == 51 || i == 53 || (i >= 66 && i <= 68))
+				gameTiles[i].tileLocked = true;
+		}
+		// Power Up Tiles / Trap Tiles
+		for (let i = 0; i < MAX_TILES; i++)
+		{
+			if (!(i >= 6 && i <= 8) && !(i >= 21 && i <= 23) && !(i >= 36 && i <= 38) && !(i >= 51 && i <= 53)
+				&& !(i >= 66 && i <= 68) && !(i >= 81 && i <= 83) && !(i >= 96 && i <= 98))
+			{
+				if (i % 2 == 0) // Power Up Tiles
+					gameTiles[i].tilePower = true;
+				else // Trap Tiles
+					gameTiles[i].tileTrap = true;
+			} 
+		}
 		
 		break;
 	case levels.Level6: // Level 6
 	
-		// Set Level Quota ()
+		tileQuota = 49; // Set Level Quota (49)
 		
 		// Set Player Position
+		playerBomb.playerPosition = 16;
 		// Safe Tiles
+		for (let i = 3; i < 103; i++)
+		{
+			if (i == 3 || (i >= 5 && i <= 7) || i == 9 || (i >= 13 && i <= 14) || (i >= 16 && i <= 18) || (i >= 21&& i <= 22) || i == 24
+				|| (i >= 26 && i <= 27) || i == 29 || i == 33 || i == 35 || i == 37 || i == 39 || (i >= 41 && i <= 43) || (i >= 46 && i <= 48)
+				|| (i >= 50 && i <= 51) || i == 54 || (i >= 56 && i <= 57) || i == 59 || i == 63 || (i >= 65 && i <= 67) || i == 69 || (i >= 73 && i <= 74)
+				|| (i >= 90 && i <= 102))
+				gameTiles[i].tileSafeSpace = true;
+		}
 		// Win Tiles
-		// Disable Tiles
+		gameTiles[104].tileWin = true;
+		// No Disabled Tiles
 		// Locked Tiles
-		// Power Up Tiles
-		// Trap Tiles
+		gameTiles[88].tileLocked = true;
+		gameTiles[89].tileLocked = true;
+		gameTiles[103].tileLocked = true;
+		// No Power Up Tiles
+		// No Trap Tiles
 		
 		break;
 	}

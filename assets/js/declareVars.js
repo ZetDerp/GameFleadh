@@ -124,6 +124,8 @@ let transitionBoxWidth = 0;
 let transitionBoxHeight = 10;
 let transitionBoxY = gameCanvas.height/2-5;
 
+let returnMainMenu = false;
+
 // 					Other Functions
 // Add 98 Tiles
 for (let i = 0; i < MAX_TILES; i++)
