@@ -76,6 +76,10 @@ let currentGameStatus = gameStates.MainMenu;
 const ballDirections = { UpLeft: "UpLeft", UpRight: "UpRight", DownRight: "DownRight", DownLeft: "DownLeft" };
 let applyDirection = "None";
 
+// Wall Tile States
+let newWallState = [false, false, false];
+let wallStateQuota = [0, 0, 0];
+
 // Set Levels
 const levels = { Level1: "1", Level2: "2", Level3: "3", Level4: "4", Level5: "5", Level6: "6" };
 let currentLevel = levels.Level1;
@@ -133,8 +137,31 @@ for (let i = 0; i < MAX_TILES; i++)
 	gameTiles[i] = new GameObjectTile();
 }
 
-// Images
+globeAnimation = 0;
+globeSSXPos = 0;
+globeSSYPos = 0;
+wallSSXPos = 0;
+
+// 							Images
 playerBomb.playerSpritesheet.src = "assets/img/playerPlaceholder.png";
+// Tile Images
+blueTileSprite = new Image();
+blueTileSprite.src = "assets/img/BaseTile.png";
+blackTileSprite = new Image();
+blackTileSprite.src = "assets/img/Black_Tile.png";
+powerUpTileSprite = new Image();
+powerUpTileSprite.src = "assets/img/TileBonus.png";
+safeTileSprite = new Image();
+safeTileSprite.src = "assets/img/TileGrey.png";
+trapTileSprite = new Image();
+trapTileSprite.src = "assets/img/TileTrap.png";
+wallTileSpritesheet = new Image();
+wallTileSpritesheet.src = "assets/img/BarrierSpritesheet.png";
+globeTileSpritesheet = new Image();
+globeTileSpritesheet.src = "assets/img/EarthSpritesheet.png";
 
-
-
+// Text
+textSuccessSprite = new Image();
+textSuccessSprite.src = "assets/img/Mission_Success.png";
+textFailedSprite = new Image();
+textFailedSprite.src = "assets/img/Mission_Failed.png";

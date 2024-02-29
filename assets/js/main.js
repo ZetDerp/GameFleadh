@@ -23,6 +23,23 @@ function update()
 			quotaTrigger = true;
 		}
 		
+		// Update Wall Sprite
+		if (tileScore >= wallStateQuota[0] && !newWallState[0])
+		{
+			wallSSXPos += 90
+			newWallState[0] = true;
+		}
+		else if (tileScore >= wallStateQuota[1] && !newWallState[1])
+		{
+			wallSSXPos += 90;
+			newWallState[1] = true;
+		}
+		else if (tileScore >= wallStateQuota[2] && !newWallState[2])
+		{
+			wallSSXPos += 90;
+			newWallState[2] = true;
+		}
+		
 		// Timer for Balls
 		if (ballSpawnTimer >= enemySpawnTimer + (enemySpawnIncrease * multiIncrease))
 		{
@@ -144,6 +161,25 @@ function update()
 			}
 		}
 		
+		// Update Animated Sprites
+		if (globeAnimation >= 15)
+		{
+			globeSSXPos+=90;
+			if (globeSSXPos >= 3*90)
+			{
+				globeSSXPos = 0;
+				globeSSYPos+=90;
+			}
+			if (globeSSYPos >= 2*90)
+			{
+				globeSSXPos = 0;
+				globeSSYPos = 0;
+			}
+			globeAnimation = 0;
+		}
+		else
+			globeAnimation++;
+		
 		break;
 	case gameStates.GameOver:
 		break;
@@ -166,13 +202,49 @@ function draw()
 		ctx.fillStyle = "black";
 		ctx.fillRect(offsetTile, offsetTile, gameCanvas.width - offsetTile * 2 + 30, gameCanvas.height - offsetTile * 2 - 30); // Black Background
 		// Coloured Spaces
+		if (levelLoaded == false)
+			makeLevelLayout(); // Edit basic level to make current level
 		let xPos = 0;
 		let yPos = 0;
 		for (let i = 0; i < MAX_TILES; i++)
 		{
 			ctx.fillStyle = gameTiles[i].tileColour;
-	
-			ctx.fillRect(offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+			
+			// Sprites
+			switch (gameTiles[i].tileColour) {
+			case "Blue":
+				drawFrame(blueTileSprite, 0, 0, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				break;
+			case "Black":
+				drawFrame(blackTileSprite, 0, 0, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				break;
+			case "Gray":
+				drawFrame(safeTileSprite, 0, 0, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				break;
+			case "Yellow":
+				drawFrame(globeTileSpritesheet, globeSSXPos, globeSSYPos, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				break;
+			case "Brown":
+				drawFrame(wallTileSpritesheet, wallSSXPos, 0, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				break;
+			case "Lime":
+				drawFrame(powerUpTileSprite, 0, 0, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				break;
+			case "Orange":
+				drawFrame(trapTileSprite, 0, 0, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				break;
+			default:
+				// Basic Tile
+				ctx.fillRect(offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+				break;
+			}
 			xPos++;
 			if (xPos == 15)
 			{
@@ -180,8 +252,6 @@ function draw()
 				yPos++;
 			}
 		}
-		if (levelLoaded == false)
-			makeLevelLayout(); // Edit basic level to make current level
 		
 		// Draw Balls 
 		if (gameBalls.length > 0)
@@ -281,12 +351,16 @@ function draw()
 			ctx.fillRect(10, transitionBoxY, transitionBoxWidth, transitionBoxHeight); // Draw Box (10)
 			if (currentGameStatus == gameStates.LevelWin)
 			{
-				ctx.fillText("Win Screen", 0, 100);
+				//ctx.fillText("Win Screen", 0, 100);
+				if (!(transitionBoxHeight < gameCanvas.height - 60))
+					drawFrame(textSuccessSprite, 0, 0, 540, 180, 500, 250, 540, 180);
 			}
 			// Display Game Over Message
 			else 
 			{
-				ctx.fillText("Game Over Screen", 0, 100);
+				//ctx.fillText("Game Over Screen", 0, 100);
+				if (!(transitionBoxHeight < gameCanvas.height - 60))
+					drawFrame(textFailedSprite, 0, 0, 540, 180, 500, 250, 540, 180);
 			}
 		}
 	}
@@ -472,6 +546,11 @@ function makeLevelLayout()
 	ballSpawnTimer = 0;
 	enemySpawnTimer = 300;
 	gameBalls.length = 0;
+	for (let i = 0; i < newWallState.length; i++)
+	{
+		newWallState[i] = false;
+	}
+	wallSSXPos = 0;
 	for (let i = 0; i < MAX_TILES; i++)
 	{
 		gameTiles[i].tileColour = "Blue";
@@ -516,6 +595,11 @@ function makeLevelLayout()
 	case levels.Level1: // Level 1
 	
 		tileQuota = 6; // Set Level Quota (6)
+		
+		// Wall States
+		wallStateQuota[0] = 2;
+		wallStateQuota[1] = 4;
+		wallStateQuota[2] = 5;
 	
 		// Set Player Position
 		playerBomb.playerPosition = 63;
@@ -538,6 +622,11 @@ function makeLevelLayout()
 	case levels.Level2: // Level 2
 	
 		tileQuota = 12; // Set Level Quota (12)
+		
+		// Wall States
+		wallStateQuota[0] = 3;
+		wallStateQuota[1] = 6;
+		wallStateQuota[2] = 9;
 		
 		// Set Player Position
 		playerBomb.playerPosition = 46;
@@ -570,9 +659,14 @@ function makeLevelLayout()
 		// No Trap Tiles
 	
 		break;
-	case levels.Level3: // Level 3 (NOT COMPLETED)
+	case levels.Level3: // Level 3 
 	
 		tileQuota = 20; // Set Level Quota (20)
+		
+		// Wall States
+		wallStateQuota[0] = 5;
+		wallStateQuota[1] = 10;
+		wallStateQuota[2] = 15;
 		
 		// Set Player Position
 		playerBomb.playerPosition = 67;
@@ -614,6 +708,11 @@ function makeLevelLayout()
 	
 		tileQuota = 20; // Set Level Quota (20)
 		
+		// Wall States
+		wallStateQuota[0] = 5;
+		wallStateQuota[1] = 10;
+		wallStateQuota[2] = 15;
+		
 		// Set Player Position
 		playerBomb.playerPosition = 91;
 		// Safe Tiles
@@ -652,6 +751,11 @@ function makeLevelLayout()
 	
 		tileQuota = 10; // Set Level Quota (10)
 		
+		// Wall States
+		wallStateQuota[0] = 2;
+		wallStateQuota[1] = 6;
+		wallStateQuota[2] = 8;
+		
 		// Set Player Position
 		playerBomb.playerPosition = 82;
 		// Safe Tiles
@@ -686,6 +790,11 @@ function makeLevelLayout()
 	case levels.Level6: // Level 6
 	
 		tileQuota = 49; // Set Level Quota (49)
+		
+		// Wall States
+		wallStateQuota[0] = 13;
+		wallStateQuota[1] = 28;
+		wallStateQuota[2] = 40;
 		
 		// Set Player Position
 		playerBomb.playerPosition = 16;
@@ -746,10 +855,10 @@ function makeLevelLayout()
 				gameTiles[i].tileColour = "Brown";
 				break;
 			case 5:
-				gameTiles[i].tileColour = "lime";
+				gameTiles[i].tileColour = "Lime";
 				break;
 			case 6:
-				gameTiles[i].tileColour = "orange";
+				gameTiles[i].tileColour = "Orange";
 				break;
 			}
 		}

@@ -37,6 +37,7 @@ function input(event)
 					case levels.Level6:
 						currentLevel = levels.Level1;
 						currentGameStatus = gameStates.MainMenu;
+						playerBomb.playerCurrentHP = 3;
 						returnMainMenu = true;
 						break;
 					}
