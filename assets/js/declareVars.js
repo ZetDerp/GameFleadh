@@ -140,7 +140,15 @@ for (let i = 0; i < MAX_TILES; i++)
 globeAnimation = 0;
 globeSSXPos = 0;
 globeSSYPos = 0;
+enemySSXPos = 0;
+enemySSYPos = 0;
+
 wallSSXPos = 0;
+
+rocketAnimation = 0;
+rocketSSXPos = 0;
+rocketSSYPos = 0;
+snakeTileCount = 0;
 
 // 							Images
 playerBomb.playerSpritesheet.src = "assets/img/playerPlaceholder.png";
@@ -159,6 +167,12 @@ wallTileSpritesheet = new Image();
 wallTileSpritesheet.src = "assets/img/BarrierSpritesheet.png";
 globeTileSpritesheet = new Image();
 globeTileSpritesheet.src = "assets/img/EarthSpritesheet.png";
+snakeTileSprite = new Image();
+snakeTileSprite.src = "assets/img/SafetyGridOutline_Large.png";
+spaceshipSpritesheet = new Image();
+spaceshipSpritesheet.src = "assets/img/SpaceshipSpritesheet.png"; 
+enemySpritesheet = new Image();
+enemySpritesheet.src = "assets/img/AsteroidSpritesheet.png"; 
 
 // Text
 textSuccessSprite = new Image();
