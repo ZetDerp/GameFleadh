@@ -374,7 +374,7 @@ function draw()
 		drawFrame(titleSpritesheet, 0, titleSSYPos, 720, 256, 
 						500, 300, 720, 256);
 		ctx.fillStyle = "white";
-		ctx.fillText("Press Space to Start", 600, 700);
+		ctx.fillText("Press Space (or X) to Start", 550, 700);
 	}
 	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
