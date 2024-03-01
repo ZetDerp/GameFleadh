@@ -179,3 +179,33 @@ textSuccessSprite = new Image();
 textSuccessSprite.src = "assets/img/Mission_Success.png";
 textFailedSprite = new Image();
 textFailedSprite.src = "assets/img/Mission_Failed.png";
+
+// Sound
+// var sfx ={
+// 	blueTileSound: new Howl({
+// 		src:"assets/audio/TileFlipSound.wav"
+// 	}),
+// 	deathSound: new Howl({
+// 		src:"assets/audio/DeathSound.wav"
+// 	})
+// };
+
+// SFX
+let deathSound = new Audio("assets/audio/DeathSound.wav");
+let woohooSound = new Audio("assets/audio/woohooSound.wav"); // Plays when clearing a level
+let tileCollectSound = new Audio("assets/audio/TileFlipSound.wav");
+let tilesReqSound = new Audio("assets/audio/TileRequired.wav");
+let powerUpSound = new Audio("assets/audio/Powerup.wav");
+let trapSound = new Audio("assets/audio/TrapTileSound.wav");
+let asteroidHitSound = new Audio("assets/audio/ExplosionSound.wav");
+//let playerMoveSound = new Audio("assets/audio/woohooSound.wav"); //not in (might be annoying)
+let crowdLoseSound = new Audio("assets/audio/CrowdLoseSound.wav"); // Plays when run out of lives 			// NOT IN
+let crowdWinSound = new Audio("assets/audio/CrowdCheerSound.wav"); // Plays when beat last level 			// NOT IN
+let levelStartSound = new Audio("assets/audio/RadioSound.wav"); // Play on Mission Failed screen OR player respawn???
+let splashScreenSound = new Audio("assets/audio/ExitLevelComplete.wav");
+let barrierBreak1Sound = new Audio("assets/audio/BarrierBreak1.wav"); 										// NOT IN
+let barrierBreak2Sound = new Audio("assets/audio/BarrierBreak2.wav"); 										// NOT IN
+
+// Music
+let gameMusic = new Audio("assets/audio/Eric Skiff - Underclocked (underunderclocked mix).mp3");
+gameMusic.volume = 0.4;

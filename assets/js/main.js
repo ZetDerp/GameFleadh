@@ -21,6 +21,7 @@ function update()
 		{
 			unlockTiles();
 			quotaTrigger = true;
+			tilesReqSound.play();				// Sound
 		}
 		
 		// Update Wall Sprite
@@ -154,6 +155,7 @@ function update()
 			{
 				if (ballCollisionCheck(i))
 				{
+					asteroidHitSound.play();				// Sound
 					console.log("ball hit");
 					currentGameStatus = gameStates.GameOver; // Change Game State to GameOver
 					break;
@@ -426,21 +428,26 @@ function updateCurrentTile()
 		{
 		case "Up":
 			playerBomb.playerPosition += 15;
+			playerMoveSound.play();					// Sound NOT WORKNG
 			break;
 		case "Down":
 			playerBomb.playerPosition -= 15;
+			playerMoveSound.play();					// Sound NOT WORKING
 			break;
 		case "Left":
 			playerBomb.playerPosition++;
+			playerMoveSound.play();					// Sound NOT WORKING
 			break;
 		case "Right":
 			playerBomb.playerPosition--;
+			playerMoveSound.play();					// Sound NOT WORKING
 			break;
 		}
 	}
 	// Lose Life
 	else if (gameTiles[playerBomb.playerPosition].tileDestroyed == true)
 	{
+		deathSound.play();						// Sound
 		currentGameStatus = gameStates.GameOver;
 	}
 	// Walked Over
@@ -464,6 +471,7 @@ function updateCurrentTile()
 			firstMove = false;
 		}
 		tileScore++; // Increase Score
+		tileCollectSound.play();								// Sound
 		
 		// Check if Walked Over Tile contains a Power Up
 		if (gameTiles[playerBomb.playerPosition].tilePower == true)
@@ -510,6 +518,7 @@ function updateCurrentTile()
 	// Wining Tile
 	else if (gameTiles[playerBomb.playerPosition].tileWin == true)
 	{
+		woohooSound.play();
 		currentGameStatus = gameStates.LevelWin;
 		firstMove = true;
 	}
@@ -572,6 +581,7 @@ function ballCollisionCheck(i) // Very Janky ATM
 
 function makeLevelLayout()
 {
+	gameMusic.play();
 	// Set Everything to False / Default
 	multiIncrease = 0;
 	quotaTrigger = false;
@@ -907,6 +917,7 @@ function drawFrame(ssImage, ssPosX, ssPosY, ssWidth, ssHeight, canvasX, canvasY,
 
 function restartLevel()
 {
+	levelStartSound.play();						// Sound
 	playerBomb.playerCurrentHP--;
 	firstMove = false;
 	levelLoaded = false; // Re-load Level / Restart
@@ -923,18 +934,21 @@ function restartLevel()
 
 function powerAddPoints()
 {
+	powerUpSound.play();					// Sound
 	tileScore+=4; // Have to add 4 since the player always gets +1
 	powerUpMessage = "+5 Points!"
 }
 
 function powerAddLife()
 {
+	powerUpSound.play();					// Sound
 	playerBomb.playerCurrentHP++;
 	powerUpMessage = "Extra Life!";
 }
 
 function powerIncreaseEnemySpawnTimer()
 {
+	powerUpSound.play();					// Sound
 	multiIncrease++;
 	textSpawnBall+= (textSpawnIncrease * multiIncrease);
 	powerUpMessage = "Longer Enemy Spawn!";
@@ -942,12 +956,14 @@ function powerIncreaseEnemySpawnTimer()
 
 function powerIncreaseSnakeSize()
 {
+	powerUpSound.play();					// Sound
 	playerBomb.playerSnakeSize++;
 	powerUpMessage = "Extra Snake Tile!";
 }
 
 function trapLosePoints()
 {
+	trapSound.play();						// Sound
 	tileScore-=4; // Have to deduct 4 since the player always gains +1
 	powerUpMessage = "-3 Points.";
 }
