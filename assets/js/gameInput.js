@@ -6,8 +6,10 @@ function input(event)
 	// let canvasArea = gameCanvas.getBoundingClientRect(); // For Mouse Only
 	
 	// Keyboard Input
+	/*
 	if (event.code == "KeyP")
 		enableDebug = !enableDebug; // Enable / Disable Debug
+	*/
 	if (currentGameStatus == gameStates.MainMenu || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
 		// Start Game
@@ -45,6 +47,8 @@ function input(event)
 					transitionBoxHeight = 10;
 					transitionBoxY = gameCanvas.height/2-5;
 					levelLoaded = false;
+					timerNextLevelCounter = 4;
+					timerNextLevel = 0;
 				}
 				if (returnMainMenu == false)
 					currentGameStatus = gameStates.Gameplay;
@@ -57,12 +61,15 @@ function input(event)
 				{
 					currentGameStatus = gameStates.MainMenu;
 					playerBomb.playerCurrentHP = 4; // +1 to account for restart
+					currentLevel = levels.Level1;
 				}
 				else
 					currentGameStatus = gameStates.Gameplay;
 				transitionBoxWidth = 0;
 				transitionBoxHeight = 10;
 				transitionBoxY = gameCanvas.height/2-5;
+				timerNextLevelCounter = 4;
+				timerNextLevel = 0;
 				restartLevel();
 			}
 		}
