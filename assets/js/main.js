@@ -6,6 +6,21 @@ function update()
 	switch (currentGameStatus)
 	{
 	case gameStates.MainMenu:
+		// Title Animation
+		if (titleAnimation >= 15)
+		{
+			titleSSYPos+= 256 * titleCycle;
+			if (titleSSYPos < 0 || titleSSYPos >= 2256)
+			{
+				if (titleCycle == 1)
+					titleCycle = -1;
+				else
+					titleCycle = 1;
+			}
+			titleAnimation = 0;
+		}
+		else
+			titleAnimation++;
 		break;
 	case gameStates.Gameplay:
 	
@@ -247,6 +262,54 @@ function update()
 		}
 		else
 			playerAnimation++;
+		
+		// Decay Timer
+		if (timerNextLevel >= 60)
+		{
+			timerNextLevel = 0;
+			timerNextLevelCounter--;
+			if (timerNextLevelCounter == 0) // Start Next Level
+			{
+				timerNextLevelCounter = 4;
+				
+				switch (currentLevel)
+				{
+				case levels.Level1:
+					currentLevel = levels.Level2;
+					break;
+				case levels.Level2:
+					currentLevel = levels.Level3;
+					break;
+				case levels.Level3:
+					currentLevel = levels.Level4;
+					break;
+				case levels.Level4:
+					currentLevel = levels.Level5;
+					break;
+				case levels.Level5:
+					currentLevel = levels.Level6;
+					break;
+				case levels.Level6:
+					currentLevel = levels.Level1;
+					currentGameStatus = gameStates.MainMenu;
+					playerBomb.playerCurrentHP = 3;
+					returnMainMenu = true;
+					break;
+				}
+				transitionBoxWidth = 0;
+				transitionBoxHeight = 10;
+				transitionBoxY = gameCanvas.height/2-5;
+				levelLoaded = false;
+				if (returnMainMenu == false)
+					currentGameStatus = gameStates.Gameplay;
+				else
+					returnMainMenu = false;
+			}
+		}
+		else
+			timerNextLevel++;
+		
+		
 		break;
 	case gameStates.GameOver:
 		// Player Defeat Animation
@@ -269,6 +332,32 @@ function update()
 		}
 		else
 			playerAnimation++;
+		
+		// Decay Timer
+		if (timerNextLevel >= 60)
+		{
+			timerNextLevel = 0;
+			timerNextLevelCounter--;
+			if (timerNextLevelCounter == 0) // Start Next Level
+			{
+				timerNextLevelCounter = 4;
+				if (playerBomb.playerCurrentHP - 1 <= 0)
+				{
+					currentGameStatus = gameStates.MainMenu;
+					playerBomb.playerCurrentHP = 4; // +1 to account for restart
+					currentLevel = levels.Level1;
+				}
+				else
+					currentGameStatus = gameStates.Gameplay;
+				transitionBoxWidth = 0;
+				transitionBoxHeight = 10;
+				transitionBoxY = gameCanvas.height/2-5;
+				restartLevel();
+			}
+		}
+		else
+			timerNextLevel++;
+		
 		break;
 	}
 }
@@ -281,7 +370,9 @@ function draw()
 	
 	if (currentGameStatus == gameStates.MainMenu)
 	{
-		
+		// Title Animation
+		drawFrame(titleSpritesheet, 0, titleSSYPos, 720, 256, 
+						500, 300, 720, 256);
 	}
 	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
@@ -370,9 +461,8 @@ function draw()
 			yPos++;
 		yPos--;
 		xPos = playerBomb.playerPosition - 15 * yPos;
-		drawFrame(playerBomb.playerSpritesheet, 0, 0, TILE_SIZE, TILE_SIZE, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE); 
-				drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
-						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
+			drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+					offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
 
 		// Boxes for UI
 		ctx.fillStyle = "gray";
@@ -446,17 +536,28 @@ function draw()
 				transitionBoxHeight+=transitionSpeed*2;
 			}
 			ctx.fillRect(10, transitionBoxY, transitionBoxWidth, transitionBoxHeight); // Draw Box (10)
+			ctx.fillStyle = "white";
 			if (currentGameStatus == gameStates.LevelWin)
 			{
 				//ctx.fillText("Win Screen", 0, 100);
 				if (!(transitionBoxHeight < gameCanvas.height - 60))
 				{
 					drawFrame(textSuccessSprite, 0, 0, 540, 180, 500, 250, 540, 180);
+					ctx.fillText("Resuming In: " + timerNextLevelCounter, 550, 500);
 					// Draw Animation
 					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
 							350, 275, TILE_SIZE, TILE_SIZE);
 					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
 							1100, 275, TILE_SIZE, TILE_SIZE);
+					
+					// Thank you Message
+					if (currentLevel == levels.Level6)
+					{
+						drawFrame(thanksPlayingSprite, 0, 0, 540, 540, 
+							-100, 280, 540*1.5, 540*1.5);
+						drawFrame(thanksForPlayingTextSprite, 0, 0, 540, 270, 
+							550, 600, 540, 270);
+					}
 				}
 			}
 			// Display Game Over Message
@@ -466,13 +567,13 @@ function draw()
 				if (!(transitionBoxHeight < gameCanvas.height - 60))
 				{
 					drawFrame(textFailedSprite, 0, 0, 540, 180, 500, 250, 540, 180);
+					ctx.fillText("Resuming In: " + timerNextLevelCounter, 550, 500);
 					// Draw Animation
 					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
 							350, 275, TILE_SIZE, TILE_SIZE);
 					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
 							1100, 275, TILE_SIZE, TILE_SIZE);
 				}
-
 			}
 		}
 

@@ -129,6 +129,9 @@ const transitionSpeed = 30;
 let transitionBoxWidth = 0;
 let transitionBoxHeight = 10;
 let transitionBoxY = gameCanvas.height/2-5;
+// Timer Next Level
+let timerNextLevelCounter = 4;
+let timerNextLevel = 0;
 
 let returnMainMenu = false;
 
@@ -156,6 +159,10 @@ playerAnimation = 0;
 playerSSXPos = 0;
 playerSSYPos = 0;
 playerSwapYPos = false;
+
+titleAnimation = 0;
+titleSSYPos = 720;
+titleCycle = 1;
 
 // 							Images
 // Tile Images
@@ -186,9 +193,19 @@ textSuccessSprite = new Image();
 textSuccessSprite.src = "assets/img/Mission_Success.png";
 textFailedSprite = new Image();
 textFailedSprite.src = "assets/img/Mission_Failed.png";
+
 // Particle
 particleSprite = new Image();
 particleSprite.src = "assets/img/ParticleSpritesheet.png"
+
+titleSpritesheet = new Image();
+titleSpritesheet.src = "assets/img/TitleSpritesheet.png";
+thanksForPlayingTextSprite = new Image();
+thanksForPlayingTextSprite.src = "assets/img/ThanksForPlayingText.png";
+// Mis
+thanksPlayingSprite = new Image();
+thanksPlayingSprite.src = "assets/img/ThanksForPlaying.png";
+
 
 // Sound
 // var sfx ={
