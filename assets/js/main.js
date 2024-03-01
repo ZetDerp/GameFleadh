@@ -158,6 +158,10 @@ function update()
 					asteroidHitSound.play();				// Sound
 					console.log("ball hit");
 					currentGameStatus = gameStates.GameOver; // Change Game State to GameOver
+					playerAnimation = 0; // Reset Cycle
+					playerSSXPos = 0;
+					playerSSYPos = 0;
+					playerSwapYPos = false;
 					break;
 				}
 			}
@@ -196,7 +200,7 @@ function update()
 				rocketSSXPos = 0;
 				rocketSSYPos+=90;
 			}
-			if (rocketSSYPos >= 2*90)
+			if (rocketSSYPos >= 180)
 			{
 				rocketSSXPos = 0;
 				rocketSSYPos = 0;
@@ -206,8 +210,65 @@ function update()
 		else
 			rocketAnimation++;
 		
+		if (playerAnimation >= 15) // Player / Astronaut
+		{
+			playerSSXPos+=90;
+			switch (playerBomb.playerDirectionFace) {
+			case "Up":
+				playerSSYPos = 180;
+				break;
+			case "Down":
+				playerSSYPos = 0;
+				break;
+			case "Left":
+				playerSSYPos = 270;
+				break;
+			case "Right":
+				playerSSYPos = 90;
+				break;
+			}
+			if (playerSSXPos >= 360)
+				playerSSXPos = 0;
+			playerAnimation = 0;
+		}
+		else
+			playerAnimation++;
+		
+		break;
+	case gameStates.LevelWin:
+		// Player Victory Animation
+		if (playerAnimation >= 15)
+		{
+			playerSSYPos = 360;
+			playerSSXPos+=90;
+			if (playerSSXPos >= 360)
+				playerSSXPos = 0;
+			playerAnimation = 0;
+		}
+		else
+			playerAnimation++;
 		break;
 	case gameStates.GameOver:
+		// Player Defeat Animation
+		if (playerAnimation >= 15)
+		{
+			playerSSXPos+=90;
+			if (playerSwapYPos == false)
+			{
+				playerSSYPos = 450;
+				if (playerSSXPos >= 360)
+				{
+					playerSSXPos = 0;
+					playerSSYPos+=90;
+					playerSwapYPos = true;
+				}
+			}
+			else if (playerSSXPos >= 360)
+				playerSSXPos = 0;
+			playerAnimation = 0;
+		}
+		else
+			playerAnimation++;
 		break;
 	}
 }
@@ -225,8 +286,6 @@ function draw()
 	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
 		// Draw Basic Tile Arena
-		//ctx.fillStyle = "black";
-		//ctx.fillRect(offsetTile, offsetTile, gameCanvas.width - offsetTile * 2 + 30, gameCanvas.height - offsetTile * 2 - 30); // Black Background
 		// Coloured Spaces
 		if (levelLoaded == false)
 			makeLevelLayout(); // Edit basic level to make current level
@@ -310,12 +369,14 @@ function draw()
 		while (playerBomb.playerPosition >= 15 * yPos)
 			yPos++;
 		yPos--;
-		//yPos
 		xPos = playerBomb.playerPosition - 15 * yPos;
 		drawFrame(playerBomb.playerSpritesheet, 0, 0, TILE_SIZE, TILE_SIZE, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE); 
+				drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+						offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
 
 		// Boxes for UI
 		ctx.fillStyle = "gray";
+		ctx.beginPath();
 		ctx.roundRect(-50,-50,550,130,50);
 		ctx.roundRect(580,-50,340,130,50);
 		ctx.roundRect(1150,-50,700,130,50);
@@ -344,21 +405,20 @@ function draw()
 		// Power Up Message
 		if (displayPowerUpMessage == true)
 		{
-			ctx.fillStyle = "purple";
-			
 			if (getMessagePosition == true)
 			{
-				messageYPos = 1;
-				while (playerBomb.playerPosition >= 15 * messageYPos)
-					messageYPos++;
-				messageYPos--;
-				messageXPos = playerBomb.playerPosition - 15 * messageYPos - 2;
+				messageXPos = 50;
+				messageYPos = gameCanvas.height - 50;
 				powerUpMessageTimer = 0;
-				if (messageXPos != -2 || messageXPos != 13 || messageXPos != 28 || messageXPos != 43 || messageXPos != 58 || messageXPos != 73 || messageXPos != 88)
-					extraSpace = 50;
 				getMessagePosition = false;
 			}
-			ctx.fillText(powerUpMessage, offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * messageXPos), offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * messageYPos) + extraSpace);
+			ctx.fillStyle = "gray";
+			ctx.beginPath();
+			ctx.roundRect(messageXPos - 20, messageYPos - 60, 600, 300, 50);
+			ctx.fill();
+			ctx.stroke();
+			ctx.fillStyle = "white";
+			ctx.fillText(powerUpMessage, messageXPos, messageYPos);
 			
 			powerUpMessageTimer++;
 			if (powerUpMessageTimer >= powerUpMessageExpire)
@@ -390,14 +450,29 @@ function draw()
 			{
 				//ctx.fillText("Win Screen", 0, 100);
 				if (!(transitionBoxHeight < gameCanvas.height - 60))
+				{
 					drawFrame(textSuccessSprite, 0, 0, 540, 180, 500, 250, 540, 180);
+					// Draw Animation
+					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+							350, 275, TILE_SIZE, TILE_SIZE);
+					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+							1100, 275, TILE_SIZE, TILE_SIZE);
+				}
 			}
 			// Display Game Over Message
 			else 
 			{
 				//ctx.fillText("Game Over Screen", 0, 100);
 				if (!(transitionBoxHeight < gameCanvas.height - 60))
+				{
 					drawFrame(textFailedSprite, 0, 0, 540, 180, 500, 250, 540, 180);
+					// Draw Animation
+					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+							350, 275, TILE_SIZE, TILE_SIZE);
+					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+							1100, 275, TILE_SIZE, TILE_SIZE);
+				}
+
 			}
 		}
 	}
@@ -428,19 +503,15 @@ function updateCurrentTile()
 		{
 		case "Up":
 			playerBomb.playerPosition += 15;
-			playerMoveSound.play();					// Sound NOT WORKNG
 			break;
 		case "Down":
 			playerBomb.playerPosition -= 15;
-			playerMoveSound.play();					// Sound NOT WORKING
 			break;
 		case "Left":
 			playerBomb.playerPosition++;
-			playerMoveSound.play();					// Sound NOT WORKING
 			break;
 		case "Right":
 			playerBomb.playerPosition--;
-			playerMoveSound.play();					// Sound NOT WORKING
 			break;
 		}
 	}
@@ -449,6 +520,10 @@ function updateCurrentTile()
 	{
 		deathSound.play();						// Sound
 		currentGameStatus = gameStates.GameOver;
+		playerAnimation = 0; // Reset Cycle
+		playerSSXPos = 0;
+		playerSSYPos = 0;
+		playerSwapYPos = false;
 	}
 	// Walked Over
 	else if (gameTiles[playerBomb.playerPosition].tileWalkedOver == false && gameTiles[playerBomb.playerPosition].tileWin == false
@@ -591,6 +666,7 @@ function makeLevelLayout()
 	ballSpawnTimer = 0;
 	enemySpawnTimer = 300;
 	gameBalls.length = 0;
+	playerBomb.playerDirectionFace = "Down";
 	for (let i = 0; i < newWallState.length; i++)
 	{
 		newWallState[i] = false;
@@ -964,6 +1040,6 @@ function powerIncreaseSnakeSize()
 function trapLosePoints()
 {
 	trapSound.play();						// Sound
-	tileScore-=4; // Have to deduct 4 since the player always gains +1
-	powerUpMessage = "-3 Points.";
+	tileScore-=3; // Have to deduct 4 since the player always gains +1
+	powerUpMessage = "-2 Points.";
 }
