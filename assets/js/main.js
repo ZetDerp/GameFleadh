@@ -475,6 +475,10 @@ function draw()
 
 			}
 		}
+
+		// Particle display
+		//drawFrame(particleSprite, 90, 90, 90, 90, 
+		//	350, 275, 90, 90);
 	}
 }
 

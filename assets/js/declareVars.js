@@ -186,6 +186,9 @@ textSuccessSprite = new Image();
 textSuccessSprite.src = "assets/img/Mission_Success.png";
 textFailedSprite = new Image();
 textFailedSprite.src = "assets/img/Mission_Failed.png";
+// Particle
+particleSprite = new Image();
+particleSprite.src = "assets/img/ParticleSpritesheet.png"
 
 // Sound
 // var sfx ={
