@@ -209,3 +209,4 @@ let barrierBreak2Sound = new Audio("assets/audio/BarrierBreak2.wav"); 										
 // Music
 let gameMusic = new Audio("assets/audio/Eric Skiff - Underclocked (underunderclocked mix).mp3");
 gameMusic.volume = 0.4;
+gameMusic.loop = true;
