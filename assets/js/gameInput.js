@@ -41,10 +41,10 @@ function input(event)
 						returnMainMenu = true;
 						break;
 					}
-				transitionBoxWidth = 0;
-				transitionBoxHeight = 10;
-				transitionBoxY = gameCanvas.height/2-5;
-				levelLoaded = false;
+					transitionBoxWidth = 0;
+					transitionBoxHeight = 10;
+					transitionBoxY = gameCanvas.height/2-5;
+					levelLoaded = false;
 				}
 				if (returnMainMenu == false)
 					currentGameStatus = gameStates.Gameplay;
@@ -54,7 +54,10 @@ function input(event)
 			else
 			{
 				if (playerBomb.playerCurrentHP - 1 <= 0)
+				{
 					currentGameStatus = gameStates.MainMenu;
+					playerBomb.playerCurrentHP = 4; // +1 to account for restart
+				}
 				else
 					currentGameStatus = gameStates.Gameplay;
 				transitionBoxWidth = 0;
@@ -73,6 +76,7 @@ function input(event)
 			{
 				playerBomb.playerPosition -= 15;
 				playerInput = "Up";
+				playerBomb.playerDirectionFace = "Up";
 			}
 		}
 		else if (event.code == "KeyS" || event.code == "ArrowDown")
@@ -81,6 +85,7 @@ function input(event)
 			{
 				playerBomb.playerPosition += 15;
 				playerInput = "Down";
+				playerBomb.playerDirectionFace = "Down";
 			}
 		}
 		else if (event.code == "KeyA" || event.code == "ArrowLeft")
@@ -91,6 +96,7 @@ function input(event)
 			{
 				playerBomb.playerPosition--;
 				playerInput = "Left";
+				playerBomb.playerDirectionFace = "Left";
 			}
 		} 
 		else if (event.code == "KeyD" || event.code == "ArrowRight")
@@ -101,6 +107,7 @@ function input(event)
 			{
 				playerBomb.playerPosition++;
 				playerInput = "Right";
+				playerBomb.playerDirectionFace = "Right";
 			}
 		}
 		// Restart Key

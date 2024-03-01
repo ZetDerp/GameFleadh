@@ -21,6 +21,8 @@ function GameObjectPlayer()
 	this.playerMultiplier = 1;
 	// Position / Location
 	this.playerPosition = 0; // Set at Level Load
+	// Player Direction
+	this.playerDirectionFace = "Down";
 	
 	// Path Size
 	this.playerSnakeSize = 2;
@@ -150,8 +152,12 @@ rocketSSXPos = 0;
 rocketSSYPos = 0;
 snakeTileCount = 0;
 
+playerAnimation = 0;
+playerSSXPos = 0;
+playerSSYPos = 0;
+playerSwapYPos = false;
+
 // 							Images
-playerBomb.playerSpritesheet.src = "assets/img/playerPlaceholder.png";
 // Tile Images
 blueTileSprite = new Image();
 blueTileSprite.src = "assets/img/BaseTile.png";
@@ -171,9 +177,10 @@ snakeTileSprite = new Image();
 snakeTileSprite.src = "assets/img/SafetyGridOutline_Large.png";
 spaceshipSpritesheet = new Image();
 spaceshipSpritesheet.src = "assets/img/SpaceshipSpritesheet.png"; 
+// Player + Enemy Spritesheets
 enemySpritesheet = new Image();
 enemySpritesheet.src = "assets/img/AsteroidSpritesheet.png"; 
-
+playerBomb.playerSpritesheet.src = "assets/img/AstronautSpritesheet.png"; 
 // Text
 textSuccessSprite = new Image();
 textSuccessSprite.src = "assets/img/Mission_Success.png";
