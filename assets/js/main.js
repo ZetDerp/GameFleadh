@@ -182,6 +182,16 @@ function update()
 			}
 		}
 		
+		// Move UFO
+		switch (gameUFO.ufoDirection) {
+		case "Left":
+			gameUFO.ufoXPos-=4;
+			break;
+		case "Right":
+			gameUFO.ufoXPos+=4;
+			break;
+		}
+		
 		// Update Animated Sprites
 		if (globeAnimation >= 15) // Globe
 		{
@@ -207,7 +217,7 @@ function update()
 		}
 		else
 			globeAnimation++;
-		if (rocketAnimation >= 15) // Rocket
+		if (rocketAnimation >= 15) // Rocket / UFO
 		{
 			rocketSSXPos+=90;
 			if (rocketSSXPos >= 360)
@@ -220,6 +230,25 @@ function update()
 				rocketSSXPos = 0;
 				rocketSSYPos = 0;
 			}
+			
+			// UFO Only
+			if (gameUFO.ufoChangeDir >= 4 || (gameUFO.ufoChangeDir >= 2 && gameUFO.ufoFirstTime == true))
+			{
+				switch (gameUFO.ufoDirection) {
+				case "Right":
+					gameUFO.ufoDirection = "Left";
+					break;
+				case "Left":
+					gameUFO.ufoDirection = "Right";
+					break;
+				}
+				if (gameUFO.ufoFirstTime == true)
+					gameUFO.ufoFirstTime = false;
+				gameUFO.ufoChangeDir = 0;
+			}
+			else
+				gameUFO.ufoChangeDir++;
+			
 			rocketAnimation = 0;
 		}
 		else
@@ -367,7 +396,6 @@ function draw()
 {
 	ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height); // Clear Canvas
 	
-	
 	if (currentGameStatus == gameStates.MainMenu)
 	{
 		// Title Animation
@@ -456,6 +484,10 @@ function draw()
 				ctx.fill();
 			}
 		}
+		
+		// Draw UFO
+		drawFrame(gameUFO.ufoSpritesheet, rocketSSXPos, rocketSSYPos, 90, 90, 
+				gameUFO.ufoXPos, gameCanvas.height - 100, 90, 90);
 	
 		// Draw Player
 		yPos = 1;
@@ -642,9 +674,7 @@ function updateCurrentTile()
 		if (firstMove != true)
 		{
 			for (let i = playerBomb.playerSnakeSize; i > -1 ; i--)
-			{
 				pastTiles[i+1] = pastTiles[i];
-			}
 			pastTiles[0] = playerBomb.playerPosition;
 		}
 		else
@@ -727,7 +757,7 @@ function unlockTiles()
 	}
 }
 
-function ballCollisionCheck(i) // Very Janky ATM
+function ballCollisionCheck(i)
 {
 	let collisionTrigger = false;
 	
@@ -790,33 +820,9 @@ function makeLevelLayout()
 		gameTiles[i].tilePower = false;
 		gameTiles[i].tileTrap = false;
 	}
-	
-	// Example Level
-	/*
-		// Set Player Position
-		playerBomb.playerPosition = 48;
-		// Safe Tiles
-		gameTiles[48].tileSafeSpace = true;
-		// Win Tile
-		gameTiles[53].tileWin = true;
-		// Disable Tiles
-		for (let i = 22; i < 28; i++)
-			gameTiles[i].tileDestroyed = true;
-		gameTiles[37].tileDestroyed = true;
-		gameTiles[52].tileDestroyed = true;
-		gameTiles[56].tileDestroyed = true;
-		gameTiles[67].tileDestroyed = true;
-		for (let i = 82; i < 88; i++)
-			gameTiles[i].tileDestroyed = true;
-		// Locked Tiles
-		gameTiles[39].tileLocked = true;
-		gameTiles[54].tileLocked = true;
-		gameTiles[69].tileLocked = true;
-		// Power Up Tiles
-		gameTiles[50].tilePower = true;
-		// Trap Tiles
-		gameTiles[46].tileTrap = true;
-	*/
+	gameUFO.ufoFirstTime = true;
+	rocketAnimation = 0;
+	gameUFO.ufoChangeDir = 0;
 	
 	switch (currentLevel)
 	{
@@ -1091,6 +1097,10 @@ function makeLevelLayout()
 			}
 		}
 	}
+	
+	// Load UFO (same for each Level)
+	gameUFO.ufoXPos = gameCanvas.width/2 - TILE_SIZE/2;
+	
 	levelLoaded = true;
 }
 
