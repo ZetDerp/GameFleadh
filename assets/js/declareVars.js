@@ -153,6 +153,8 @@ let transitionBoxY = gameCanvas.height/2-5;
 // Timer Next Level
 let timerNextLevelCounter = 4;
 let timerNextLevel = 0;
+// Radio Timer
+let radioTimer = 0;
 
 let returnMainMenu = false;
 
@@ -231,19 +233,10 @@ thanksPlayingSprite = new Image();
 thanksPlayingSprite.src = "assets/img/ThanksForPlaying.png";
 
 
-// Sound
-// var sfx ={
-// 	blueTileSound: new Howl({
-// 		src:"assets/audio/TileFlipSound.wav"
-// 	}),
-// 	deathSound: new Howl({
-// 		src:"assets/audio/DeathSound.wav"
-// 	})
-// };
-
 // SFX
 let deathSound = new Audio("assets/audio/DeathSound.wav");
 let woohooSound = new Audio("assets/audio/woohooSound.wav"); // Plays when clearing a level
+woohooSound.volume = 0.7;
 let tileCollectSound = new Audio("assets/audio/TileFlipSound.wav");
 let tilesReqSound = new Audio("assets/audio/TileRequired.wav");
 let powerUpSound = new Audio("assets/audio/Powerup.wav");
@@ -256,6 +249,19 @@ let levelStartSound = new Audio("assets/audio/RadioSound.wav"); // Play on Missi
 let splashScreenSound = new Audio("assets/audio/ExitLevelComplete.wav");
 let barrierBreak1Sound = new Audio("assets/audio/BarrierBreak1.wav"); 										// NOT IN
 let barrierBreak2Sound = new Audio("assets/audio/BarrierBreak2.wav"); 										// NOT IN
+let countdownSound = new Audio("assets/audio/Countdown.wav"); // Plays before new gameplus					// NOT IN
+let missionSuccessSound = new Audio("assets/audio/MissionSuccessSound.wav"); 						
+missionSuccessSound.volume = 0.7;
+// Radio
+let radio2Sound = new Audio("assets/audio/RadioSound2.wav"); 												// NOT IN
+let radio3Sound = new Audio("assets/audio/RadioSound3.wav"); 												// NOT IN
+let radio4Sound = new Audio("assets/audio/RadioSound4.wav"); 												// NOT IN
+let radio5Sound = new Audio("assets/audio/RadioSound5.wav"); 												// NOT IN
+// Laser
+let laserPreFireSound = new Audio("assets/audio/Pre_Fire_Laser.wav"); 
+let laserFireSound = new Audio("assets/audio/Laser_Fire.wav"); 
+let laserEvaporateSound = new Audio("assets/audio/Laser_Evaporate.wav"); 
+
 
 // Music
 let gameMusic = new Audio("assets/audio/Eric Skiff - Underclocked (underunderclocked mix).mp3");

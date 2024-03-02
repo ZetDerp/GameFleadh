@@ -201,7 +201,7 @@ function update()
 			// Check for Collision
 			if (ufoCollisionCheck())
 			{
-				asteroidHitSound.play();				// Sound
+				laserEvaporateSound.play();				// Sound
 				console.log("ufo hit");
 				currentGameStatus = gameStates.GameOver; // Change Game State to GameOver
 				playerAnimation = 0; // Reset Cycle
@@ -219,6 +219,7 @@ function update()
 		{
 			if (gameUFO.ufoTimer <= 0)
 			{
+				laserFireSound.play();				// Sound
 				console.log("FIRE");
 				gameUFO.ufoPreFire = false;
 				gameUFO.ufoFire = true;
@@ -229,6 +230,7 @@ function update()
 		}
 		else if (gameUFO.ufoTimeBeforeFire <= 0)
 		{
+			laserPreFireSound.play();
 			console.log("PRE-FIRE");
 			gameUFO.ufoPreFire = true;
 			gameUFO.ufoTimer = 180;
@@ -435,6 +437,13 @@ function update()
 			timerNextLevel++;
 		
 		break;
+	}
+
+	// Radio Timer
+	radioTimer--;
+	if (radioTimer <= 0)
+	{
+		//radio2Sound.play();
 	}
 }
 
@@ -785,6 +794,7 @@ function updateCurrentTile()
 	else if (gameTiles[playerBomb.playerPosition].tileWin == true)
 	{
 		woohooSound.play();
+		missionSuccessSound.play();
 		currentGameStatus = gameStates.LevelWin;
 		firstMove = true;
 	}
@@ -1175,6 +1185,9 @@ function makeLevelLayout()
 	
 	// Load UFO (same for each Level)
 	gameUFO.ufoXPos = gameCanvas.width/2 - TILE_SIZE/2;
+
+	// Radio Timer
+	radioTimer = Math.floor(Math.random() * 10000);
 	
 	levelLoaded = true;
 }
