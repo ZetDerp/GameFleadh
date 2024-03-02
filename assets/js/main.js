@@ -699,8 +699,35 @@ function draw()
 
 		// Draw new HUD
 		drawFrame(hudSprite, 0, 0, 1600, 130, 0, 0, 1600, 130);
-
-		if (playerBomb.playerCurrentHP >= 7)
+		if (playerBomb.playerCurrentHP >= 14)
+		{
+			drawFrame(livesHUD14, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		if (playerBomb.playerCurrentHP == 13)
+		{
+			drawFrame(livesHUD13, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		if (playerBomb.playerCurrentHP == 12)
+		{
+			drawFrame(livesHUD12, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		if (playerBomb.playerCurrentHP == 11)
+		{
+			drawFrame(livesHUD11, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		if (playerBomb.playerCurrentHP == 10)
+		{
+			drawFrame(livesHUD10, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		if (playerBomb.playerCurrentHP == 9)
+		{
+			drawFrame(livesHUD9, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		if (playerBomb.playerCurrentHP == 8)
+		{
+			drawFrame(livesHUD8, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		if (playerBomb.playerCurrentHP == 7)
 		{
 			drawFrame(livesHUD7, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}

@@ -251,6 +251,21 @@ livesHUD6 = new Image();
 livesHUD6.src = "assets/img/LiveHUD6.png";
 livesHUD7 = new Image();
 livesHUD7.src = "assets/img/LiveHUD7.png";
+// Gold Lives
+livesHUD8 = new Image();
+livesHUD8.src = "assets/img/LiveHUD8.png";
+livesHUD9 = new Image();
+livesHUD9.src = "assets/img/LiveHUD9.png";
+livesHUD10 = new Image();
+livesHUD10.src = "assets/img/LiveHUD10.png";
+livesHUD11 = new Image();
+livesHUD11.src = "assets/img/LiveHUD11.png";
+livesHUD12 = new Image();
+livesHUD12.src = "assets/img/LiveHUD12.png";
+livesHUD13 = new Image();
+livesHUD13.src = "assets/img/LiveHUD13.png";
+livesHUD14 = new Image();
+livesHUD14.src = "assets/img/LiveHUD14.png";
 
 // SFX
 let deathSound = new Audio("assets/audio/DeathSound.wav");
