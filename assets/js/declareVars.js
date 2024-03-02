@@ -155,6 +155,7 @@ let timerNextLevelCounter = 4;
 let timerNextLevel = 0;
 // Radio Timer
 let radioTimer = 0;
+let radioSelecter = -1;
 
 let returnMainMenu = false;
 
@@ -232,6 +233,24 @@ thanksForPlayingTextSprite.src = "assets/img/ThanksForPlayingText.png";
 thanksPlayingSprite = new Image();
 thanksPlayingSprite.src = "assets/img/ThanksForPlaying.png";
 
+// HUD
+hudSprite = new Image();
+hudSprite.src = "assets/img/HUD.png";
+// HUD Lives
+livesHUD1 = new Image();
+livesHUD1.src = "assets/img/LiveHUD1.png";
+livesHUD2 = new Image();
+livesHUD2.src = "assets/img/LiveHUD2.png";
+livesHUD3 = new Image();
+livesHUD3.src = "assets/img/LiveHUD3.png";
+livesHUD4 = new Image();
+livesHUD4.src = "assets/img/LiveHUD4.png";
+livesHUD5 = new Image();
+livesHUD5.src = "assets/img/LiveHUD5.png";
+livesHUD6 = new Image();
+livesHUD6.src = "assets/img/LiveHUD6.png";
+livesHUD7 = new Image();
+livesHUD7.src = "assets/img/LiveHUD7.png";
 
 // SFX
 let deathSound = new Audio("assets/audio/DeathSound.wav");

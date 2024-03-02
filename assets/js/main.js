@@ -443,7 +443,28 @@ function update()
 	radioTimer--;
 	if (radioTimer <= 0)
 	{
+		radioSelecter = randomRadioSelect(0,3);
+	}
+	// Radio Select
+	if (radioSelecter == 0)
+	{
 		//radio2Sound.play();
+		radioSelecter = -1; // Reset
+	}
+	else if (radioSelecter == 1)
+	{
+		//radio3Sound.play();
+		radioSelecter = -1; // Reset
+	}
+	else if (radioSelecter == 2)
+	{
+		//radio4Sound.play();
+		radioSelecter = -1; // Reset
+	}
+	else if (radioSelecter == 3)
+	{
+		//radio5Sound.play();
+		radioSelecter = -1; // Reset
 	}
 }
 
@@ -568,6 +589,8 @@ function draw()
 		ctx.roundRect(580,-50,340,130,50);
 		ctx.roundRect(1150,-50,700,130,50);
 		ctx.fill();
+
+
 		
 		// Text
 		ctx.fillStyle = "White";
@@ -673,6 +696,40 @@ function draw()
 				}
 			}
 		}
+
+		// Draw new HUD
+		drawFrame(hudSprite, 0, 0, 1600, 130, 0, 0, 1600, 130);
+
+		if (playerBomb.playerCurrentHP >= 7)
+		{
+			drawFrame(livesHUD7, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		else if (playerBomb.playerCurrentHP == 6)
+		{
+			drawFrame(livesHUD6, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		else if (playerBomb.playerCurrentHP == 5)
+		{
+			drawFrame(livesHUD5, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		else if (playerBomb.playerCurrentHP == 4)
+		{
+			drawFrame(livesHUD4, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		else if (playerBomb.playerCurrentHP == 3)
+		{
+			drawFrame(livesHUD3, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		else if (playerBomb.playerCurrentHP == 2)
+		{
+			drawFrame(livesHUD2, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+		else if (playerBomb.playerCurrentHP == 1)
+		{
+			drawFrame(livesHUD1, 0, 0, 1600, 130, 0, 0, 1600, 130);
+		}
+
+
 
 		// Particle display
 		//drawFrame(particleSprite, 90, 90, 90, 90, 
@@ -1187,10 +1244,19 @@ function makeLevelLayout()
 	gameUFO.ufoXPos = gameCanvas.width/2 - TILE_SIZE/2;
 
 	// Radio Timer
-	radioTimer = Math.floor(Math.random() * 10000);
+	radioTimer = randomRadioNum(1000, 10000);
 	
 	levelLoaded = true;
 }
+
+function randomRadioNum(min, max)
+ {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+ }
+ function randomRadioSelect(min, max)
+ {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+ }
 
 function drawFrame(ssImage, ssPosX, ssPosY, ssWidth, ssHeight, canvasX, canvasY, canvasWidth, canvasHeight) {
 	ctx.drawImage(ssImage, ssPosX, ssPosY, ssWidth, ssHeight, canvasX, canvasY, canvasWidth, canvasHeight);
