@@ -47,8 +47,10 @@ function GameObjectBall()
 // Create UFO (Enemy)
 function GameObjectUFO()
 {
-	// Sprite
+	// Sprites
 	this.ufoSpritesheet = new Image();
+	this.ufoPreFireSprite = new Image();
+	this.ufoFireSprite = new Image();
 	// Poisitions
 	this.ufoXPos = 0;
 	// Direction
@@ -56,7 +58,8 @@ function GameObjectUFO()
 	this.ufoDirection = "Left";
 	this.ufoFirstTime = true;
 	// Fire Status
-	this.ufoWindup = false;
+	this.ufoTimeBeforeFire = 99; // Anything but <=0
+	this.ufoPreFire = false;
 	this.ufoFire = false;
 	this.ufoTimer = 0;
 }
@@ -207,6 +210,8 @@ enemySpritesheet = new Image();
 enemySpritesheet.src = "assets/img/AsteroidSpritesheet.png"; 
 playerBomb.playerSpritesheet.src = "assets/img/AstronautSpritesheet.png"; 
 gameUFO.ufoSpritesheet.src = "assets/img/UFOSpritesheet.png";
+gameUFO.ufoPreFireSprite.src = "assets/img/Laser_Pre_Fire.png";
+gameUFO.ufoFireSprite.src = "assets/img/Laser_Fire.png";
 // Text
 textSuccessSprite = new Image();
 textSuccessSprite.src = "assets/img/Mission_Success.png";
