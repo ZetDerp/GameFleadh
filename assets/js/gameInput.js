@@ -70,6 +70,8 @@ function input(event)
 				transitionBoxY = gameCanvas.height/2-5;
 				timerNextLevelCounter = 4;
 				timerNextLevel = 0;
+				gameUFO.ufoTimer = 0;
+				gameUFO.ufoFire = false;
 				restartLevel();
 			}
 		}

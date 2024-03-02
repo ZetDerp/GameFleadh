@@ -44,6 +44,26 @@ function GameObjectBall()
 	this.ballDirection = "None";
 }
 
+// Create UFO (Enemy)
+function GameObjectUFO()
+{
+	// Sprites
+	this.ufoSpritesheet = new Image();
+	this.ufoPreFireSprite = new Image();
+	this.ufoFireSprite = new Image();
+	// Poisitions
+	this.ufoXPos = 0;
+	// Direction
+	this.ufoChangeDir = 0;
+	this.ufoDirection = "Left";
+	this.ufoFirstTime = true;
+	// Fire Status
+	this.ufoTimeBeforeFire = 99; // Anything but <=0
+	this.ufoPreFire = false;
+	this.ufoFire = false;
+	this.ufoTimer = 0;
+}
+
 // Tiles
 function GameObjectTile()
 {
@@ -68,6 +88,7 @@ function GameObjectTile()
 // 					Make Objects
 let playerBomb = new GameObjectPlayer();
 let gameBalls = [];
+let gameUFO = new GameObjectUFO();
 let gameTiles = [];
 
 // Game States
@@ -188,6 +209,9 @@ spaceshipSpritesheet.src = "assets/img/SpaceshipSpritesheet.png";
 enemySpritesheet = new Image();
 enemySpritesheet.src = "assets/img/AsteroidSpritesheet.png"; 
 playerBomb.playerSpritesheet.src = "assets/img/AstronautSpritesheet.png"; 
+gameUFO.ufoSpritesheet.src = "assets/img/UFOSpritesheet.png";
+gameUFO.ufoPreFireSprite.src = "assets/img/Laser_Pre_Fire.png";
+gameUFO.ufoFireSprite.src = "assets/img/Laser_Fire.png";
 // Text
 textSuccessSprite = new Image();
 textSuccessSprite.src = "assets/img/Mission_Success.png";
