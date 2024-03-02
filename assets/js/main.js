@@ -198,7 +198,22 @@ function update()
 		// UFO Countdown to Fire / Pre Fire
 		if (gameUFO.ufoFire == true)
 		{
+			// Check for Collision
+			if (ufoCollisionCheck())
+			{
+				asteroidHitSound.play();				// Sound
+				console.log("ufo hit");
+				currentGameStatus = gameStates.GameOver; // Change Game State to GameOver
+				playerAnimation = 0; // Reset Cycle
+				playerSSXPos = 0;
+				playerSSYPos = 0;
+				playerSwapYPos = false;
+			}
 			
+			if (gameUFO.ufoTimer <= 0)
+				gameUFO.ufoFire = false;
+			else
+				gameUFO.ufoTimer--;
 		}
 		else if (gameUFO.ufoPreFire == true)
 		{
@@ -207,6 +222,7 @@ function update()
 				console.log("FIRE");
 				gameUFO.ufoPreFire = false;
 				gameUFO.ufoFire = true;
+				gameUFO.ufoTimer = 120;
 			}
 			else
 				gameUFO.ufoTimer--;
@@ -410,6 +426,8 @@ function update()
 				transitionBoxWidth = 0;
 				transitionBoxHeight = 10;
 				transitionBoxY = gameCanvas.height/2-5;
+				gameUFO.ufoTimer = 0;
+				gameUFO.ufoFire = false;
 				restartLevel();
 			}
 		}
@@ -824,6 +842,26 @@ function ballCollisionCheck(i)
 	if (playerBomb.playerRadius + BALL_RADIUS >= hyp)
 		collisionTrigger = true;
 
+	return collisionTrigger;
+}
+
+function ufoCollisionCheck()
+{
+	let collisionTrigger = false;
+	
+	let yPosCollision = 1;
+	while (playerBomb.playerPosition >= 15 * yPosCollision)
+		yPosCollision++;
+	yPosCollision--;
+	let xPosCollision = playerBomb.playerPosition - 15 * yPosCollision;
+	
+	// Get Positions
+	let playerPointX = offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * xPosCollision);
+	let playerPointXRight = playerPointX + TILE_SIZE;
+	let ufoPointXRight = gameUFO.ufoXPos + TILE_SIZE;
+	
+	if (playerPointXRight >= gameUFO.ufoXPos + 25 && playerPointX < ufoPointXRight + 25)
+		collisionTrigger = true;
 	return collisionTrigger;
 }
 
