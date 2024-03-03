@@ -8,14 +8,6 @@
     <sets>
         <set index="1">
             <dpad index="1">
-                <dpadbutton index="8">
-                    <slots>
-                        <slot>
-                            <code>0x41</code>
-                            <mode>keyboard</mode>
-                        </slot>
-                    </slots>
-                </dpadbutton>
                 <dpadbutton index="1">
                     <slots>
                         <slot>
@@ -24,10 +16,10 @@
                         </slot>
                     </slots>
                 </dpadbutton>
-                <dpadbutton index="2">
+                <dpadbutton index="8">
                     <slots>
                         <slot>
-                            <code>0x44</code>
+                            <code>0x41</code>
                             <mode>keyboard</mode>
                         </slot>
                     </slots>
@@ -40,6 +32,14 @@
                         </slot>
                     </slots>
                 </dpadbutton>
+                <dpadbutton index="2">
+                    <slots>
+                        <slot>
+                            <code>0x44</code>
+                            <mode>keyboard</mode>
+                        </slot>
+                    </slots>
+                </dpadbutton>
             </dpad>
             <trigger index="1">
                 <throttle>positivehalf</throttle>
@@ -47,6 +47,38 @@
             <trigger index="2">
                 <throttle>positivehalf</throttle>
             </trigger>
+            <button index="1">
+                <slots>
+                    <slot>
+                        <code>0x20</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="2">
+                <slots>
+                    <slot>
+                        <code>0x20</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="3">
+                <slots>
+                    <slot>
+                        <code>0x20</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
+            <button index="4">
+                <slots>
+                    <slot>
+                        <code>0x20</code>
+                        <mode>keyboard</mode>
+                    </slot>
+                </slots>
+            </button>
         </set>
     </sets>
 </gamecontroller>
