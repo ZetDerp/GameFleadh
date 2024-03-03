@@ -755,30 +755,30 @@ function draw()
 		}
 
 		// Enemy Spawner
-		if (enemySpawnTimer == 5)
+		if (textSpawnBall == 5)
 		{
-			drawFrame(esIcon5, 0, 0, 450, 130, 1150, 0, 1600, 130);
+			drawFrame(esIcon5, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
-		else if (enemySpawnTimer == 4)
+		else if (textSpawnBall == 4)
 		{
-			drawFrame(esIcon4, 0, 0, 450, 130, 1150, 0, 1600, 130);
+			drawFrame(esIcon4, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
-		else if (enemySpawnTimer == 3)
+		else if (textSpawnBall == 3)
 		{
-			drawFrame(esIcon3, 0, 0, 450, 130, 1150, 0, 1600, 130);
+			drawFrame(esIcon3, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
-		else if (enemySpawnTimer == 2)
+		else if (textSpawnBall == 2)
 		{
-			drawFrame(esIcon2, 0, 0, 450, 130, 1150, 0, 1600, 130);
+			drawFrame(esIcon2, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
-		else if (enemySpawnTimer == 1)
+		else if (textSpawnBall == 1)
 		{
-			drawFrame(esIcon1, 0, 0, 450, 130, 1150, 0, 1600, 130);
+			drawFrame(esIcon1, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
-		//drawFrame(esIcon1, 0, 0, 450, 130, 1150, 0, 450, 130); 
-
+	
 		// Particle display
-		//drawFrame(particleSprite, 90, 90, 90, 90, 
+		//drawFrame(particleSprite,  0, 0, 360, 180, playerBomb.playerPosition.xPos, playerBomb.playerPosition.yPos, 360, 180);
+
 		//	350, 275, 90, 90);
 	}
 }
@@ -1180,6 +1180,7 @@ function makeLevelLayout()
 		
 		// Set Player Position
 		playerBomb.playerPosition = 82;
+ 
 		// Safe Tiles
 		for (let i = 81; i < 98; i++)
 		{

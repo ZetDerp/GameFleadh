@@ -277,6 +277,11 @@ esIcon2 = new Image();
 esIcon2.src = "assets/img/EnemySpawnerHUD2.png";
 esIcon1 = new Image();
 esIcon1.src = "assets/img/EnemySpawnerHUD1.png";
+// Timer
+
+// Badges
+pilotBadge = new Image();
+pilotBadge.src = "assets/img/PilotBadge.png";
 
 // SFX
 let deathSound = new Audio("assets/audio/DeathSound.wav");
