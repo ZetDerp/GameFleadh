@@ -572,7 +572,10 @@ function draw()
 		// Draw UFO
 		drawFrame(gameUFO.ufoSpritesheet, rocketSSXPos, rocketSSYPos, 90, 90, 
 				gameUFO.ufoXPos, gameCanvas.height - 100, 90, 90);
-	
+
+		// Draw Star
+		drawFrame(gameStar.starSpritesheet, 0, 0, 90, 90, 0, 0, 90, 90);	
+
 		// Draw Player
 		yPos = 1;
 		while (playerBomb.playerPosition >= 15 * yPos)
@@ -996,8 +999,7 @@ function draw()
 			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
 		}
 		
-		//drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
-		//drawFrame(tcHUDRequired, 700, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+		drawFrame(gameStar.starSpritesheet, 0, 0, 90, 90, 0, 0, 90, 90);
 	
 		// Particle display
 		//drawFrame(particleSprite,  0, 0, 360, 180, playerBomb.playerPosition.xPos, playerBomb.playerPosition.yPos, 360, 180);
@@ -1201,6 +1203,17 @@ function ufoCollisionCheck()
 	return collisionTrigger;
 }
 
+// Invincibility
+function invincibilityCollisionCheck()
+{
+	if (playerPointXRight >= gameStar.star_Xpos + 25 && playerPointX < gameStar.starYpos + 25)
+	{
+		b_isIvincibilityOn = true;
+		gameStar.b_isStarCollected = true;
+	}
+	//collisionTrigger = true;
+}
+
 function makeLevelLayout()
 {
 	gameMusic.play();
@@ -1262,6 +1275,11 @@ function makeLevelLayout()
 		gameTiles[70].tileLocked = true;
 		// No Power Ups
 		// No Trap Tiles
+
+		// Star
+		gameStar.xPos = 100;
+		gameStar.yPos = 100;
+		gameStar.b_isStarCollected = false;
 		
 		break;
 	case levels.Level2: // Level 2
