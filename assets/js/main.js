@@ -421,6 +421,7 @@ function update()
 					playerBomb.playerCurrentHP = 4; // +1 to account for restart
 					currentLevel = levels.Level1;
 					playerBomb.playerTime = 0;
+					finalTime = 0;
 				}
 				else
 					currentGameStatus = gameStates.Gameplay;
@@ -969,7 +970,6 @@ function draw()
 						drawFrame(thanksForPlayingTextSprite, 0, 0, 540, 270, 
 							550, 600, 540, 270);
 						// Rank
-						let finalTime = 0;
 						while (playerBomb.playerTime >= 60)
 						{
 							finalTime++;
@@ -987,8 +987,10 @@ function draw()
 						// 50 (BRONZE)
 						// 51
 						// 53
+						// 60 (Kieran)
 						// 70
 						// 77
+						// 350 (Kieran)
 						ctx.fillText("Time Ranks", 1200, 100);
 						ctx.fillText("Time: " + finalTime + " Seconds", 1125, 150);
 						drawFrame (pilotBadge, 0, 0, 300, 300,

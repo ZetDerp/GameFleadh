@@ -180,7 +180,7 @@ let tcHUDReq2Xpos = 1000;
 // Invincibility Collectible
 let b_isIvincibilityOn = false;
 
-
+let finalTime = 0;
 
 let returnMainMenu = false;
 
