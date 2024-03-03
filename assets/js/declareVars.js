@@ -341,6 +341,12 @@ tcHUDSlash.src = "assets/img/tcHUDSlash.png";
 // Badges
 pilotBadge = new Image();
 pilotBadge.src = "assets/img/PilotBadge.png";
+commanderBadge = new Image();
+commanderBadge.src = "assets/img/CommanderBadge.png";
+specialistBadge = new Image();
+specialistBadge.src = "assets/img/SpecialistBadge.png";
+masterBadge = new Image();
+masterBadge.src = "assets/img/MasterBadge.png";
 
 // Star
 starSpritesheet = new Image();

@@ -1040,14 +1040,14 @@ function draw()
 							1250, 700, 300*.5, 300*.5); // Always Get
 						if (finalTime < 50)
 						{
-							drawFrame (pilotBadge, 0, 0, 300, 300,
+							drawFrame (commanderBadge, 0, 0, 300, 300,
 									1250, 525, 300*.5, 300*.5); // Third Rank
 							if (finalTime < 45)
 							{
-								drawFrame (pilotBadge, 0, 0, 300, 300,
+								drawFrame (specialistBadge, 0, 0, 300, 300,
 									1250, 350, 300*.5, 300*.5); // Second Rank
 								if (finalTime < 40)
-									drawFrame (pilotBadge, 0, 0, 300, 300,
+									drawFrame (masterBadge, 0, 0, 300, 300,
 										1250, 175, 300*.5, 300*.5); // First Rank
 							}
 						}
