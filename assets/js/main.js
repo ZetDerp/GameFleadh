@@ -582,119 +582,6 @@ function draw()
 			drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
 					offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * xPos, offsetTile + offsetTileBG + (TILE_SIZE + offsetTileBG) * yPos, TILE_SIZE, TILE_SIZE);
 
-		// Boxes for UI
-		ctx.fillStyle = "gray";
-		ctx.beginPath();
-		//ctx.roundRect(-50,-50,550,130,50);
-		//ctx.roundRect(580,-50,340,130,50);
-		//ctx.roundRect(1150,-50,700,130,50);
-		ctx.fill();
-		
-		// Text
-		ctx.fillStyle = "White";
-		//ctx.fillText("Lives Remaining: " + playerBomb.playerCurrentHP, 10, 50);
-		//ctx.fillText("Points: " + tileScore + "/" + tileQuota, textXOffset + 600, textYOffset);
-		//ctx.fillText("Enemy Timer: " + textSpawnBall, textXOffset + 1200, textYOffset);
-
-		// Debug
-		if (enableDebug)
-		{
-			// Player Hitbox
-			yPos = 1;
-				while (playerBomb.playerPosition >= 15 * yPos)
-				yPos++;
-			yPos--;
-			xPos = playerBomb.playerPosition - 15 * yPos;
-			ctx.arc(offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * xPos), offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * yPos), playerBomb.playerRadius, 0, 2 * Math.PI);
-			ctx.fillStyle = "green";
-			ctx.fill();
-		}
-		
-		// Power Up Message
-		if (displayPowerUpMessage == true)
-		{
-			if (getMessagePosition == true)
-			{
-				messageXPos = 50;
-				messageYPos = gameCanvas.height - 50;
-				powerUpMessageTimer = 0;
-				getMessagePosition = false;
-			}
-			ctx.fillStyle = "gray";
-			ctx.beginPath();
-			ctx.roundRect(messageXPos - 20, messageYPos - 60, 600, 300, 50);
-			ctx.fill();
-			ctx.stroke();
-			ctx.fillStyle = "white";
-			ctx.fillText(powerUpMessage, messageXPos, messageYPos);
-			
-			powerUpMessageTimer++;
-			if (powerUpMessageTimer >= powerUpMessageExpire)
-			{
-				displayPowerUpMessage = false;
-				getMessagePosition = true;
-				powerUpMessageTimer = 0;
-			}
-		}
-		
-		// Overlay Extra Information
-		if (currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
-		{
-			ctx.fillStyle = "rgba(1, 0, 0, 0.7)";
-			// Display Win Message Over Game
-			if (transitionBoxWidth < gameCanvas.width - 20)
-			{
-				transitionBoxWidth+=transitionSpeed;
-				if (transitionBoxWidth > gameCanvas.width - 20)
-					transitionBoxWidth = gameCanvas.width - 20;
-			}
-			else if (transitionBoxWidth == gameCanvas.width - 20 && transitionBoxHeight < gameCanvas.height - 60)
-			{
-				transitionBoxY-=transitionSpeed;
-				transitionBoxHeight+=transitionSpeed*2;
-			}
-			ctx.fillRect(10, transitionBoxY, transitionBoxWidth, transitionBoxHeight); // Draw Box (10)
-			ctx.fillStyle = "white";
-			if (currentGameStatus == gameStates.LevelWin)
-			{
-				//ctx.fillText("Win Screen", 0, 100);
-				if (!(transitionBoxHeight < gameCanvas.height - 60))
-				{
-					drawFrame(textSuccessSprite, 0, 0, 540, 180, 500, 250, 540, 180);
-					ctx.fillText("Resuming In: " + timerNextLevelCounter, 550, 500);
-					// Draw Animation
-					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
-							350, 275, TILE_SIZE, TILE_SIZE);
-					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
-							1100, 275, TILE_SIZE, TILE_SIZE);
-					
-					// Thank you Message
-					if (currentLevel == levels.Level6)
-					{
-						drawFrame(thanksPlayingSprite, 0, 0, 540, 540, 
-							-100, 280, 540*1.5, 540*1.5);
-						drawFrame(thanksForPlayingTextSprite, 0, 0, 540, 270, 
-							550, 600, 540, 270);
-					}
-				}
-			}
-			// Display Game Over Message
-			else 
-			{
-				//ctx.fillText("Game Over Screen", 0, 100);
-				if (!(transitionBoxHeight < gameCanvas.height - 60))
-				{
-					drawFrame(textFailedSprite, 0, 0, 540, 180, 500, 250, 540, 180);
-					ctx.fillText("Resuming In: " + timerNextLevelCounter, 550, 500);
-					// Draw Animation
-					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
-							350, 275, TILE_SIZE, TILE_SIZE);
-					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
-							1100, 275, TILE_SIZE, TILE_SIZE);
-				}
-			}
-		}
-
 		// Draw new HUD
 		drawFrame(hudSprite, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		if (playerBomb.playerCurrentHP >= 14){
@@ -976,24 +863,123 @@ function draw()
 
 		// HUD TileCount Required
 		if (tileQuota == 6){
-			drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
-			drawFrame(tcHUDRequired, 700, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 0
+			drawFrame(tcHUDRequired, 600, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 6
 		}
 		else if (tileQuota == 12){
-			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
-			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 1
+			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 2
 		}
 		else if (tileQuota == 20){
-			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
-			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 2
+			drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 0
 		}
 		else if (tileQuota == 10){
-			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
-			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 1
+			drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 0
 		}
 		else if (tileQuota == 49){
-			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
-			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 400, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 4
+			drawFrame(tcHUDRequired, 900, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 9
+		}
+
+		// Debug
+		if (enableDebug)
+		{
+			// Player Hitbox
+			yPos = 1;
+				while (playerBomb.playerPosition >= 15 * yPos)
+				yPos++;
+			yPos--;
+			xPos = playerBomb.playerPosition - 15 * yPos;
+			ctx.arc(offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * xPos), offsetTile + offsetTileBG + playerBomb.playerRadius + ((TILE_SIZE + offsetTileBG) * yPos), playerBomb.playerRadius, 0, 2 * Math.PI);
+			ctx.fillStyle = "green";
+			ctx.fill();
+		}
+		
+		// Power Up Message
+		if (displayPowerUpMessage == true)
+		{
+			if (getMessagePosition == true)
+			{
+				messageXPos = 50;
+				messageYPos = gameCanvas.height - 50;
+				powerUpMessageTimer = 0;
+				getMessagePosition = false;
+			}
+			ctx.fillStyle = "gray";
+			ctx.beginPath();
+			ctx.roundRect(messageXPos - 20, messageYPos - 60, 600, 300, 50);
+			ctx.fill();
+			ctx.stroke();
+			ctx.fillStyle = "white";
+			ctx.fillText(powerUpMessage, messageXPos, messageYPos);
+			
+			powerUpMessageTimer++;
+			if (powerUpMessageTimer >= powerUpMessageExpire)
+			{
+				displayPowerUpMessage = false;
+				getMessagePosition = true;
+				powerUpMessageTimer = 0;
+			}
+		}
+		
+		// Overlay Extra Information
+		if (currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
+		{
+			ctx.fillStyle = "rgba(1, 0, 0, 0.7)";
+			// Display Win Message Over Game
+			if (transitionBoxWidth < gameCanvas.width - 20)
+			{
+				transitionBoxWidth+=transitionSpeed;
+				if (transitionBoxWidth > gameCanvas.width - 20)
+					transitionBoxWidth = gameCanvas.width - 20;
+			}
+			else if (transitionBoxWidth == gameCanvas.width - 20 && transitionBoxHeight < gameCanvas.height - 60)
+			{
+				transitionBoxY-=transitionSpeed;
+				transitionBoxHeight+=transitionSpeed*2;
+			}
+			ctx.fillRect(10, transitionBoxY, transitionBoxWidth, transitionBoxHeight); // Draw Box (10)
+			ctx.fillStyle = "white";
+			if (currentGameStatus == gameStates.LevelWin)
+			{
+				//ctx.fillText("Win Screen", 0, 100);
+				if (!(transitionBoxHeight < gameCanvas.height - 60))
+				{
+					drawFrame(textSuccessSprite, 0, 0, 540, 180, 500, 250, 540, 180);
+					ctx.fillText("Resuming In: " + timerNextLevelCounter, 550, 500);
+					// Draw Animation
+					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+							350, 275, TILE_SIZE, TILE_SIZE);
+					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+							1100, 275, TILE_SIZE, TILE_SIZE);
+					
+					// Thank you Message
+					if (currentLevel == levels.Level6)
+					{
+						drawFrame(thanksPlayingSprite, 0, 0, 540, 540, 
+							-100, 280, 540*1.5, 540*1.5);
+						drawFrame(thanksForPlayingTextSprite, 0, 0, 540, 270, 
+							550, 600, 540, 270);
+					}
+				}
+			}
+			// Display Game Over Message
+			else 
+			{
+				//ctx.fillText("Game Over Screen", 0, 100);
+				if (!(transitionBoxHeight < gameCanvas.height - 60))
+				{
+					drawFrame(textFailedSprite, 0, 0, 540, 180, 500, 250, 540, 180);
+					ctx.fillText("Resuming In: " + timerNextLevelCounter, 550, 500);
+					// Draw Animation
+					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+							350, 275, TILE_SIZE, TILE_SIZE);
+					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
+							1100, 275, TILE_SIZE, TILE_SIZE);
+				}
+			}
 		}
 		
 		//drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
@@ -1679,5 +1665,7 @@ function trapLosePoints()
 {
 	trapSound.play();						// Sound
 	tileScore-=3; // Have to deduct 4 since the player always gains +1
+	if (tileScore < 0)
+		tileScore = 0;
 	powerUpMessage = "-2 Points.";
 }
