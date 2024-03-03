@@ -15,7 +15,7 @@ function GameObjectPlayer()
 	this.playerSpritesheet = new Image();
 	
 	// Health
-	this.playerCurrentHP = 3;
+	this.playerCurrentHP = 6;
 	// Locked Score + Multiplier
 	this.playerLockedScore = 0;
 	this.playerMultiplier = 1;
@@ -266,6 +266,17 @@ livesHUD13 = new Image();
 livesHUD13.src = "assets/img/LiveHUD13.png";
 livesHUD14 = new Image();
 livesHUD14.src = "assets/img/LiveHUD14.png";
+// Enemy Spawner
+esIcon5 = new Image();
+esIcon5.src = "assets/img/EnemySpawnerHUD5.png";
+esIcon4 = new Image();
+esIcon4.src = "assets/img/EnemySpawnerHUD4.png";
+esIcon3 = new Image();
+esIcon3.src = "assets/img/EnemySpawnerHUD3.png";
+esIcon2 = new Image();
+esIcon2.src = "assets/img/EnemySpawnerHUD2.png";
+esIcon1 = new Image();
+esIcon1.src = "assets/img/EnemySpawnerHUD1.png";
 
 // SFX
 let deathSound = new Audio("assets/audio/DeathSound.wav");

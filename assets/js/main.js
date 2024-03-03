@@ -585,18 +585,16 @@ function draw()
 		// Boxes for UI
 		ctx.fillStyle = "gray";
 		ctx.beginPath();
-		ctx.roundRect(-50,-50,550,130,50);
+		//ctx.roundRect(-50,-50,550,130,50);
 		ctx.roundRect(580,-50,340,130,50);
-		ctx.roundRect(1150,-50,700,130,50);
+		//ctx.roundRect(1150,-50,700,130,50);
 		ctx.fill();
-
-
 		
 		// Text
 		ctx.fillStyle = "White";
-		ctx.fillText("Lives Remaining: " + playerBomb.playerCurrentHP, 10, 50);
+		//ctx.fillText("Lives Remaining: " + playerBomb.playerCurrentHP, 10, 50);
 		ctx.fillText("Points: " + tileScore + "/" + tileQuota, textXOffset + 600, textYOffset);
-		ctx.fillText("Enemy Timer: " + textSpawnBall, textXOffset + 1200, textYOffset);
+		//ctx.fillText("Enemy Timer: " + textSpawnBall, textXOffset + 1200, textYOffset);
 
 		// Debug
 		if (enableDebug)
@@ -756,7 +754,28 @@ function draw()
 			drawFrame(livesHUD1, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
 
-
+		// Enemy Spawner
+		if (enemySpawnTimer == 5)
+		{
+			drawFrame(esIcon5, 0, 0, 450, 130, 1150, 0, 1600, 130);
+		}
+		else if (enemySpawnTimer == 4)
+		{
+			drawFrame(esIcon4, 0, 0, 450, 130, 1150, 0, 1600, 130);
+		}
+		else if (enemySpawnTimer == 3)
+		{
+			drawFrame(esIcon3, 0, 0, 450, 130, 1150, 0, 1600, 130);
+		}
+		else if (enemySpawnTimer == 2)
+		{
+			drawFrame(esIcon2, 0, 0, 450, 130, 1150, 0, 1600, 130);
+		}
+		else if (enemySpawnTimer == 1)
+		{
+			drawFrame(esIcon1, 0, 0, 450, 130, 1150, 0, 1600, 130);
+		}
+		//drawFrame(esIcon1, 0, 0, 450, 130, 1150, 0, 450, 130); 
 
 		// Particle display
 		//drawFrame(particleSprite, 90, 90, 90, 90, 
