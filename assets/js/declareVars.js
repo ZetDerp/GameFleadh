@@ -173,10 +173,24 @@ let timerNextLevel = 0;
 let radioTimer = 0;
 let radioSelecter = -1;
 // HUD Timer
-let tcHUDCurrent1Xpos = 700;
-let tcHUDCurrent2Xpos = 780;
-let tcHUDReq1Xpos = 920;
-let tcHUDReq2Xpos = 1000;
+let tcHUDCurrent1Xpos = 640;
+let tcHUDCurrent2Xpos = 700;
+let tcHUDSlashXPos = 740;
+let tcHUDReq1Xpos = 800;
+let tcHUDReq2Xpos = 860;
+let tcSSWidth = 80;
+let tcSS_0 = 0;
+let tcSS_1 = 80;
+let tcSS_2 = 160;
+let tcSS_3 = 240;
+let tcSS_4 = 320;
+let tcSS_5 = 400;
+let tcSS_6 = 480;
+let tcSS_7 = 560;
+let tcSS_8 = 640;
+let tcSS_9 = 720;
+
+
 // Invincibility Collectible
 let b_isIvincibilityOn = false;
 
@@ -249,6 +263,8 @@ textSuccessSprite = new Image();
 textSuccessSprite.src = "assets/img/Mission_Success.png";
 textFailedSprite = new Image();
 textFailedSprite.src = "assets/img/Mission_Failed.png";
+controlSprite = new Image();
+controlSprite.src = "assets/img/ControlsText.png";
 
 // Particle
 particleSprite = new Image();

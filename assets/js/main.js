@@ -477,9 +477,11 @@ function draw()
 	{
 		// Title Animation
 		drawFrame(titleSpritesheet, 0, titleSSYPos, 720, 256, 
-						500, 300, 720, 256);
+						450, 200, 720, 256);
 		ctx.fillStyle = "white";
-		ctx.fillText("Press Space (or X) to Start", 550, 700);
+		//ctx.fillText("Press Space (or X) to Start", 550, 700);
+		drawFrame(controlSprite, 0, 0, 1200, 200, 250, 440, 1200, 200);
+
 	}
 	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
@@ -652,241 +654,264 @@ function draw()
 
 		// HUD TileCount Current
 		if (tileScore == 0){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 1){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 2){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 3){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 4){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 5){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_5, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 6){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_6, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 7){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_7, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 8){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_8, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 9){
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_9, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 10){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 11){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 12){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 13){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 14){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 15){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_5, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 16){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_6, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 17){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_7, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 18){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_8, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 19){
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_9, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 20){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 21){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 22){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 23){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 24){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 25){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_5, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 26){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_6, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 27){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_7, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 28){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_8, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 29){
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_9, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 30){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 31){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 32){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 33){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 34){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 35){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_5, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 36){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_6, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 37){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_7, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 38){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_8, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 39){
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_9, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 40){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 41){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 42){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 43){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_3, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 44){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 45){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_5, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 46){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_6, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 47){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_7, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 48){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_8, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 49){
-			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_4, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_9, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 50){
-			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_5, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_0, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 51){
-			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_5, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_1, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 		else if (tileScore == 52){
-			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
-			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, tcSS_5, 0, tcSSWidth, 130, tcHUDCurrent1Xpos, 0, tcSSWidth, 130);
+			drawFrame(tcHUDCurrent, tcSS_2, 0, tcSSWidth, 130, tcHUDCurrent2Xpos, 0, tcSSWidth, 130);
 		}
 
 		// HUD Slash
-		drawFrame(tcHUDSlash, 0, 0, 90, 130, 860, 0, 90, 130);
+		drawFrame(tcHUDSlash, 0, 0, 90, 130, tcHUDSlashXPos, 0, 90, 130);
 
 		// HUD TileCount Required
 		if (tileQuota == 6){
-			drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 0
-			drawFrame(tcHUDRequired, 600, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 6
+			drawFrame(tcHUDRequired, tcSS_0, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 0
+			drawFrame(tcHUDRequired, tcSS_6, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 6
 		}
 		else if (tileQuota == 12){
-			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 1
-			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 2
+			drawFrame(tcHUDRequired, tcSS_1, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 1
+			drawFrame(tcHUDRequired, tcSS_2, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 2
 		}
 		else if (tileQuota == 20){
-			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 2
-			drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 0
+			drawFrame(tcHUDRequired, tcSS_2, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 2
+			drawFrame(tcHUDRequired, tcSS_0, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 0
 		}
 		else if (tileQuota == 10){
-			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 1
-			drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 0
+			drawFrame(tcHUDRequired, tcSS_1, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 1
+			drawFrame(tcHUDRequired, tcSS_0, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 0
 		}
 		else if (tileQuota == 49){
-			drawFrame(tcHUDRequired, 400, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130); // 4
-			drawFrame(tcHUDRequired, 900, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130); // 9
+			drawFrame(tcHUDRequired, tcSS_4, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 4
+			drawFrame(tcHUDRequired, tcSS_9, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 9
+		}
+
+
+
+		if (tileQuota == 6){
+			drawFrame(tcHUDRequired, tcSS_0, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 0
+			drawFrame(tcHUDRequired, tcSS_6, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 6
+		}
+		else if (tileQuota == 12){
+			drawFrame(tcHUDRequired, tcSS_1, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 1
+			drawFrame(tcHUDRequired, tcSS_2, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 2
+		}
+		else if (tileQuota == 20){
+			drawFrame(tcHUDRequired, tcSS_2, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 2
+			drawFrame(tcHUDRequired, tcSS_0, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 0
+		}
+		else if (tileQuota == 10){
+			drawFrame(tcHUDRequired, tcSS_1, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 1
+			drawFrame(tcHUDRequired, tcSS_0, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 0
+		}
+		else if (tileQuota == 49){
+			drawFrame(tcHUDRequired, tcSS_4, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 4
+			drawFrame(tcHUDRequired, tcSS_9, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 9
 		}
 
 		// Debug
