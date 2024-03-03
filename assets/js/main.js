@@ -24,10 +24,8 @@ function update()
 		break;
 	case gameStates.Gameplay:
 	
-		// Debug
-		if (enableDebug)
-		{
-		}
+		// Player Playtime
+		playerBomb.playerTime++;
 	
 		// Update the Tile the Player walks Over
 		if (playerInput == "Up" || playerInput == "Down" || playerInput == "Left" || playerInput == "Right")
@@ -422,6 +420,8 @@ function update()
 					currentGameStatus = gameStates.MainMenu;
 					playerBomb.playerCurrentHP = 4; // +1 to account for restart
 					currentLevel = levels.Level1;
+					playerBomb.playerTime = 0;
+					finalTime = 0;
 				}
 				else
 					currentGameStatus = gameStates.Gameplay;
@@ -631,7 +631,10 @@ function draw()
 		}
 
 		// Enemy Spawner
-		if (textSpawnBall == 5){
+		if (textSpawnBall >= 6){
+			drawFrame(esIcon6, 0, 0, 450, 130, 1150, 0, 450, 130);
+		}
+		else if (textSpawnBall == 5){
 			drawFrame(esIcon5, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
 		else if (textSpawnBall == 4){
@@ -958,14 +961,54 @@ function draw()
 					drawFrame(playerBomb.playerSpritesheet, playerSSXPos, playerSSYPos, 90, 90, 
 							1100, 275, TILE_SIZE, TILE_SIZE);
 					
-					// Thank you Message
+					// Thank you Message + Rank
 					if (currentLevel == levels.Level6)
 					{
+						// Thank you Message
 						drawFrame(thanksPlayingSprite, 0, 0, 540, 540, 
 							-100, 280, 540*1.5, 540*1.5);
 						drawFrame(thanksForPlayingTextSprite, 0, 0, 540, 270, 
 							550, 600, 540, 270);
-					}
+						// Rank
+						while (playerBomb.playerTime >= 60)
+						{
+							finalTime++;
+							playerBomb.playerTime-=60;
+						}
+						console.log("Completed in " + finalTime + " Seconds");
+						// Final Times Taken (Seconds)
+						// 36
+						// 39 (GOLD)
+						// 40 x3
+						// 43 x2
+						// 44 x2
+						// 45 (SILVER)
+						// 46
+						// 50 (BRONZE)
+						// 51
+						// 53
+						// 60 (Kieran)
+						// 70
+						// 77
+						// 350 (Kieran)
+						ctx.fillText("Time Ranks", 1200, 100);
+						ctx.fillText("Time: " + finalTime + " Seconds", 1125, 150);
+						drawFrame (pilotBadge, 0, 0, 300, 300,
+							1250, 700, 300*.5, 300*.5); // Always Get
+						if (finalTime < 50)
+						{
+							drawFrame (pilotBadge, 0, 0, 300, 300,
+									1250, 525, 300*.5, 300*.5); // Third Rank
+							if (finalTime < 45)
+							{
+								drawFrame (pilotBadge, 0, 0, 300, 300,
+									1250, 350, 300*.5, 300*.5); // Second Rank
+								if (finalTime < 40)
+									drawFrame (pilotBadge, 0, 0, 300, 300,
+										1250, 175, 300*.5, 300*.5); // First Rank
+							}
+						}
+					} 
 				}
 			}
 			// Display Game Over Message
@@ -1233,6 +1276,7 @@ function makeLevelLayout()
 	gameUFO.ufoFire = false;
 	gameUFO.ufoChangeDir = 0;
 	gameUFO.ufoTimeBeforeFire = (Math.floor(Math.random() * 4) + 1) * 60; // Range: 1 - 5 Seconds
+	textSpawnBall = 5;
 	
 	switch (currentLevel)
 	{
