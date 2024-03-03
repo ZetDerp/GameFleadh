@@ -481,6 +481,13 @@ function draw()
 		ctx.fillStyle = "white";
 		//ctx.fillText("Press Space (or X) to Start", 550, 700);
 		drawFrame(controlSprite, 0, 0, 1200, 200, 250, 440, 1200, 200);
+		if (b_isTitleScreenSoundPlayed == false)
+		{
+			splashScreenSound.play();
+			b_isTitleScreenSoundPlayed = true;
+		}
+		
+		
 
 	}
 	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
@@ -553,8 +560,11 @@ function draw()
 			for (let i = 0; i < gameBalls.length; i++)
 			{
 				ctx.beginPath();
-				if (gameBalls[i].ballCollision == false)
+				if (gameBalls[i].ballCollision == false){
 					ctx.fillStyle = "pink";
+					// drawFrame(enemySpritesheetInactive, enemySSXPos, enemySSYPos, 50, 50, 
+					// 	gameBalls[i].ballXPos + BALL_RADIUS - 25, gameBalls[i].ballYPos + BALL_RADIUS - 25, 50, 50);
+					 }
 				else
 					ctx.fillStyle = "orange";
 				//ctx.arc(gameBalls[i].ballXPos + BALL_RADIUS, gameBalls[i].ballYPos + BALL_RADIUS, BALL_RADIUS, 0, 2 * Math.PI);
@@ -1015,6 +1025,7 @@ function draw()
 						// 60 (Kieran)
 						// 70
 						// 77
+						// 78 (Jake)
 						// 350 (Kieran)
 						ctx.fillText("Time Ranks", 1200, 100);
 						ctx.fillText("Time: " + finalTime + " Seconds", 1125, 150);
