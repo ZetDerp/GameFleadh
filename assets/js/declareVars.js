@@ -156,6 +156,12 @@ let timerNextLevel = 0;
 // Radio Timer
 let radioTimer = 0;
 let radioSelecter = -1;
+// HUD Timer
+let tcHUDCurrent1Xpos = 700;
+let tcHUDCurrent2Xpos = 780;
+let tcHUDReq1Xpos = 920;
+let tcHUDReq2Xpos = 1000;
+
 
 let returnMainMenu = false;
 
@@ -277,7 +283,15 @@ esIcon2 = new Image();
 esIcon2.src = "assets/img/EnemySpawnerHUD2.png";
 esIcon1 = new Image();
 esIcon1.src = "assets/img/EnemySpawnerHUD1.png";
-// Timer
+// TileCount
+tcHUDCurrent = new Image();
+tcHUDCurrent.src = "assets/img/tcHUD.png";
+tcHUDRequired = new Image();
+tcHUDRequired.src = "assets/img/tcHUDRequired.png";
+tcHUDHighlight = new Image();
+tcHUDHighlight.src = "assets/img/tcHUDHighlight.png";
+tcHUDSlash = new Image();
+tcHUDSlash.src = "assets/img/tcHUDSlash.png";
 
 // Badges
 pilotBadge = new Image();

@@ -586,14 +586,14 @@ function draw()
 		ctx.fillStyle = "gray";
 		ctx.beginPath();
 		//ctx.roundRect(-50,-50,550,130,50);
-		ctx.roundRect(580,-50,340,130,50);
+		//ctx.roundRect(580,-50,340,130,50);
 		//ctx.roundRect(1150,-50,700,130,50);
 		ctx.fill();
 		
 		// Text
 		ctx.fillStyle = "White";
 		//ctx.fillText("Lives Remaining: " + playerBomb.playerCurrentHP, 10, 50);
-		ctx.fillText("Points: " + tileScore + "/" + tileQuota, textXOffset + 600, textYOffset);
+		//ctx.fillText("Points: " + tileScore + "/" + tileQuota, textXOffset + 600, textYOffset);
 		//ctx.fillText("Enemy Timer: " + textSpawnBall, textXOffset + 1200, textYOffset);
 
 		// Debug
@@ -697,84 +697,307 @@ function draw()
 
 		// Draw new HUD
 		drawFrame(hudSprite, 0, 0, 1600, 130, 0, 0, 1600, 130);
-		if (playerBomb.playerCurrentHP >= 14)
-		{
+		if (playerBomb.playerCurrentHP >= 14){
 			drawFrame(livesHUD14, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		if (playerBomb.playerCurrentHP == 13)
-		{
+		if (playerBomb.playerCurrentHP == 13){
 			drawFrame(livesHUD13, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		if (playerBomb.playerCurrentHP == 12)
-		{
+		if (playerBomb.playerCurrentHP == 12){
 			drawFrame(livesHUD12, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		if (playerBomb.playerCurrentHP == 11)
-		{
+		if (playerBomb.playerCurrentHP == 11){
 			drawFrame(livesHUD11, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		if (playerBomb.playerCurrentHP == 10)
-		{
+		if (playerBomb.playerCurrentHP == 10){
 			drawFrame(livesHUD10, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		if (playerBomb.playerCurrentHP == 9)
-		{
+		if (playerBomb.playerCurrentHP == 9){
 			drawFrame(livesHUD9, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		if (playerBomb.playerCurrentHP == 8)
-		{
+		if (playerBomb.playerCurrentHP == 8){
 			drawFrame(livesHUD8, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		if (playerBomb.playerCurrentHP == 7)
-		{
+		if (playerBomb.playerCurrentHP == 7){
 			drawFrame(livesHUD7, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		else if (playerBomb.playerCurrentHP == 6)
-		{
+		else if (playerBomb.playerCurrentHP == 6){
 			drawFrame(livesHUD6, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		else if (playerBomb.playerCurrentHP == 5)
-		{
+		else if (playerBomb.playerCurrentHP == 5){
 			drawFrame(livesHUD5, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		else if (playerBomb.playerCurrentHP == 4)
-		{
+		else if (playerBomb.playerCurrentHP == 4){
 			drawFrame(livesHUD4, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		else if (playerBomb.playerCurrentHP == 3)
-		{
+		else if (playerBomb.playerCurrentHP == 3){
 			drawFrame(livesHUD3, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		else if (playerBomb.playerCurrentHP == 2)
-		{
+		else if (playerBomb.playerCurrentHP == 2){
 			drawFrame(livesHUD2, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
-		else if (playerBomb.playerCurrentHP == 1)
-		{
+		else if (playerBomb.playerCurrentHP == 1){
 			drawFrame(livesHUD1, 0, 0, 1600, 130, 0, 0, 1600, 130);
 		}
 
 		// Enemy Spawner
-		if (textSpawnBall == 5)
-		{
+		if (textSpawnBall == 5){
 			drawFrame(esIcon5, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
-		else if (textSpawnBall == 4)
-		{
+		else if (textSpawnBall == 4){
 			drawFrame(esIcon4, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
-		else if (textSpawnBall == 3)
-		{
+		else if (textSpawnBall == 3){
 			drawFrame(esIcon3, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
-		else if (textSpawnBall == 2)
-		{
+		else if (textSpawnBall == 2){
 			drawFrame(esIcon2, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
-		else if (textSpawnBall == 1)
-		{
+		else if (textSpawnBall == 1){
 			drawFrame(esIcon1, 0, 0, 450, 130, 1150, 0, 450, 130);
 		}
+
+		// HUD TileCount Current
+		if (tileScore == 0){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 1){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 2){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 3){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 4){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 5){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 6){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 7){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 8){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 9){
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 10){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 11){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 12){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 13){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 14){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 15){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 16){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 17){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 18){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 19){
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 20){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 21){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 22){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 23){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 24){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 25){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 26){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 27){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 28){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 29){
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 30){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 31){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 32){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 33){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 34){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 35){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 36){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 37){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 38){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 39){
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 40){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 41){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 42){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 43){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 300, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 44){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 45){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 46){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 600, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 47){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 700, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 48){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 800, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 49){
+			drawFrame(tcHUDCurrent, 400, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 900, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 50){
+			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 0, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 51){
+			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 100, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+		else if (tileScore == 52){
+			drawFrame(tcHUDCurrent, 500, 0, 100, 130, tcHUDCurrent1Xpos, 0, 100, 130);
+			drawFrame(tcHUDCurrent, 200, 0, 100, 130, tcHUDCurrent2Xpos, 0, 100, 130);
+		}
+
+		// HUD Slash
+		drawFrame(tcHUDSlash, 0, 0, 90, 130, 860, 0, 90, 130);
+
+		// HUD TileCount Required
+		if (tileQuota == 6){
+			drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 700, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+		}
+		else if (tileQuota == 12){
+			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+		}
+		else if (tileQuota == 20){
+			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+		}
+		else if (tileQuota == 10){
+			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+		}
+		else if (tileQuota == 49){
+			drawFrame(tcHUDRequired, 100, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
+			drawFrame(tcHUDRequired, 200, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
+		}
+		
+		//drawFrame(tcHUDRequired, 0, 0, 100, 130, tcHUDReq1Xpos, 0, 100, 130);
+		//drawFrame(tcHUDRequired, 700, 0, 100, 130, tcHUDReq2Xpos, 0, 100, 130);
 	
 		// Particle display
 		//drawFrame(particleSprite,  0, 0, 360, 180, playerBomb.playerPosition.xPos, playerBomb.playerPosition.yPos, 360, 180);
