@@ -1020,13 +1020,13 @@ function draw()
 						console.log("Completed in " + finalTime + " Seconds");
 						// Final Times Taken (Seconds)
 						// 36
-						// 39 (GOLD)
+						// 39 
 						// 40 x3
 						// 43 x2
 						// 44 x2
-						// 45 (SILVER)
+						// 45 
 						// 46
-						// 50 (BRONZE)
+						// 50 
 						// 51
 						// 53
 						// 60 (Kieran)
@@ -1038,15 +1038,15 @@ function draw()
 						ctx.fillText("Time: " + finalTime + " Seconds", 1125, 150);
 						drawFrame (pilotBadge, 0, 0, 300, 300,
 							1250, 700, 300*.5, 300*.5); // Always Get
-						if (finalTime < 50)
+						if (finalTime < 90)
 						{
 							drawFrame (pilotBadge, 0, 0, 300, 300,
 									1250, 525, 300*.5, 300*.5); // Third Rank
-							if (finalTime < 45)
+							if (finalTime < 85)
 							{
 								drawFrame (pilotBadge, 0, 0, 300, 300,
 									1250, 350, 300*.5, 300*.5); // Second Rank
-								if (finalTime < 40)
+								if (finalTime < 80)
 									drawFrame (pilotBadge, 0, 0, 300, 300,
 										1250, 175, 300*.5, 300*.5); // First Rank
 							}
