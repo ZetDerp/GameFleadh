@@ -189,6 +189,8 @@ let tcSS_6 = 480;
 let tcSS_7 = 560;
 let tcSS_8 = 640;
 let tcSS_9 = 720;
+// Title Screen Sound
+let b_isTitleScreenSoundPlayed = false;
 
 
 // Invincibility Collectible
@@ -254,6 +256,8 @@ spaceshipSpritesheet.src = "assets/img/SpaceshipSpritesheet.png";
 // Player + Enemy Spritesheets
 enemySpritesheet = new Image();
 enemySpritesheet.src = "assets/img/AsteroidSpritesheet.png"; 
+enemySpritesheetInactive = new Image();
+enemySpritesheetInactive.src = "assets/img/AsteroidSpritesheetInactive.png"; 
 playerBomb.playerSpritesheet.src = "assets/img/AstronautSpritesheet.png"; 
 gameUFO.ufoSpritesheet.src = "assets/img/UFOSpritesheet.png";
 gameUFO.ufoPreFireSprite.src = "assets/img/Laser_Pre_Fire.png";
@@ -355,9 +359,12 @@ let crowdLoseSound = new Audio("assets/audio/CrowdLoseSound.wav"); // Plays when
 let crowdWinSound = new Audio("assets/audio/CrowdCheerSound.wav"); // Plays when beat last level 			
 let levelStartSound = new Audio("assets/audio/RadioSound.wav"); // Play on Mission Failed screen OR player respawn???
 let splashScreenSound = new Audio("assets/audio/ExitLevelComplete.wav");
+splashScreenSound.loop = false;
+let countdownSound = new Audio("assets/audio/Countdown.wav"); // Plays before new gameplus					// NOT IN
 let barrierBreak1Sound = new Audio("assets/audio/BarrierBreak1.wav"); 										
 let barrierBreak2Sound = new Audio("assets/audio/BarrierBreak2.wav"); 										
 //let countdownSound = new Audio("assets/audio/Countdown.wav"); // Plays before new gameplus					// NOT INCLUDING
+
 let missionSuccessSound = new Audio("assets/audio/MissionSuccessSound.wav"); 						
 missionSuccessSound.volume = 0.7;
 // Radio
