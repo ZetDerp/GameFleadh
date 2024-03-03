@@ -41,6 +41,7 @@ function input(event)
 						currentGameStatus = gameStates.MainMenu;
 						playerBomb.playerCurrentHP = 3;
 						returnMainMenu = true;
+						finalTime = 0;
 						break;
 					}
 					transitionBoxWidth = 0;
