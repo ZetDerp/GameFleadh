@@ -63,7 +63,6 @@ function input(event)
 					playerBomb.playerCurrentHP = 4; // +1 to account for restart
 					currentLevel = levels.Level1;
 					playerBomb.playerTime = 0;
-					finalTime = 0;
 				}
 				else
 					currentGameStatus = gameStates.Gameplay;
@@ -74,6 +73,7 @@ function input(event)
 				timerNextLevel = 0;
 				gameUFO.ufoTimer = 0;
 				gameUFO.ufoFire = false;
+				finalTime = 0;
 				restartLevel();
 			}
 		}

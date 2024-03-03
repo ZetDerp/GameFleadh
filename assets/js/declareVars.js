@@ -351,21 +351,22 @@ let tilesReqSound = new Audio("assets/audio/TileRequired.wav");
 let powerUpSound = new Audio("assets/audio/Powerup.wav");
 let trapSound = new Audio("assets/audio/TrapTileSound.wav");
 let asteroidHitSound = new Audio("assets/audio/ExplosionSound.wav");
-//let playerMoveSound = new Audio("assets/audio/woohooSound.wav"); //not in (might be annoying)
-let crowdLoseSound = new Audio("assets/audio/CrowdLoseSound.wav"); // Plays when run out of lives 			// NOT IN
-let crowdWinSound = new Audio("assets/audio/CrowdCheerSound.wav"); // Plays when beat last level 			// NOT IN
+let crowdLoseSound = new Audio("assets/audio/CrowdLoseSound.wav"); // Plays when run out of lives 			
+let crowdWinSound = new Audio("assets/audio/CrowdCheerSound.wav"); // Plays when beat last level 			
 let levelStartSound = new Audio("assets/audio/RadioSound.wav"); // Play on Mission Failed screen OR player respawn???
 let splashScreenSound = new Audio("assets/audio/ExitLevelComplete.wav");
-let barrierBreak1Sound = new Audio("assets/audio/BarrierBreak1.wav"); 										// NOT IN
-let barrierBreak2Sound = new Audio("assets/audio/BarrierBreak2.wav"); 										// NOT IN
-let countdownSound = new Audio("assets/audio/Countdown.wav"); // Plays before new gameplus					// NOT IN
+let barrierBreak1Sound = new Audio("assets/audio/BarrierBreak1.wav"); 										
+let barrierBreak2Sound = new Audio("assets/audio/BarrierBreak2.wav"); 										
+//let countdownSound = new Audio("assets/audio/Countdown.wav"); // Plays before new gameplus					// NOT INCLUDING
 let missionSuccessSound = new Audio("assets/audio/MissionSuccessSound.wav"); 						
 missionSuccessSound.volume = 0.7;
 // Radio
+/*
 let radio2Sound = new Audio("assets/audio/RadioSound2.wav"); 												// NOT IN
 let radio3Sound = new Audio("assets/audio/RadioSound3.wav"); 												// NOT IN
 let radio4Sound = new Audio("assets/audio/RadioSound4.wav"); 												// NOT IN
 let radio5Sound = new Audio("assets/audio/RadioSound5.wav"); 												// NOT IN
+*/
 // Laser
 let laserPreFireSound = new Audio("assets/audio/Pre_Fire_Laser.wav"); 
 let laserFireSound = new Audio("assets/audio/Laser_Fire.wav"); 

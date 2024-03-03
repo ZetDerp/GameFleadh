@@ -42,11 +42,13 @@ function update()
 		{
 			wallSSXPos += 90
 			newWallState[0] = true;
+			barrierBreak1Sound.play();
 		}
 		else if (tileScore >= wallStateQuota[1] && !newWallState[1])
 		{
 			wallSSXPos += 90;
 			newWallState[1] = true;
+			barrierBreak2Sound.play();
 		}
 		else if (tileScore >= wallStateQuota[2] && !newWallState[2])
 		{
@@ -337,6 +339,10 @@ function update()
 		else
 			playerAnimation++;
 		
+		// Check if Last Level
+		if (currentLevel == levels.Level6)
+			crowdWinSound.play();
+		
 		// Decay Timer
 		if (timerNextLevel >= 60)
 		{
@@ -412,6 +418,9 @@ function update()
 		{
 			timerNextLevel = 0;
 			timerNextLevelCounter--;
+			// Check if Last Life (In here to stop it from repeating)
+			if (playerBomb.playerCurrentHP == 1)
+				crowdLoseSound.play();
 			if (timerNextLevelCounter == 0) // Start Next Level
 			{
 				timerNextLevelCounter = 4;
@@ -439,6 +448,7 @@ function update()
 		break;
 	}
 
+	/*
 	// Radio Timer
 	radioTimer--;
 	if (radioTimer <= 0)
@@ -448,24 +458,25 @@ function update()
 	// Radio Select
 	if (radioSelecter == 0)
 	{
-		//radio2Sound.play();
+		radio2Sound.play();
 		radioSelecter = -1; // Reset
 	}
 	else if (radioSelecter == 1)
 	{
-		//radio3Sound.play();
+		radio3Sound.play();
 		radioSelecter = -1; // Reset
 	}
 	else if (radioSelecter == 2)
 	{
-		//radio4Sound.play();
+		radio4Sound.play();
 		radioSelecter = -1; // Reset
 	}
 	else if (radioSelecter == 3)
 	{
-		//radio5Sound.play();
+		radio5Sound.play();
 		radioSelecter = -1; // Reset
 	}
+	*/
 }
 
 // Game Draw
@@ -477,11 +488,9 @@ function draw()
 	{
 		// Title Animation
 		drawFrame(titleSpritesheet, 0, titleSSYPos, 720, 256, 
-						450, 200, 720, 256);
+						500, 300, 720, 256);
 		ctx.fillStyle = "white";
-		//ctx.fillText("Press Space (or X) to Start", 550, 700);
-		drawFrame(controlSprite, 0, 0, 1200, 200, 250, 440, 1200, 200);
-
+		ctx.fillText("Press Space (or X) to Start", 550, 700);
 	}
 	else if (currentGameStatus == gameStates.Gameplay || currentGameStatus == gameStates.LevelWin || currentGameStatus == gameStates.GameOver)
 	{
@@ -890,8 +899,6 @@ function draw()
 			drawFrame(tcHUDRequired, tcSS_4, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 4
 			drawFrame(tcHUDRequired, tcSS_9, 0, tcSSWidth, 130, tcHUDReq2Xpos, 0, tcSSWidth, 130); // 9
 		}
-
-
 
 		if (tileQuota == 6){
 			drawFrame(tcHUDRequired, tcSS_0, 0, tcSSWidth, 130, tcHUDReq1Xpos, 0, tcSSWidth, 130); // 0
