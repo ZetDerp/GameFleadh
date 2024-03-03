@@ -1197,18 +1197,115 @@ function makeLevelLayout()
 				gameTiles[i].tileLocked = true;
 		}
 		// Power Up Tiles / Trap Tiles
-		for (let i = 0; i < MAX_TILES; i++)
-		{
-			if (!(i >= 6 && i <= 8) && !(i >= 21 && i <= 23) && !(i >= 36 && i <= 38) && !(i >= 51 && i <= 53)
-				&& !(i >= 66 && i <= 68) && !(i >= 81 && i <= 83) && !(i >= 96 && i <= 98))
-			{
-				if (i % 2 == 0) // Power Up Tiles
-					gameTiles[i].tilePower = true;
-				else // Trap Tiles
-					gameTiles[i].tileTrap = true;
-			} 
-		}
-		
+		// for (let i = 0; i < MAX_TILES; i++)
+		// {
+		// 	if (!(i >= 6 && i <= 8) && !(i >= 21 && i <= 23) && !(i >= 36 && i <= 38) && !(i >= 51 && i <= 53)
+		// 		&& !(i >= 66 && i <= 68) && !(i >= 81 && i <= 83) && !(i >= 96 && i <= 98))
+		// 	{
+		// 		if (i % 2 == 0) // Power Up Tiles
+		// 			gameTiles[i].tilePower = true;
+		// 		else // Trap Tiles
+		// 			gameTiles[i].tileTrap = true;
+		// 	} 
+		// }
+
+		// Row 1
+		gameTiles[0].tilePower = true;
+		gameTiles[1].tileTrap = true;
+		gameTiles[2].tilePower = true;
+		gameTiles[3].tileTrap = true;
+		gameTiles[4].tilePower = true;
+		gameTiles[5].tileSafeSpace = true;
+		gameTiles[9].tileSafeSpace = true;
+		gameTiles[10].tilePower = true;
+		gameTiles[11].tileTrap = true;
+		gameTiles[12].tilePower = true;
+		gameTiles[13].tileTrap = true;
+		gameTiles[14].tilePower = true;
+		// Row 2
+		gameTiles[15].tileTrap = true;
+		gameTiles[16].tilePower = true;
+		gameTiles[17].tileTrap = true;
+		gameTiles[18].tilePower = true;
+		gameTiles[19].tileTrap = true;
+		gameTiles[20].tilePower = true;
+		gameTiles[24].tilePower = true;
+		gameTiles[25].tileTrap = true;
+		gameTiles[26].tilePower = true;
+		gameTiles[27].tileTrap = true;
+		gameTiles[28].tilePower = true;
+		gameTiles[29].tileTrap = true;
+		// Row 3
+		gameTiles[30].tilePower = true;
+		gameTiles[31].tileTrap = true;
+		gameTiles[32].tilePower = true;
+		gameTiles[33].tileTrap = true;
+		gameTiles[34].tilePower = true;
+		gameTiles[35].tileTrap = true;
+
+		gameTiles[39].tileTrap = true;
+		gameTiles[40].tilePower = true;
+		gameTiles[41].tileTrap = true;
+		gameTiles[42].tilePower = true;
+		gameTiles[43].tileTrap = true;
+		gameTiles[44].tilePower = true;
+		// Row 4
+		gameTiles[45].tileTrap = true;
+		gameTiles[46].tilePower = true;
+		gameTiles[47].tileTrap = true;
+		gameTiles[48].tilePower = true;
+		gameTiles[49].tileTrap = true;
+		gameTiles[50].tilePower = true;
+
+		gameTiles[54].tilePower = true;
+		gameTiles[55].tileTrap = true;
+		gameTiles[56].tilePower = true;
+		gameTiles[57].tileTrap = true;
+		gameTiles[58].tilePower = true;
+		gameTiles[59].tileTrap = true;
+		// Row 5
+		gameTiles[60].tilePower = true;
+		gameTiles[61].tileTrap = true;
+		gameTiles[62].tilePower = true;
+		gameTiles[63].tileTrap = true;
+		gameTiles[64].tilePower = true;
+		gameTiles[65].tileTrap = true;
+
+		gameTiles[69].tileTrap = true;
+		gameTiles[70].tilePower = true;
+		gameTiles[71].tileTrap = true;
+		gameTiles[72].tilePower = true;
+		gameTiles[73].tileTrap = true;
+		gameTiles[74].tilePower = true;
+		// Row 6
+		gameTiles[75].tileTrap = true;
+		gameTiles[76].tilePower = true;
+		gameTiles[77].tileTrap = true;
+		gameTiles[78].tilePower = true;
+		gameTiles[79].tileTrap = true;
+		gameTiles[80].tilePower = true;
+
+		gameTiles[84].tilePower = true;
+		gameTiles[85].tileTrap = true;
+		gameTiles[86].tilePower = true;
+		gameTiles[87].tileTrap = true;
+		gameTiles[88].tilePower = true;
+		gameTiles[89].tileTrap = true;
+		// Row 7
+		gameTiles[90].tilePower = true;
+		gameTiles[91].tileTrap = true;
+		gameTiles[92].tilePower = true;
+		gameTiles[93].tileTrap = true;
+		gameTiles[94].tilePower = true;
+		gameTiles[95].tileTrap = true;
+
+		gameTiles[99].tileTrap = true;
+		gameTiles[100].tilePower = true;
+		gameTiles[101].tileTrap = true;
+		gameTiles[102].tilePower = true;
+		gameTiles[103].tileTrap = true;
+		gameTiles[104].tilePower = true;
+
 		break;
 	case levels.Level6: // Level 6
 	
