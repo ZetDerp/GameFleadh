@@ -67,6 +67,18 @@ function GameObjectUFO()
 	this.ufoTimer = 0;
 }
 
+// Create Star (Invincibility)
+function GameObjectStar()
+{
+	// Sprites
+	this.starSpritesheet = new Image();
+	// Poisitions
+	this.star_Xpos = 0;
+	this.star_Ypos = 0;
+	// Collected Status
+	this.b_isStarCollected = false; // Move offscreen when true
+}
+
 // Tiles
 function GameObjectTile()
 {
@@ -92,6 +104,7 @@ function GameObjectTile()
 let playerBomb = new GameObjectPlayer();
 let gameBalls = [];
 let gameUFO = new GameObjectUFO();
+let gameStar = new GameObjectStar();
 let gameTiles = [];
 
 // Game States
@@ -164,6 +177,9 @@ let tcHUDCurrent1Xpos = 700;
 let tcHUDCurrent2Xpos = 780;
 let tcHUDReq1Xpos = 920;
 let tcHUDReq2Xpos = 1000;
+// Invincibility Collectible
+let b_isIvincibilityOn = false;
+
 
 
 let returnMainMenu = false;
@@ -180,6 +196,10 @@ globeSSXPos = 0;
 globeSSYPos = 0;
 enemySSXPos = 0;
 enemySSYPos = 0;
+// Star Animation
+starAnimation = 0;
+starSSXPos = 0;
+starSSYPos = 0;
 
 wallSSXPos = 0;
 
@@ -301,6 +321,10 @@ tcHUDSlash.src = "assets/img/tcHUDSlash.png";
 // Badges
 pilotBadge = new Image();
 pilotBadge.src = "assets/img/PilotBadge.png";
+
+// Star
+starSpritesheet = new Image();
+starSpritesheet.src = "assets/img/StarSpritesheet.png";
 
 // SFX
 let deathSound = new Audio("assets/audio/DeathSound.wav");
