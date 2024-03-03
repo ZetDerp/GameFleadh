@@ -30,6 +30,9 @@ function GameObjectPlayer()
 	// Invis Circle
 	this.playerPoint = 0;
 	this.playerRadius = 45;
+	
+	// Playtime
+	this.playerTime = 0;
 }
 
 // Create Bouncing Ball (Enemy)
@@ -273,6 +276,8 @@ livesHUD13.src = "assets/img/LiveHUD13.png";
 livesHUD14 = new Image();
 livesHUD14.src = "assets/img/LiveHUD14.png";
 // Enemy Spawner
+esIcon6 = new Image();
+esIcon6.src = "assets/img/EnemySpawnerHUDPlus.png";
 esIcon5 = new Image();
 esIcon5.src = "assets/img/EnemySpawnerHUD5.png";
 esIcon4 = new Image();
