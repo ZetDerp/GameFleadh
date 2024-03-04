@@ -355,7 +355,6 @@ starSpritesheet.src = "assets/img/StarSpritesheet.png";
 // SFX
 let deathSound = new Audio("assets/audio/DeathSound.wav");
 let woohooSound = new Audio("assets/audio/woohooSound.wav"); // Plays when clearing a level
-woohooSound.volume = 0.9;
 let tileCollectSound = new Audio("assets/audio/TileFlipSound.wav");
 let tilesReqSound = new Audio("assets/audio/TileRequired.wav");
 tilesReqSound.loop = false;

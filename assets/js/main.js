@@ -351,7 +351,7 @@ function update()
 		{
 			// Crowd Win Sound
 			crowdWinSound.play();
-			countdownSound.play();
+			//countdownSound.play();
 
 			// Star Animation
 			if (starAnimation >= 15) // Globe
