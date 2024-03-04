@@ -244,6 +244,7 @@ function update()
 		{
 			globeSSXPos+=90;
 			enemySSXPos+=50;
+			//starSSXPos+=90;
 			if (globeSSXPos >= 270)
 			{
 				globeSSXPos = 0;
@@ -251,6 +252,9 @@ function update()
 				
 				enemySSXPos = 0;
 				enemySSYPos+=50;
+
+				//starSSXPos = 0;
+				//starSSYPos+=90;
 			}
 			if (globeSSYPos >= 180)
 			{
@@ -259,6 +263,9 @@ function update()
 				
 				enemySSXPos = 0;
 				enemySSYPos = 0;
+
+				//starSSXPos = 0;
+				//starSSYPos = 0;
 			}
 			globeAnimation = 0;
 		}
@@ -341,8 +348,29 @@ function update()
 		
 		// Check if Last Level
 		if (currentLevel == levels.Level6)
+		{
+			// Crowd Win Sound
 			crowdWinSound.play();
-		
+			countdownSound.play();
+
+			// Star Animation
+			if (starAnimation >= 15) // Globe
+			{
+				starSSXPos+=90;
+				if (starSSXPos >= 270)
+				{
+					starSSXPos = 0;
+					starSSYPos+=90;
+				}
+				if (starSSYPos >= 180)
+				{
+					starSSXPos = 0;
+					starSSYPos = 0;
+				}
+				starAnimation = 0;
+			}	
+		}
+
 		// Decay Timer
 		if (timerNextLevel >= 60)
 		{
@@ -450,6 +478,8 @@ function update()
 		
 		break;
 	}
+
+
 
 	/*
 	// Radio Timer
@@ -596,9 +626,6 @@ function draw()
 		// Draw UFO
 		drawFrame(gameUFO.ufoSpritesheet, rocketSSXPos, rocketSSYPos, 90, 90, 
 				gameUFO.ufoXPos, gameCanvas.height - 100, 90, 90);
-
-		// Draw Star
-		drawFrame(gameStar.starSpritesheet, 0, 0, 90, 90, 0, 0, 90, 90);	
 
 		// Draw Player
 		yPos = 1;
@@ -1045,13 +1072,23 @@ function draw()
 						{
 							drawFrame (commanderBadge, 0, 0, 300, 300,
 									1250, 525, 300*.5, 300*.5); // Third Rank
+
+							// Star
+							drawFrame(starSpritesheet, starSSXPos, starSSYPos, 90, 90, 1460, 550, 90, 90);
 							if (finalTime < 200)
 							{
 								drawFrame (specialistBadge, 0, 0, 300, 300,
 									1250, 350, 300*.5, 300*.5); // Second Rank
+								// Star
+								drawFrame(starSpritesheet, starSSXPos, starSSYPos, 90, 90, 1460, 400, 90, 90);
 								if (finalTime < 100)
+								{
 									drawFrame (masterBadge, 0, 0, 300, 300,
 										1250, 175, 300*.5, 300*.5); // First Rank
+									// Star
+									drawFrame(starSpritesheet, starSSXPos, starSSYPos, 90, 90, 1460, 200, 90, 90);
+								}
+
 							}
 						}
 					} 
@@ -1074,8 +1111,17 @@ function draw()
 			}
 		}
 		
-		drawFrame(gameStar.starSpritesheet, 0, 0, 90, 90, 0, 0, 90, 90);
-	
+		// Stars
+		// Check if we are on Rank Screen
+		if (currentLevel == levels.Level1)
+		{
+			//drawFrame(starSpritesheet, starSSXPos, starSSYPos, 90, 90, 1400, 550, 90, 90);
+			//drawFrame(starSpritesheet, starSSXPos, starSSYPos, 90, 90, 1400, 400, 90, 90);
+			//drawFrame(starSpritesheet, starSSXPos, starSSYPos, 90, 90, 1450, 200, 90, 90);
+		}
+		
+		
+
 		// Particle display
 		//drawFrame(particleSprite,  0, 0, 360, 180, playerBomb.playerPosition.xPos, playerBomb.playerPosition.yPos, 360, 180);
 
