@@ -234,7 +234,7 @@ function update()
 			console.log("PRE-FIRE");
 			gameUFO.ufoPreFire = true;
 			gameUFO.ufoTimer = 180;
-			gameUFO.ufoTimeBeforeFire = (Math.floor(Math.random() * 4) + 1) * 60; // Range: 1 - 5 Seconds
+			gameUFO.ufoTimeBeforeFire = (Math.floor(Math.random() * 20) + 1) * 60; // Range: 1 - 5 Seconds
 		}
 		else
 			gameUFO.ufoTimeBeforeFire--;
@@ -1038,15 +1038,15 @@ function draw()
 						ctx.fillText("Time: " + finalTime + " Seconds", 1125, 150);
 						drawFrame (pilotBadge, 0, 0, 300, 300,
 							1250, 700, 300*.5, 300*.5); // Always Get
-						if (finalTime < 90)
+						if (finalTime < 300)
 						{
 							drawFrame (commanderBadge, 0, 0, 300, 300,
 									1250, 525, 300*.5, 300*.5); // Third Rank
-							if (finalTime < 85)
+							if (finalTime < 200)
 							{
 								drawFrame (specialistBadge, 0, 0, 300, 300,
 									1250, 350, 300*.5, 300*.5); // Second Rank
-								if (finalTime < 40)
+								if (finalTime < 100)
 									drawFrame (masterBadge, 0, 0, 300, 300,
 										1250, 175, 300*.5, 300*.5); // First Rank
 							}
@@ -1318,7 +1318,7 @@ function makeLevelLayout()
 	gameUFO.ufoPreFire = false;
 	gameUFO.ufoFire = false;
 	gameUFO.ufoChangeDir = 0;
-	gameUFO.ufoTimeBeforeFire = (Math.floor(Math.random() * 4) + 1) * 60; // Range: 1 - 5 Seconds
+	gameUFO.ufoTimeBeforeFire = (Math.floor(Math.random() * 20) + 1) * 60; // Range: 1 - 5 Seconds
 	textSpawnBall = 5;
 	
 	switch (currentLevel)

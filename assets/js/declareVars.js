@@ -367,8 +367,10 @@ let levelStartSound = new Audio("assets/audio/RadioSound.wav"); // Play on Missi
 let splashScreenSound = new Audio("assets/audio/ExitLevelComplete.wav");
 splashScreenSound.loop = false;
 let countdownSound = new Audio("assets/audio/Countdown.wav"); // Plays before new gameplus					// NOT IN
-let barrierBreak1Sound = new Audio("assets/audio/BarrierBreak1.wav"); 										
-let barrierBreak2Sound = new Audio("assets/audio/BarrierBreak2.wav"); 										
+let barrierBreak1Sound = new Audio("assets/audio/BarrierBreak1.wav"); 		
+barrierBreak1Sound.volume = 0.03;								
+let barrierBreak2Sound = new Audio("assets/audio/BarrierBreak2.wav"); 	
+barrierBreak2Sound.volume = 0.1;									
 //let countdownSound = new Audio("assets/audio/Countdown.wav"); // Plays before new gameplus					// NOT INCLUDING
 
 let missionSuccessSound = new Audio("assets/audio/MissionSuccessSound.wav"); 						
