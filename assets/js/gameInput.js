@@ -48,7 +48,10 @@ function input(event)
 					transitionBoxHeight = 10;
 					transitionBoxY = gameCanvas.height/2-5;
 					levelLoaded = false;
-					timerNextLevelCounter = 4;
+					if (currentLevel == levels.Level6)
+						timerNextLevelCounter = 10;
+					else
+						timerNextLevelCounter = 4;
 					timerNextLevel = 0;
 				}
 				if (returnMainMenu == false)

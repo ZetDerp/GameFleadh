@@ -350,7 +350,10 @@ function update()
 			timerNextLevelCounter--;
 			if (timerNextLevelCounter == 0) // Start Next Level
 			{
-				timerNextLevelCounter = 4;
+				if (currentLevel == levels.Level5)
+					timerNextLevelCounter = 10;
+				else
+					timerNextLevelCounter = 4;
 				
 				switch (currentLevel)
 				{
