@@ -24,7 +24,19 @@
 	<!-- <body background="assets/img/backgroundHTML.png"> -->
 		<canvas id="gameCanvas" width="1600" height="900"></canvas>
 		<!--<canvas id="bgCanvas" width="1600" height="900"></canvas>-->
-		
+		<style>	
+		.dot {
+
+			background-color: red;
+			width: 4rem;
+			height: 4rem;
+			border-radius: 50%;
+			position: absolute;
+			transform: translate(-50%, -50%);
+		}
+		</style>
+
+
 		<script>
 		if (navigator.service-worker)
 		{
@@ -43,6 +55,7 @@
 			<div id="stars3"></div>
 		</section>
 		
+		<div id="top-half">	</div>
 		
 	</body>
 	<script src="assets/js/declareVars.js"></script>

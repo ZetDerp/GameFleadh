@@ -1143,6 +1143,28 @@ window.addEventListener("keyup", input);
 //window.addEventListener("mousedown", input);
 //window.addEventListener("mouseup", input);
 //window.addEventListener("mousemove", input);
+document.addEventListener("touchstart", e=>{
+	[...e.changedTouches].forEach(touch => {
+		const dot = document.createElement("div")
+		dot.classList.add("dot");
+		dot.style.top = `${touch.pageY}px`
+		dot.style.left = `${touch.pageX}px`
+		dot.id = touch.identifier
+		document.body.append(dot)
+		}
+	)
+	console.log(e);
+})
+document.addEventListener("touchmove", e=>{
+	console.log(e);
+})
+document.addEventListener("touchend", e=>{
+	[...e.changedTouches].forEach(touch => {
+		const dot = document.getElementById(touch.identifier)
+		dot.remove()
+	}
+	)
+})
 
 function updateCurrentTile()
 {
