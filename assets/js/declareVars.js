@@ -7,6 +7,9 @@ let ctx = gameCanvas.getContext("2d");
 ctx.fillStyle = "black";
 ctx.font = "bold 50px Arial"; // Set Font
 
+const tophalf = document.getElementById("top-half");
+
+
 
 // Create Player (Bomb)
 function GameObjectPlayer()

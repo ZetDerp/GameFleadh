@@ -1,5 +1,8 @@
 console.log("gameInput.js Running");
 
+
+
+
 function input(event)
 {
 	console.log("Key Event: " + event.type);
@@ -85,7 +88,7 @@ function input(event)
 	else if (currentGameStatus == gameStates.Gameplay)
 	{
 		// Player Direction
-		if (event.code == "KeyW" || event.code == "ArrowUp")
+		if (event.code == "KeyW" || event.code == "ArrowUp" || event.code == upButton)
 		{
 			if (playerBomb.playerPosition >= 15)
 			{
@@ -125,6 +128,15 @@ function input(event)
 				playerBomb.playerDirectionFace = "Right";
 			}
 		}
+		else{
+			clickableDpadReleased() // DPAD buttons are not pressed
+			// DPAD release buttons for button release (stops auto punch bug)     
+			redButton.classList.remove("pressed");
+			blueButton.classList.remove("pressed");
+			yellowButton.classList.remove("pressed");
+			greenButton.classList.remove("pressed");
+			orangeButton.classList.remove("pressed"); // Punch
+		}
 		// Restart Key
 		if (event.code == "KeyR")
 			restartLevel();
@@ -133,4 +145,38 @@ function input(event)
 	{
 		
 	}
+
+	
+	
 }
+
+// ----- D-PAD & Buttons -----
+function clickableDpadReleased() 
+{
+	//playerInput = new playerInput("None");
+}
+function clickDpadYellow()
+{
+	playerInput = "Up";	
+}
+function clickDpadBlue()
+{
+	playerInput = "Left";
+}
+function clickDpadRed()
+{
+	playerInput = "Right";
+}
+function clickDpadGreen()
+{
+	playerInput = "Down";
+}
+function clickPunch()
+{
+	playerInput = "Space";
+}
+let yellowButton = document.getElementsByClassName("yellow")[0]; // Up
+let blueButton = document.getElementsByClassName("blue")[0]; // Left
+let redButton = document.getElementsByClassName("red")[0]; // Right
+let greenButton = document.getElementsByClassName("green")[0]; // Down
+let orangeButton = document.getElementsByClassName("orange")[0]; // Space

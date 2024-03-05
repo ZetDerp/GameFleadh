@@ -1140,6 +1140,12 @@ window.requestAnimationFrame(gameLoop);
 // Event Listeners
 //window.addEventListener("keydown", input);
 window.addEventListener("keyup", input);
+//document.addEventListener("touchstart", input); 
+
+tophalf.addEventListener("touchstart", input =>{
+	playerInput = "Space";
+	console.log(input)
+});
 //window.addEventListener("mousedown", input);
 //window.addEventListener("mouseup", input);
 //window.addEventListener("mousemove", input);
@@ -1153,10 +1159,10 @@ document.addEventListener("touchstart", e=>{
 		document.body.append(dot)
 		}
 	)
-	console.log(e);
+	
 })
 document.addEventListener("touchmove", e=>{
-	console.log(e);
+	
 })
 document.addEventListener("touchend", e=>{
 	[...e.changedTouches].forEach(touch => {
@@ -1165,6 +1171,9 @@ document.addEventListener("touchend", e=>{
 	}
 	)
 })
+
+// const upButton = document.getElementById("Y");
+// upButton.addEventListener("touchstart", input);
 
 function updateCurrentTile()
 {

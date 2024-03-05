@@ -34,6 +34,11 @@
 			position: absolute;
 			transform: translate(-50%, -50%);
 		}
+
+		#top-half{
+		background-color: black;
+		height: 400px;
+	}
 		</style>
 
 
@@ -54,9 +59,35 @@
 			<div id="stars2"></div>
 			<div id="stars3"></div>
 		</section>
+
+		<!-- D-PAD -->
+		<table>
+			<tbody>
+				<tr>
+					<td>&nbsp;</td> <!-- &nbsp means blank space in HTML -->
+					<td><button onmousedown="clickDpadYellow()" onmouseup="clickableDpadReleased()" class="button yellow round">Y</button></td>
+					<td>&nbsp;</td>
+				</tr>
+				
+				<tr>
+					<td><button onmousedown="clickDpadBlue()" onmouseup="clickableDpadReleased()" class="button blue round">X</button></td>
+					<td>&nbsp;</td>
+					<td><button onmousedown="clickDpadRed()" onmouseup="clickableDpadReleased()" class="button red round">B</button></td>
+					<td>&nbsp;</td>
+					<td><button onmousedown="clickPunch()" onmouseup="clickableDpadReleased()" class="button orange round">Action</button></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+						<td><button onmousedown="clickDpadGreen()" onmouseup="clickableDpadReleased()" class="button green round">A</button></td>
+						<td>&nbsp;</td>
+					</tr>	
+			</tbody>
+		</table>
+	
+
 		
-		<div id="top-half">	</div>
-		
+	<div id="top-half">	</div>
 	</body>
 	<script src="assets/js/declareVars.js"></script>
 	<script src="assets/js/gameInput.js"></script>

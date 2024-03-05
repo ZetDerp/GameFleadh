@@ -15,6 +15,7 @@ section.wrapper
 }
 
 
+
 canvas
 {
 	display: inline; 
@@ -608,6 +609,76 @@ html
     }
 }
 
+
+.button 
+{
+background-color: #000000;
+border: dashed;
+box-shadow: 0 12px #505050;
+padding: 20px; /* Make the buttons grouping smaller to not have ot scroll on the page*/
+text-align: center;
+font-size: 28px;
+}
+
+.button:hover 
+{
+background-color: #3F3F3F;
+}
+
+.button:active 
+{
+box-shadow: 0 5px #3D3D3D;
+transform: translateY(5px);
+}
+
+.pressed
+{
+box-shadow: 0 5px #3D3D3D;
+transform: translateY(5px);    
+}
+
+.red 
+{
+color: #FF0000;
+}
+
+.green 
+{
+color: #00FF00;
+}
+
+.blue 
+{
+color: #0000FF;
+}
+
+.yellow 
+{
+color: #FFFF00;
+}
+
+/*  Punch */
+.orange 
+{
+color: #FF9900;
+}
+
+/*  Rewind */
+.purple 
+{
+color: #9900FF;
+}
+
+/*  Pause */
+.white 
+{
+color: #FFFFcc;
+}
+
+.round 
+{
+border-radius: 30%; /* Makes the buttons more circular or squarer*/
+}
 
 
 
